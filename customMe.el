@@ -6,6 +6,9 @@
 ; https://github.com/neppramod/java_emacs
 ; https://github.com/shackra/emacs
 ; http://pages.sachachua.com/.emacs.d/Sacha.html#babel-init
+; https://github.com/mgrbyte/emacs.d
+; https://github.com/owainlewis/emacs-color-themes ; Interesantes frases.
+
 
 ;; Create a variable to indicate where emacs's configuration is installed
 (setq EMACS_DIR "~/.emacs.d/")
@@ -275,6 +278,43 @@
 ;-------------------------------------
 ;Aumentar tamaño de letra, before config: 130
 (set-face-attribute 'default nil :height 140)
+
+;Cambiar fuente
+; Descubrir fuentes: M-x describe-font
+; file name: /usr/share/fonts/droid/DroidSansMono.ttf
+;; Set default font
+;; (set-face-attribute 'default nil
+;;                     :family "Source Code Pro"
+;;                     :height 143
+;;                     :weight 'normal
+;;                     :width 'normal)
+
+;; (set-face-attribute 'default nil
+;;                     :family "Inconsolata"
+;;                     :height 160
+;;                     :weight 'normal
+;;                     :width 'normal)
+
+;Font
+;Inconsolata
+
+; En lips la variable del nombre de tu sistema system-type.
+;M-x eval-expression system-type
+; windows-nt : en Windows 
+; gnu/linux :  en GNU/Linux
+
+; Datos curiosos
+;fuentes para programadores”, desde el inicio de los tiempos (y por que creo que todos los gnus la traen) DejaVu Sans (mono) 
+;; (if (condición)
+;; (Expresiones si se cumple la condición)
+;; (Expresiones si no se cumple la condición))
+
+;; Fuente
+;; (if (eq system-type 'windows-nt)
+;;     (set-face-attribute 'default nil :family "Consolas" :height 110)
+;;     (set-face-attribute 'default nil :family "Roboto Mono" :height 110)
+;; )
+
 ;Agregar numeros de lineas
 ;@reference: https://emacs.stackexchange.com/questions/278/how-do-i-display-line-numbers-in-emacs-not-in-the-mode-line
 (add-hook 'prog-mode-hook 'linum-mode)
@@ -285,8 +325,8 @@
 
 ;Ese theme tambien me gusto
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/badger-theme")
-(load-theme 'badger t)
-(set-face-background 'region "gray37") ;Adecuado para theme badger
+;(load-theme 'badger t)
+;(set-face-background 'region "gray37") ;Adecuado para theme badger
 ;Buena refencia:
 ; https://github.com/howardabrams/dot-files/blob/master/emacs.org
 ; https://www.youtube.com/watch?v=dljNabciEGg&t=245s&ab_channel=HowardAbrams
@@ -299,6 +339,19 @@
 
 ;(load-theme 'sanityinc-tomorrow-night t)
 
+; Me gusto este thema, se ve bien python, html, javaScript, helm-mode, dired-mode
+(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/dream-theme")
+(load-theme 'dream t)
+
+;(load-theme 'dorsey t)
+
+;Emacs-color-themes package , themas que me gustaron
+;-Dorsey ;Color suave
+;-Junio
+;-Hickey ;Color suave
+;-Fogus ; Me gusto su powerline azul
+;Granger ; Me gusto powerline morado-azul
+;(load-theme ' t)
 
 ;Nyan mode (Gatito)
 (nyan-mode)
@@ -344,11 +397,20 @@
                   (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
 
 
+;Probando themes
 ;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/aanila")
+;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/emacs-abyss-theme")
+;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/emacs-snazzy")
+(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/dakrone-theme") ; Me gusta su color de letra
+;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/ColorAreNice")
+;(load-theme 'base16-default-dark t) ;Desintalar paquete, genera muchos themes.
 ;(load-theme 'aanila' t)
 ;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/avk-emacs-themes")
 ;(load-theme 'avk-darkblue-white' t)
 ;(load-theme 'avk-darkblue-yellow' t)
+
+                                        ;
+
 
 ;permanently enable syntax checking with Flycheck
 ;(add-hook 'after-init-hook #'global-flycheck-mode) 
@@ -372,24 +434,51 @@
 
 ;(set-face-foreground 'linum "#E8D92D")
 ;#ffcc00 amarillo
+
+;------------Personalizar numbers --------------------------------
 ;Amarillo bonito #F0DFAF  ;Lineas amarillas #F0DFAF
-(custom-set-faces
+;foreground - color de la lineas
+
+(custom-set-faces ;Desactivar cuando desea cambiarlos
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF"))))) ; badger
+ '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF"))))) ; badger y dream 
+; '(linum ((t (:inherit (shadow default) :background "#212121" :foreground "#F0DFAF"))))) ; dorsey
 ; '(linum ((t (:inherit (shadow default) :background "#1B182C" :foreground "#F0DFAF"))))) ;challenger-deep
 ; '(linum ((t (:inherit (shadow default) :background "#191935" :foreground "#F0DFAF"))))) ;darkburn 
-;'(linum ((t (:inherit (shadow default) :background "#1D252C" :foreground "#B5B54A"))))) ;city-light
+; '(linum ((t (:inherit (shadow default) :background "#1D252C" :foreground "#B5B54A"))))) ;city-light
+
+;(setq linum-format "%3d") ; Only with dorsey.
+;(setq linum-format "%4d") ; Only with dorsey.
 
 ;Cambiar el color de la franja de los numeros
-;(set-face-attribute 'fringe nil :background "#1D252C")
+;(set-face-attribute 'fringe nil :background "#1D252C") ; City-light
 ;(set-face-attribute 'fringe nil :background "#111111")
 ;Linea negra
-(set-face-attribute 'fringe nil :background "#171717") ; badger
+;(set-face-attribute 'fringe nil :background "#171717") ; badger
 
-;(setq-default left-fringe-width 11)
+;(setq-default left-fringe-width 20)
+
+;Example
+;; (set-face-attribute 'fringe nil :background "blue")
+;; (add-to-list 'default-frame-alist '(left-fringe . 0))
+;; (add-to-list 'default-frame-alist '(right-fringe . 0))
+;(set-face-attribute 'line-number nil :background "gray96" :foreground "gray42")
+;(set-face-attribute 'line-number-current-line nil :foreground "gray6")
+
+;Padding de los numeros.
+; https://stackoverflow.com/questions/21861491/how-to-add-padding-to-emacs-nw-linum-mode
+;(setq linum-format "%2d")
+;; (setq-default left-fringe-width  10)
+;; (setq-default right-fringe-width  0)
+;; (set-face-attribute 'fringe nil :background "black")
+
+;(setq linum-format "%4d \u2502 ")
+
+;-----------------------------------------------------------------
+
 
 ;Modifica los espacion 4 for C/C++
 (defun my-c++-mode-hook ()
@@ -410,7 +499,7 @@
 
 ;Agrega los archivos.html web mode
 (require 'web-mode) 
-(add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
+;(add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
 ;(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 
@@ -722,7 +811,21 @@
 ;; :config
 ;; (setq neo-theme 'icons)
 ;; (global-set-key [f12] 'neotree-toggle))
-    
+
+
+;; (use-package default-text-scale
+;;   :ensure t
+;;   :bind
+;;   (("C-c +" . default-text-scale-increase)
+;;    ("C-c -" . default-text-scale-decrease))
+;;   )
+
+; Esto se puede hacer C-x + , C-x -
+;; (use-package text-scale-mode
+;;   :bind
+;;   (("C-c +" . text-scale-increase)
+;;    ("C-c -" . text-scale-decrease))
+;;   )
 	
 	
 
@@ -732,5 +835,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(color-theme-sanityinc-tomorrow helm-lsp quickrun company-bootstrap doom-modeline multiple-cursors flymd company-box company-quickhelp mode-icons yasnippet-snippets which-key web-mode use-package rainbow-delimiters projectile nyan-mode neotree magit lsp-java langtool kaolin-themes impatient-mode highlight-numbers highlight-escape-sequences helm google-translate flycheck exec-path-from-shell emmet-mode eglot dumb-jump doom-themes define-word dashboard counsel company-web company-c-headers all-the-icons ac-html-csswatcher ac-html ac-clang ac-capf ac-c-headers)))
+   '(sublime-themes default-text-scale color-theme-sanityinc-tomorrow helm-lsp quickrun company-bootstrap doom-modeline multiple-cursors flymd company-box company-quickhelp mode-icons yasnippet-snippets which-key web-mode use-package rainbow-delimiters projectile nyan-mode neotree magit lsp-java langtool kaolin-themes impatient-mode highlight-numbers highlight-escape-sequences helm google-translate flycheck exec-path-from-shell emmet-mode eglot dumb-jump doom-themes define-word dashboard counsel company-web company-c-headers all-the-icons ac-html-csswatcher ac-html ac-clang ac-capf ac-c-headers)))
 
