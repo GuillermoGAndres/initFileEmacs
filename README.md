@@ -73,4 +73,4 @@ C-x - left/right : Change next or back buffer.
 ~~~
 ### Default font
 Source Code Pro 
-![Linked in java](./img/Linked2.png)
+![Linked in java](./img/Linked3.png)

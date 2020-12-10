@@ -1,5 +1,3 @@
-(setq user-full-name "Guillermo Andres")
-(setq user-mail-address "memocampeon35@gmail.com")
 ; Referencias
 ; https://github.com/wasamasa/dotemacs/blob/master/init.org#init
 ; https://github.com/howardabrams/dot-files/blob/master/emacs.org
@@ -8,6 +6,9 @@
 ; http://pages.sachachua.com/.emacs.d/Sacha.html#babel-init
 ; https://github.com/mgrbyte/emacs.d
 ; https://github.com/owainlewis/emacs-color-themes ; Interesantes frases.
+
+(setq user-full-name "Guillermo Andres")
+(setq user-mail-address "memocampeon35@gmail.com")
 
 
 ;; Create a variable to indicate where emacs's configuration is installed
@@ -289,6 +290,12 @@
 ;;                     :weight 'normal
 ;;                     :width 'normal)
 
+(set-face-attribute 'default nil
+                    :family "DejaVu Sans Mono"
+                    :height 143
+                    :weight 'normal
+                    :width 'normal)
+
 ;; (set-face-attribute 'default nil
 ;;                     :family "Inconsolata"
 ;;                     :height 160
@@ -342,6 +349,7 @@
 ; Me gusto este thema, se ve bien python, html, javaScript, helm-mode, dired-mode
 (add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/dream-theme")
 (load-theme 'dream t)
+;(set-background-color "#1D1F21") ; Tono mas suave.
 
 ;(load-theme 'dorsey t)
 
@@ -444,11 +452,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF"))))) ; badger y dream 
+; '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF"))))) ; badger y dream 
 ; '(linum ((t (:inherit (shadow default) :background "#212121" :foreground "#F0DFAF"))))) ; dorsey
 ; '(linum ((t (:inherit (shadow default) :background "#1B182C" :foreground "#F0DFAF"))))) ;challenger-deep
 ; '(linum ((t (:inherit (shadow default) :background "#191935" :foreground "#F0DFAF"))))) ;darkburn 
 ; '(linum ((t (:inherit (shadow default) :background "#1D252C" :foreground "#B5B54A"))))) ;city-light
+ '(linum ((t (:inherit (shadow default) :background "#1D1F21" :foreground "#F0DFAF"))))) ; dream 
+
 
 ;(setq linum-format "%3d") ; Only with dorsey.
 ;(setq linum-format "%4d") ; Only with dorsey.
@@ -456,8 +466,10 @@
 ;Cambiar el color de la franja de los numeros
 ;(set-face-attribute 'fringe nil :background "#1D252C") ; City-light
 ;(set-face-attribute 'fringe nil :background "#111111")
-;Linea negra
+
+;Linea negra (fringe)
 ;(set-face-attribute 'fringe nil :background "#171717") ; badger
+(set-face-attribute 'fringe nil :background "#1D1F21") ; dream
 
 ;(setq-default left-fringe-width 20)
 
@@ -826,8 +838,40 @@
 ;;   (("C-c +" . text-scale-increase)
 ;;    ("C-c -" . text-scale-decrease))
 ;;   )
-	
-	
+
+
+;Set default size windows
+(if (display-graphic-p)
+    (progn
+      (setq initial-frame-alist
+            '(
+              (tool-bar-lines . 0)
+              (width . 109) ; chars
+              (height . 25) ; lines
+              (background-color . "#1D1F21") ;Tono mas suave para dream.
+              ))
+      (setq default-frame-alist
+            '(
+              (tool-bar-lines . 0)
+              (width . 109)
+              (height . 15)
+              (background-color . "#1D1F21")
+              ; (background-color . "#1D1F21")
+              )))
+  (progn
+    (setq initial-frame-alist '( (tool-bar-lines . 0)))
+    (setq default-frame-alist '( (tool-bar-lines . 0)))))
+
+; Para que agarre el color en nw, es decir, terminal
+; Reference: https://emacs.stackexchange.com/questions/47452/why-doesnt-set-background-color-work-in-my-init-file
+(if (eq window-system 'nil)    
+     (add-to-list 'default-frame-alist '(background-color . "#1D1F21"))     
+  )
+
+; Puedes mostrar los coloser con M-x list-colors-display
+; Y ajustar la franje del marcado con:
+;(set-face-background 'region "#7f7f7f") ;Adecuado para theme dream in terminal.
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
