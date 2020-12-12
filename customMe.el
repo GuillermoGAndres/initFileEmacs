@@ -290,17 +290,19 @@
 ;;                     :weight 'normal
 ;;                     :width 'normal)
 
-(set-face-attribute 'default nil
-                    :family "DejaVu Sans Mono"
-                    :height 143
-                    :weight 'normal
-                    :width 'normal)
+;; (set-face-attribute 'default nil
+;;                     :family "DejaVu Sans Mono"
+;;                     :height 143
+;;                     :weight 'normal
+;;                     :width 'normal)
 
 ;; (set-face-attribute 'default nil
 ;;                     :family "Inconsolata"
 ;;                     :height 160
 ;;                     :weight 'normal
 ;;                     :width 'normal)
+
+(set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'normal)
 
 ;Font
 ;Inconsolata
@@ -344,6 +346,7 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/challenger-deep-theme")
 ;(load-theme 'challenger-deep t)
 
+;Este tema tambien esta chido.
 ;(load-theme 'sanityinc-tomorrow-night t)
 
 ; Me gusto este thema, se ve bien python, html, javaScript, helm-mode, dired-mode
@@ -452,12 +455,31 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-; '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF"))))) ; badger y dream 
-; '(linum ((t (:inherit (shadow default) :background "#212121" :foreground "#F0DFAF"))))) ; dorsey
-; '(linum ((t (:inherit (shadow default) :background "#1B182C" :foreground "#F0DFAF"))))) ;challenger-deep
-; '(linum ((t (:inherit (shadow default) :background "#191935" :foreground "#F0DFAF"))))) ;darkburn 
-; '(linum ((t (:inherit (shadow default) :background "#1D252C" :foreground "#B5B54A"))))) ;city-light
- '(linum ((t (:inherit (shadow default) :background "#1D1F21" :foreground "#F0DFAF"))))) ; dream 
+; '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF")))) ; badger y dream 
+; '(linum ((t (:inherit (shadow default) :background "#212121" :foreground "#F0DFAF")))) ; dorsey
+; '(linum ((t (:inherit (shadow default) :background "#1B182C" :foreground "#F0DFAF")))) ;challenger-deep
+; '(linum ((t (:inherit (shadow default) :background "#191935" :foreground "#F0DFAF")))) ;darkburn 
+; '(linum ((t (:inherit (shadow default) :background "#1D252C" :foreground "#B5B54A")))) ;city-light
+; '(linum ((t (:inherit (shadow default) :background "#1D1F21" :foreground "#F0DFAF")))) ; dream con oscuro claro.
+ '(linum ((t (:inherit (shadow default) :background "#0D0E14" :foreground "#F0DFAF")))) ; dream normal.
+; Activar las configuracion solo cuando sea el tema dreams para company
+ '(company-preview ((t (:background "#373B41" :foreground "wheat"))))
+ '(company-preview-common ((t (:inherit company-preview :foreground "wheat"))))
+ '(company-tooltip-common ((t (:foreground "#8ABEB7")))) ;Color de las letras en coincidencia en pop
+ '(company-tooltip-selection ((t (:background "#7B7B7B")))) ;Color de seleccion resaltado.
+ '(company-tooltip ((t (:background "#373B41" :foreground "#C5C8C6")))) ;Color fondo y letra
+ '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
+ '(company-scrollbar-fg ((t (:background "#373B41"))))
+
+ )
+
+; #8ABEB7 verde letra-commun - verder claro
+; #373B41 fondo tiltop letra #C5C8C6 , negro con letras semigrise
+; #282A2E bg scrollbar ; negro
+; #373B41 fg scroo ; gris claro
+; #969896 resaltado ; gris 
+; #373B41 marcado regin.
+;(set-face-background 'region "#373B41") ; Modifica region 
 
 
 ;(setq linum-format "%3d") ; Only with dorsey.
@@ -469,7 +491,7 @@
 
 ;Linea negra (fringe)
 ;(set-face-attribute 'fringe nil :background "#171717") ; badger
-(set-face-attribute 'fringe nil :background "#1D1F21") ; dream
+;(set-face-attribute 'fringe nil :background "#1D1F21") ; dream con tema un tema oscuro claro
 
 ;(setq-default left-fringe-width 20)
 
@@ -846,17 +868,16 @@
       (setq initial-frame-alist
             '(
               (tool-bar-lines . 0)
-              (width . 109) ; chars
+              (width . 101) ; chars
               (height . 25) ; lines
-              (background-color . "#1D1F21") ;Tono mas suave para dream.
+              ;(background-color . "#1D1F21") ;Tono mas suave para dream.
               ))
       (setq default-frame-alist
             '(
               (tool-bar-lines . 0)
-              (width . 109)
-              (height . 15)
-              (background-color . "#1D1F21")
-              ; (background-color . "#1D1F21")
+              (width . 101)
+              (height . 25)
+              ;(background-color . "#1D1F21")
               )))
   (progn
     (setq initial-frame-alist '( (tool-bar-lines . 0)))
@@ -868,9 +889,19 @@
      (add-to-list 'default-frame-alist '(background-color . "#1D1F21"))     
   )
 
+
+
 ; Puedes mostrar los coloser con M-x list-colors-display
 ; Y ajustar la franje del marcado con:
 ;(set-face-background 'region "#7f7f7f") ;Adecuado para theme dream in terminal.
+
+
+; Example how install plugins.
+;; (add-to-list 'load-path "/home/guillermo/.emacs.d/plugins/powerline/")
+;; (require 'powerline)
+;; (powerline-default-theme)
+;; (set-cursor-color "orange")
+;; (set-background-color "#000000") 
 
 
 (custom-set-variables
