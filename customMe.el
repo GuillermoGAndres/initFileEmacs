@@ -6,10 +6,11 @@
 ; http://pages.sachachua.com/.emacs.d/Sacha.html#babel-init
 ; https://github.com/mgrbyte/emacs.d
 ; https://github.com/owainlewis/emacs-color-themes ; Interesantes frases.
+;Buena refencia:
+; https://www.youtube.com/watch?v=dljNabciEGg&t=245s&ab_channel=HowardAbrams
 
 (setq user-full-name "Guillermo Andres")
 (setq user-mail-address "memocampeon35@gmail.com")
-
 
 ;; Create a variable to indicate where emacs's configuration is installed
 (setq EMACS_DIR "~/.emacs.d/")
@@ -98,6 +99,8 @@
 
 ; Tiempo de echo.
 (setq echo-keystrokes 0.5)
+
+(set-language-environment "UTF-8")
 
 ;I like having the clock. 
 ;(display-time-mode 1)
@@ -302,7 +305,9 @@
 ;;                     :weight 'normal
 ;;                     :width 'normal)
 
-(set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'normal)
+;(set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'normal)
+
+(set-face-attribute 'default nil :family "Droid Sans Mono" :height 135 :weight 'normal)
 
 ;Font
 ;Inconsolata
@@ -331,38 +336,6 @@
 ;@see: https://www.emacswiki.org/emacs/ShowParenMode
 ;Matches parentesis
 (show-paren-mode 1)
-
-;Ese theme tambien me gusto
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/badger-theme")
-;(load-theme 'badger t)
-;(set-face-background 'region "gray37") ;Adecuado para theme badger
-;Buena refencia:
-; https://github.com/howardabrams/dot-files/blob/master/emacs.org
-; https://www.youtube.com/watch?v=dljNabciEGg&t=245s&ab_channel=HowardAbrams
-
-(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/darkburn-theme")
-;(load-theme 'darkburn t)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/challenger-deep-theme")
-;(load-theme 'challenger-deep t)
-
-;Este tema tambien esta chido.
-;(load-theme 'sanityinc-tomorrow-night t)
-
-; Me gusto este thema, se ve bien python, html, javaScript, helm-mode, dired-mode
-(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/dream-theme")
-(load-theme 'dream t)
-;(set-background-color "#1D1F21") ; Tono mas suave.
-
-;(load-theme 'dorsey t)
-
-;Emacs-color-themes package , themas que me gustaron
-;-Dorsey ;Color suave
-;-Junio
-;-Hickey ;Color suave
-;-Fogus ; Me gusto su powerline azul
-;Granger ; Me gusto powerline morado-azul
-;(load-theme ' t)
 
 ;Nyan mode (Gatito)
 (nyan-mode)
@@ -407,22 +380,7 @@
                `(lambda (c)
                   (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
 
-
-;Probando themes
-;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/aanila")
-;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/emacs-abyss-theme")
-;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/emacs-snazzy")
-(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/dakrone-theme") ; Me gusta su color de letra
-;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/ColorAreNice")
-;(load-theme 'base16-default-dark t) ;Desintalar paquete, genera muchos themes.
-;(load-theme 'aanila' t)
-;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/avk-emacs-themes")
-;(load-theme 'avk-darkblue-white' t)
-;(load-theme 'avk-darkblue-yellow' t)
-
                                         ;
-
-
 ;permanently enable syntax checking with Flycheck
 ;(add-hook 'after-init-hook #'global-flycheck-mode) 
 
@@ -437,79 +395,6 @@
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 (add-hook 'web-mode  'emmet-mode) ;; enable Emmet's web mode abbreviation.
-
-;Instaldo desde MELPA doom-emacs
-;(load-theme 'doom-city-lights t)
-
-
-
-;(set-face-foreground 'linum "#E8D92D")
-;#ffcc00 amarillo
-
-;------------Personalizar numbers --------------------------------
-;Amarillo bonito #F0DFAF  ;Lineas amarillas #F0DFAF
-;foreground - color de la lineas
-
-(custom-set-faces ;Desactivar cuando desea cambiarlos
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
-; '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF")))) ; badger y dream 
-; '(linum ((t (:inherit (shadow default) :background "#212121" :foreground "#F0DFAF")))) ; dorsey
-; '(linum ((t (:inherit (shadow default) :background "#1B182C" :foreground "#F0DFAF")))) ;challenger-deep
-; '(linum ((t (:inherit (shadow default) :background "#191935" :foreground "#F0DFAF")))) ;darkburn 
-; '(linum ((t (:inherit (shadow default) :background "#1D252C" :foreground "#B5B54A")))) ;city-light
-; '(linum ((t (:inherit (shadow default) :background "#1D1F21" :foreground "#F0DFAF")))) ; dream con oscuro claro.
- '(linum ((t (:inherit (shadow default) :background "#0D0E14" :foreground "#F0DFAF")))) ; dream normal.
-; Activar las configuracion solo cuando sea el tema dreams para company
- '(company-preview ((t (:background "#373B41" :foreground "wheat"))))
- '(company-preview-common ((t (:inherit company-preview :foreground "wheat"))))
- '(company-tooltip-common ((t (:foreground "#8ABEB7")))) ;Color de las letras en coincidencia en pop
- '(company-tooltip-selection ((t (:background "#7B7B7B")))) ;Color de seleccion resaltado.
- '(company-tooltip ((t (:background "#373B41" :foreground "#C5C8C6")))) ;Color fondo y letra
- '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
- '(company-scrollbar-fg ((t (:background "#373B41"))))
-
- )
-
-; #8ABEB7 verde letra-commun - verder claro
-; #373B41 fondo tiltop letra #C5C8C6 , negro con letras semigrise
-; #282A2E bg scrollbar ; negro
-; #373B41 fg scroo ; gris claro
-; #969896 resaltado ; gris 
-; #373B41 marcado regin.
-;(set-face-background 'region "#373B41") ; Modifica region 
-
-
-;(setq linum-format "%3d") ; Only with dorsey.
-;(setq linum-format "%4d") ; Only with dorsey.
-
-;Cambiar el color de la franja de los numeros
-;(set-face-attribute 'fringe nil :background "#1D252C") ; City-light
-;(set-face-attribute 'fringe nil :background "#111111")
-
-;Linea negra (fringe)
-;(set-face-attribute 'fringe nil :background "#171717") ; badger
-;(set-face-attribute 'fringe nil :background "#1D1F21") ; dream con tema un tema oscuro claro
-
-;(setq-default left-fringe-width 20)
-
-;Example
-;; (set-face-attribute 'fringe nil :background "blue")
-;; (add-to-list 'default-frame-alist '(left-fringe . 0))
-;; (add-to-list 'default-frame-alist '(right-fringe . 0))
-;(set-face-attribute 'line-number nil :background "gray96" :foreground "gray42")
-;(set-face-attribute 'line-number-current-line nil :foreground "gray6")
-
-;Padding de los numeros.
-; https://stackoverflow.com/questions/21861491/how-to-add-padding-to-emacs-nw-linum-mode
-;(setq linum-format "%2d")
-;; (setq-default left-fringe-width  10)
-;; (setq-default right-fringe-width  0)
-;; (set-face-attribute 'fringe nil :background "black")
-
-;(setq linum-format "%4d \u2502 ")
 
 ;-----------------------------------------------------------------
 
@@ -527,9 +412,7 @@
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-
-
-;------------------------------Web mode-
+;------------------------------Web mode-------------------------------
 
 ;Agrega los archivos.html web mode
 (require 'web-mode) 
@@ -868,15 +751,15 @@
       (setq initial-frame-alist
             '(
               (tool-bar-lines . 0)
-              (width . 101) ; chars
-              (height . 25) ; lines
+              (width . 117) ; chars
+              (height . 31) ; lines
               ;(background-color . "#1D1F21") ;Tono mas suave para dream.
               ))
       (setq default-frame-alist
             '(
               (tool-bar-lines . 0)
-              (width . 101)
-              (height . 25)
+              (width . 117)
+              (height . 31)
               ;(background-color . "#1D1F21")
               )))
   (progn

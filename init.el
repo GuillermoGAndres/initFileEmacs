@@ -10,7 +10,5 @@
 (load "resize-frame")
 
 ; Este configuracion al final para que se guraden mis configuracion custom en este archivo.
-(setq custom-file "~/.emacs.d/emacs-configuration/pluginsUser/customFacesMe.el")
+(setq custom-file "~/.emacs.d/emacs-configuration/customApariencia.el")
 (load custom-file)
-
-
