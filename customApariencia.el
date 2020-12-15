@@ -3,7 +3,6 @@
 ;Ese theme tambien me gusto
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/badger-theme")
 (load-theme 'badger t)
-(set-face-background 'region "gray37") ;Adecuado para theme badger
 
 (add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/darkburn-theme")
 ;(load-theme 'darkburn t)
@@ -132,14 +131,17 @@
 
 ;Theme badger
 (if  (eq (car custom-enabled-themes) 'badger) 
-    (custom-set-faces
+    (progn
+      (custom-set-faces
      '(company-tooltip-common ((t (:foreground "#F28B86")))) ;Color de las letras en coincidencia en pop
       '(helm-source-header ((t (:extend t :foreground "#F28B86" :weight bold))))
       '(helm-match ((t (:extend t :foreground "#F28B86"))))
       '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
+      '(company-tooltip-annotation ((t (:foreground "#C5C8C6"))))
       )
+      (set-face-background 'region "gray37") ;Adecuado para theme badger      
+    )
 )
-
 
 ;Theme junio
 ;; (if  (eq (car custom-enabled-themes) 'junio) 
