@@ -1,8 +1,9 @@
 ;------------------------------Themes----------------------------------
+; Para conocer los colores de la sintaxis es: list-face-display
 
 ;Ese theme tambien me gusto
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/badger-theme")
-(load-theme 'badger t)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/badger-theme")
+;(load-theme 'badger t)
 
 (add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/darkburn-theme")
 ;(load-theme 'darkburn t)
@@ -10,8 +11,18 @@
 ;(load-theme 'challenger-deep t)
 ; Me gusto este thema, se ve bien python, html, javaScript, helm-mode, dired-mode
 (add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/dream-theme")
+
+;fogus or dorsey, esto se tienes que instalar de MELPA.
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/dorsey-original")
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/dorsey-personalizado")
+;(load-theme 'dorsey t)
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/fogus-personalizado")
+(load-theme 'fogus t)
+
 ;(load-theme 'dream t)
-;(set-background-color "#1D1F21") ; Tono mas suave.
+;(set-background-color "#1D1F21") ; Tono mas suave. newgro
 ;Instalando emacs color themes.
 ;(load-theme 'dorsey t)
 ;Este tema tambien esta chido.
@@ -47,12 +58,12 @@
 ;Example
 ;(set-face-foreground 'linum "#F0DFAF") 
 
-(custom-set-faces ;Desactivar cuando desea cambiarlos
+;(custom-set-faces ;Desactivar cuando desea cambiarlos
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF")))) ; badger.
+; '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF")))) ; badger.
 ; '(linum ((t (:inherit (shadow default) :background "#212121" :foreground "#F0DFAF")))) ; dorsey
 ; '(linum ((t (:inherit (shadow default) :background "#1B182C" :foreground "#F0DFAF")))) ;challenger-deep
 ; '(linum ((t (:inherit (shadow default) :background "#191935" :foreground "#F0DFAF")))) ;darkburn 
@@ -69,23 +80,23 @@
  ;; '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
  ;; '(company-scrollbar-fg ((t (:background "#373B41"))))
 
- )
+; )
 
 ; AJustando el padding de los numeros
 ;(setq linum-format "%3d") ; Only with dorsey.
 ;(setq linum-format "%4d") ; Only with dorsey.
 
 ;Cambiar el color de la franja de los numeros (fringe)
-(set-face-attribute 'fringe nil :background "#171717") ; badger
+;(set-face-attribute 'fringe nil :background "#171717") ; badger
 ;(set-face-attribute 'fringe nil :background "#1D252C") ; City-light
 ;(set-face-attribute 'fringe nil :background "#1D1F21") ; dream con tema un tema oscuro claro
 
 ;(setq-default left-fringe-width 20)
 
 ;Example
-;; (set-face-attribute 'fringe nil :background "blue")
-;; (add-to-list 'default-frame-alist '(left-fringe . 0))
-;; (add-to-list 'default-frame-alist '(right-fringe . 0))
+; (set-face-attribute 'fringe nil :background "blue")
+; (add-to-list 'default-frame-alist '(left-fringe . 10))
+; (add-to-list 'default-frame-alist '(right-fringe . 10))
 ;(set-face-attribute 'line-number nil :background "gray96" :foreground "gray42")
 ;(set-face-attribute 'line-number-current-line nil :foreground "gray6")
 
@@ -138,10 +149,66 @@
       '(helm-match ((t (:extend t :foreground "#F28B86"))))
       '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
       '(company-tooltip-annotation ((t (:foreground "#C5C8C6"))))
+      '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF")))) ; badger.
+
+      '(font-lock-type-face ((t (:foreground "#F0DFAF")))) ; Clases y types amarillas
+      '(font-lock-constant-face ((t (:foreground "#F0DFAF")))) ;Contastantes amarillas
+      '(font-lock-string-face ((t (:foreground "#D1907F")))) ;Cadenas naranjas
+      '(font-lock-variable-name-face ((t (:foreground "#F6F3E8")))) ;Parametros color normales a la letra.
+      '(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon
+      '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Dosting verde 
+      
       )
-      (set-face-background 'region "gray37") ;Adecuado para theme badger      
+      (set-face-background 'region "gray37") ;Adecuado para theme badger
+      (set-face-attribute 'fringe nil :background "#171717") ; badger      
     )
 )
+
+
+(if (or (eq (car custom-enabled-themes) 'dorsey) (eq (car custom-enabled-themes) 'fogus))
+    (progn
+      (custom-set-faces
+       '(font-lock-type-face ((t (:foreground "#F0DFAF")))) ; Clases y types amarillas
+       '(font-lock-constant-face ((t (:foreground "#F0DFAF")))) ;Contastantes amarillas
+       '(font-lock-string-face ((t (:foreground "#D1907F")))) ;Cadenas naranjas
+       '(font-lock-variable-name-face ((t (:foreground "#9FB3C2")))) ;Color verde chido #8AB8A2 or gris #9FB3C2, para los nombre de los tipos.
+       ;'(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon para las funcines
+       ;'(font-lock-function-name-face ((t (:foreground "#C7AF3F")))) ; o Amarillo super chido tambien para las funciones
+       '(font-lock-function-name-face ((t (:foreground "#FAFFDB")))) ;metodos for python color amarillo para las funcines
+
+       '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Docsting gris chido #9FB3C2 or verde chido #8AB8A2 o verde  #86B187 un poco nitido.
+       '(font-lock-keyword-face ((t (:foreground "#8AC6F2" :weight normal)))) ;Color azul muy chido.
+       
+       '(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#F0DFAF"))))       
+       )
+            
+      (set-face-background 'region "gray37") 
+      (set-face-attribute 'fringe nil :background "#13182D")
+      ;(set-background-color "#13182D") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
+   )
+)
+; #FAFFDB Ese amrillo me gusta amariilo
+; #9FB3C2 Es como un gris azul, me gusta el colot 
+;(set-background-color "#13182D") ; Buen background color azul marino, me gusto
+;(set-background-color "#171717") ; Background black de Badger.
+; #ABABAC Griss de las lineas. #797B83
+; #212121 black dorsey se ve bien negro.
+
+;; (if  (eq (car custom-enabled-themes) 'dorsey)
+;;     (progn
+;;       (setq linum-format "%2d") ;Es que deja mucho padding a la izquierda
+;;       )
+;; )
+
+(if  (eq (car custom-enabled-themes) 'fogus)
+    (progn
+      (custom-set-faces       
+       '(linum ((t (:inherit (shadow default) :background "#14191F" :foreground "#F0DFAF"))))       
+       )
+      (set-face-attribute 'fringe nil :background "#14191F")
+    )
+)
+
 
 ;Theme junio
 ;; (if  (eq (car custom-enabled-themes) 'junio) 
@@ -150,13 +217,13 @@
 ;; )
 
 
-(custom-set-faces
+;(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
 
- )
+; )
 
 ;------------------------------------------------------
 

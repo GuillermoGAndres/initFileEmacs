@@ -6,6 +6,7 @@
 ; http://pages.sachachua.com/.emacs.d/Sacha.html#babel-init
 ; https://github.com/mgrbyte/emacs.d
 ; https://github.com/owainlewis/emacs-color-themes ; Interesantes frases.
+;https://github.com/zamansky/using-emacs
 ;Buena refencia:
 ; https://www.youtube.com/watch?v=dljNabciEGg&t=245s&ab_channel=HowardAbrams
 
@@ -798,7 +799,7 @@
 ;; (require 'powerline) ; or (load 'file)
 ;; (powerline-default-theme)
 ;; (set-cursor-color "orange")
-;; (set-background-color "#000000") 
+; (set-background-color "#13182D") ;Me gusto
 
 
 (use-package company-quickhelp

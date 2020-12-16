@@ -71,6 +71,7 @@ C-tab - Switch tab
 C-x - left/right : Change next or back buffer.
 
 ~~~
-### Default font
-Source Code Pro 
-![Linked in java](./img/Linked3.png)
+### Font
+DejaVu Sans Mono
+![Linked in java](./myThemes/img/FogusPersonalizadoDroidSansMono2.png)
+

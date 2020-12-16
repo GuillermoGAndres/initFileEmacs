@@ -1,9 +1,9 @@
 ; Initial configuration
-;(setq custom-file "/home/guillermo/.emacs.d/emacs-configuration/customMe.el")
-;(load custom-file)
+(setq custom-file "/home/guillermo/.emacs.d/emacs-configuration/customMe.el")
+(load custom-file)
 
 ;Cargar archivos org, compila los archivos org y lo convierte en .el, sera nuestro archivo principal
-(org-babel-load-file (expand-file-name "~/.emacs.d/emacs-configuration/dirCustomOrg/customMeORG.org"))
+;(org-babel-load-file (expand-file-name "~/.emacs.d/emacs-configuration/dirCustomOrg/customMeORG.org"))
 
 ; Plugins by users.
 ;(setq custom-file "~/.emacs.d/emacs-configuration/pluginsUser/resize-frame.el")
@@ -19,7 +19,5 @@
 
 (setq custom-file "~/.emacs.d/emacs-configuration/pluginsUser/customFacesMe.el")
 (load custom-file)
-
-
 
 
