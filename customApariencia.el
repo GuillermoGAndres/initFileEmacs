@@ -2,7 +2,7 @@
 ; Para conocer los colores de la sintaxis es: list-face-display
 
 ;Ese theme tambien me gusto
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/badger-theme")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/badger")
 ;(load-theme 'badger t)
 
 (add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/darkburn-theme")
@@ -144,24 +144,24 @@
 (if  (eq (car custom-enabled-themes) 'badger) 
     (progn
       (custom-set-faces
-     '(company-tooltip-common ((t (:foreground "#F28B86")))) ;Color de las letras en coincidencia en pop
-      '(helm-source-header ((t (:extend t :foreground "#F28B86" :weight bold))))
-      '(helm-match ((t (:extend t :foreground "#F28B86"))))
-      '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
-      '(company-tooltip-annotation ((t (:foreground "#C5C8C6"))))
-      '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF")))) ; badger.
+       '(company-tooltip-common ((t (:foreground "#F28B86")))) ;Color de las letras en coincidencia en pop
+       '(helm-source-header ((t (:extend t :foreground "#F28B86" :weight bold))))
+       '(helm-match ((t (:extend t :foreground "#F28B86"))))
+       '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
+       '(company-tooltip-annotation ((t (:foreground "#C5C8C6"))))
+       '(linum ((t (:inherit (shadow default) :background "#171717" :foreground "#F0DFAF")))) ; badger.
 
-      '(font-lock-type-face ((t (:foreground "#F0DFAF")))) ; Clases y types amarillas
-      '(font-lock-constant-face ((t (:foreground "#F0DFAF")))) ;Contastantes amarillas
-      '(font-lock-string-face ((t (:foreground "#D1907F")))) ;Cadenas naranjas
-      '(font-lock-variable-name-face ((t (:foreground "#F6F3E8")))) ;Parametros color normales a la letra.
-      '(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon
-      '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Dosting verde 
-      
-      )
+       '(font-lock-type-face ((t (:foreground "#F0DFAF")))) ; Clases y types amarillas
+       '(font-lock-constant-face ((t (:foreground "#F0DFAF")))) ;Contastantes amarillas
+       '(font-lock-string-face ((t (:foreground "#D1907F")))) ;Cadenas naranjas
+       '(font-lock-variable-name-face ((t (:foreground "#F6F3E8")))) ;Parametros color normales a la letra.
+       '(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon
+       '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Dosting verde 
+       
+       )
       (set-face-background 'region "gray37") ;Adecuado para theme badger
       (set-face-attribute 'fringe nil :background "#171717") ; badger      
-    )
+   )
 )
 
 
@@ -175,11 +175,24 @@
        ;'(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon para las funcines
        ;'(font-lock-function-name-face ((t (:foreground "#C7AF3F")))) ; o Amarillo super chido tambien para las funciones
        '(font-lock-function-name-face ((t (:foreground "#FAFFDB")))) ;metodos for python color amarillo para las funcines
-
        '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Docsting gris chido #9FB3C2 or verde chido #8AB8A2 o verde  #86B187 un poco nitido.
        '(font-lock-keyword-face ((t (:foreground "#8AC6F2" :weight normal)))) ;Color azul muy chido.
+
+       ;Company
+       '(company-preview ((t (:background "#373B41" :foreground "wheat"))))
+       '(company-preview-common ((t (:inherit company-preview :foreground "wheat"))))
+       '(company-tooltip-common ((t (:foreground "#F0DFAF")))) ;Color de las letras en coincidencia en pop
+       '(company-tooltip-selection ((t (:background "#7B7B7B")))) ;Color de seleccion resaltado.
+       '(company-tooltip ((t (:background "#1D1F21" :foreground "#C5C8C6")))) ;Color fondo y letra
+       '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
+       '(company-scrollbar-fg ((t (:background "#373B41"))))
+       ;Helm
+       '(helm-source-header ((t (:extend t :foreground "#F0DFAF" :weight bold))))
+       '(helm-match ((t (:extend t :foreground "#F0DFAF"))))
+       '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
        
-       '(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#F0DFAF"))))       
+       '(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#F0DFAF"))))
+       
        )
             
       (set-face-background 'region "gray37") 
@@ -187,6 +200,8 @@
       ;(set-background-color "#13182D") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
    )
 )
+
+
 ; #FAFFDB Ese amrillo me gusta amariilo
 ; #9FB3C2 Es como un gris azul, me gusta el colot 
 ;(set-background-color "#13182D") ; Buen background color azul marino, me gusto

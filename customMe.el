@@ -819,6 +819,17 @@
 ;;     )
 ;;  )
 
+(use-package avy
+  :ensure t
+  :bind  
+  (("C-c j" . avy-goto-word-or-subword-1))
+  (("C-:" . avy-goto-line)))
+
+
+;; (global-set-key (kbd "C-c j") 'avy-goto-word-or-subword-1)
+;; (global-set-key (kbd "C-:") 'avy-goto-line)
+;; (global-set-key (kbd "C-'") 'avy-goto-char-timer)
+;; (global-set-key (kbd "C-c C-j") 'avy-goto-char)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
