@@ -4,6 +4,9 @@
 (setq user-mail-address "memocampeon35@gmail.com")
 ;; Create a variable to indicate where emacs's configuration is installed
 (setq EMACS_DIR "~/.emacs.d/")
+; Para que la primera vez que aparecen sea en tu directorio y no en donde guardaste emecs.
+(setq default-directory "c:/Users/memoc")
+;(message "%s" default-directory)
 
 ;---------------------------Paquetes de Melpa--------------------------------
 ; install the melpa repository

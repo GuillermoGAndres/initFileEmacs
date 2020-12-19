@@ -2,24 +2,25 @@
 ; Para conocer los colores de la sintaxis es: list-face-display
 
 ;Ese theme tambien me gusto
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/badger")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/badger")
 ;(load-theme 'badger t)
 
-(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/darkburn-theme")
-;(load-theme 'darkburn t)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/challenger-deep-theme")
-;(load-theme 'challenger-deep t)
-; Me gusto este thema, se ve bien python, html, javaScript, helm-mode, dired-mode
-(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/dream-theme")
-
-;fogus or dorsey, esto se tienes que instalar de MELPA.
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/dorsey-original")
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/dorsey-personalizado")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/dorsey-personalizado")
 ;(load-theme 'dorsey t)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/fogus-personalizado")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/fogus-personalizado")
 (load-theme 'fogus t)
+
+;Se debe de descargar si los quieren utilizar esto se tienes que instalar de MELPA o solo cargar el paquete.
+;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/darkburn-theme")
+;(load-theme 'darkburn t)
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/challenger-deep-theme")
+;(load-theme 'challenger-deep t)
+; Me gusto este thema, se ve bien python, html, javaScript, helm-mode, dired-mode
+;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/dream-theme")
+
+;fogus or dorsey, 
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-configuration/myThemes/dorsey-original")
 
 ;(load-theme 'dream t)
 ;(set-background-color "#1D1F21") ; Tono mas suave. newgro
