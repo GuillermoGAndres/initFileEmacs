@@ -7,7 +7,7 @@
       (load custom-file)
 
       ;Cargar package de un archivos org, compila los archivos org y lo convierte en .el, sera nuestro archivo principal
-      (org-babel-load-file (expand-file-name "~/.emacs.d/initFileEmacs/dirCustomOrg/customMeWindowsORG.org"))
+      ;(org-babel-load-file (expand-file-name "~/.emacs.d/initFileEmacs/dirCustomOrg/customMeWindowsORG.org"))
       
       )    
 )
@@ -15,7 +15,7 @@
 (if (eq system-type 'gnu/linux)
     (progn
       ;(message "Estas es un system Linux!")
-      (setq custom-file "/home/guillermo/.emacs.d/initFileEmacs/customMe.el")
+      (setq custom-file "/home/guillermo/.emacs.d/initFileEmacs/customMeLinux.el")
       (load custom-file)
       ;Cargar archivos org, compila los archivos org y lo convierte en .el, sera nuestro archivo principal
       ;(org-babel-load-file (expand-file-name "~/.emacs.d/emacs-configuration/dirCustomOrg/customMeORG.org"))
@@ -23,8 +23,12 @@
     )    
 )
 
+;Carga todos los paquetees
+(org-babel-load-file (expand-file-name "~/.emacs.d/initFileEmacs/dirCustomOrg/customMePackage.org"))
+
+
 ; Ahora es turno de cargar los temas
-;Pava ver menu bar solo cuando es ejecutado windos-system (GUI), valor x y si no hay nil
+;Solo cuando es ejecutado windos-system (GUI), valor x or nil.
 (if window-system
     (progn
       (setq custom-file "~/.emacs.d/initFileEmacs/customApariencia.el")
@@ -41,4 +45,5 @@
 ; Archivo donde se guardaran todas las personalizaciones, es un archivo auxiliar para observar los atributos.
 (setq custom-file "~/.emacs.d/initFileEmacs/pluginsUser/customFacesMe.el")
 (load custom-file)
+
 

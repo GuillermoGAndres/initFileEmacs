@@ -7,7 +7,7 @@ Y la carpeta emacs-configuration en el mismo nivel, precisamente la idea que est
 es modularizar nuestro codigo que sea mantenible y que sea usado en cualquier computadora.
 
 ~~~
-~/.emacs.d/emacs-configuration/
+~/.emacs.d/initFileEmacs/
 ~~~
 
 # Guide Emacs

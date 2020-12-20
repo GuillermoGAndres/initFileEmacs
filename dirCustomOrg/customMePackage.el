@@ -135,3 +135,56 @@
 (use-package quickrun 
 :ensure t
 :bind ("C-c r" . quickrun))
+
+;Modifica los espacion 4 for C/C++
+(defun my-c++-mode-hook ()
+  (setq c-basic-offset 4)
+  (c-set-offset 'substatement-open 0))
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(add-hook 'c-mode-hook 'my-c++-mode-hook)
+
+;Agrega color a la s secuencas de escape
+(defface my-backslash-escape-backslash-face
+  '((t :inherit font-lock-regexp-grouping-backslash))
+  "Face for the back-slash component of a back-slash escape."
+  :group 'font-lock-faces)
+
+(defface my-backslash-escape-char-face
+  '((t :inherit font-lock-regexp-grouping-construct))
+  "Face for the charcter component of a back-slash escape."
+  :group 'font-lock-faces)
+
+(defface my-format-code-format-face
+  '((t :inherit font-lock-regexp-grouping-backslash))
+  "Face for the % component of a printf format code."
+  :group 'font-lock-faces)
+
+(defface my-format-code-directive-face
+  '((t :inherit font-lock-regexp-grouping-construct))
+  "Face for the directive component of a printf format code."
+  :group 'font-lock-faces)
+
+
+(font-lock-add-keywords 'c-mode
+   '(("\\(\\\\\\)." 1 'my-backslash-escape-backslash-face prepend)
+     ("\\\\\\(.\\)" 1 'my-backslash-escape-char-face      prepend)
+     ("\\(%\\)."    1 'my-format-code-format-face         prepend)
+     ("%\\(.\\)"    1 'my-format-code-directive-face      prepend)))
+
+(font-lock-add-keywords 'java-mode
+   '(("\\(\\\\\\)." 1 'my-backslash-escape-backslash-face prepend)
+     ("\\\\\\(.\\)" 1 'my-backslash-escape-char-face      prepend)
+     ("\\(%\\)."    1 'my-format-code-format-face         prepend)
+     ("%\\(.\\)"    1 'my-format-code-directive-face      prepend)))
+
+(font-lock-add-keywords 'c++mode
+   '(("\\(\\\\\\)." 1 'my-backslash-escape-backslash-face prepend)
+     ("\\\\\\(.\\)" 1 'my-backslash-escape-char-face      prepend)
+     ("\\(%\\)."    1 'my-format-code-format-face         prepend)
+     ("%\\(.\\)"    1 'my-format-code-directive-face      prepend)))
+
+(use-package nyan-mode
+  :ensure t
+  :config
+  (nyan-mode)
+)

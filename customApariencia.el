@@ -202,6 +202,9 @@
    )
 )
 
+;(set-background-color "#0C1A29") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
+; #0C1A29 azul marino oscuro
+
 
 ; #FAFFDB Ese amrillo me gusta amariilo
 ; #9FB3C2 Es como un gris azul, me gusta el colot 
@@ -224,6 +227,15 @@
       (set-face-attribute 'fringe nil :background "#14191F")
     )
 )
+
+(if  (eq (car custom-enabled-themes) 'dorsey)
+    (progn
+      (custom-set-faces       
+        '(treemacs-fringe-indicator-face ((t (:foreground "#86B187"))))
+       )
+    )
+)
+
 
 
 ;Theme junio

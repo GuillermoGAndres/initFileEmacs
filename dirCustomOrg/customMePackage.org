@@ -1,0 +1,261 @@
+* My packages
+  Conjunto de paquetes que yo utilizo, para editar codigo es:  C-c '
+* exec-path-from-shell
+  Set the path variable
+#+BEGIN_SRC emacs-lisp
+;(use-package exec-path-from-shell
+;  :ensure t
+;  :config (exec-path-from-shell-initialize))
+#+END_SRC
+* shell
+  Configuracion con la shell incorporada.
+#+BEGIN_SRC emacs-lisp
+
+; Quita el echo de shell
+(defun my-shell-turn-echo-off ()
+  (setq comint-process-echoes t))
+(add-hook 'shell-mode-hook 'my-shell-turn-echo-off)
+
+; Para que funcion C-d para kill terminal
+(defun my-eshell-quit-or-delete-char (arg)
+  (interactive "p")
+  (if (and (eolp) (looking-back eshell-prompt-regexp))
+      (eshell-life-is-too-much) ;; http://emacshorrors.com/post/life-is-too-much
+    (delete-forward-char arg)))
+(defun my-eshell-setup ()
+  (define-key eshell-mode-map (kbd "C-d") 'my-eshell-quit-or-delete-char))
+
+(add-hook 'eshell-mode-hook 'my-eshell-setup)
+
+#+END_SRC
+* yasnippets
+  The yasnippet project allows me to create snippets of code that can be brought into a file, based on the language.
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :init
+    (yas-global-mode 1)
+  )
+
+  ; Repositorio de snippets ya hechos.
+  (use-package yasnippet-snippets
+    :ensure t
+    )
+#+END_SRC
+
+* helm
+#+BEGIN_SRC emacs-lisp
+(use-package helm
+:ensure t
+:init 
+(helm-mode 1)
+(progn (setq helm-buffers-fuzzy-matching t))
+:bind
+(("C-c h" . helm-command-prefix))
+(("M-x" . helm-M-x))
+(("C-c f" . helm-recentf))   ;; Add new key to recentf
+(("M-y" . helm-show-kill-ring))
+(("C-s" . helm-occur))
+(([f10] . 'helm-semantic-or-imenu))
+(("C-c g" . helm-grep-do-git-grep)))  ;; Search using grep in a git project
+
+#+END_SRC
+
+* helm-descbinds
+  Helm descbinds helps to easily search for keyboard shortcuts for modes that are currently active in the project
+#+BEGIN_SRC emacs-lisp
+(use-package helm-descbinds
+:ensure t
+:bind ("C-h b" . helm-descbinds))
+#+END_SRC
+* which-key
+  Ayuda con los combinaciones de los comandos.
+#+BEGIN_SRC emacs-lisp
+(use-package which-key 
+:ensure t 
+:init
+(which-key-mode)
+)
+#+END_SRC
+* ivy, counsel
+  Herramientas de autocompletado en el minibuffer de emacs
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :ensure t  
+    )
+
+  (use-package counsel
+    :ensure t  
+    :bind
+    (("C-x b" . counsel-switch-buffer))
+    (("C-x C-f" . counsel-find-file))
+    )
+#+END_SRC
+* avy
+  Ayuda momerte rapidamente en el editor.
+#+BEGIN_SRC emacs-lisp
+(use-package avy
+  :ensure t
+  :bind  
+  (("C-c j" . avy-goto-word-or-subword-1))
+  (("C-:" . avy-goto-line)))
+
+#+END_SRC
+* popwin
+  Lo que hace es que algunas ventanas las convierten en emergentes para que no en el windows y se puede eliminar facilmente con C-g.
+#+BEGIN_SRC emacs-lisp
+(use-package popwin
+  :ensure t
+  :init
+  (popwin-mode 1)
+)
+#+END_SRC
+* company
+  Automcomplete
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.2)
+  (setq company-show-numbers t)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  (setq company-tooltip-align-annotations t)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+  (global-company-mode)
+  :bind
+  (("<C-return>" . company-complete))
+)
+
+#+END_SRC
+* company-quickhelp
+  Muestra la documentacion de funciones si es que tiene.
+#+BEGIN_SRC emacs-lisp
+(use-package company-quickhelp
+  :ensure t
+  :config
+  (company-quickhelp-mode)
+)
+#+END_SRC
+* highlight-numbers-mode
+  Muestra en color los numeros.
+#+BEGIN_SRC emacs-lisp
+(use-package highlight-numbers
+:ensure t
+:init
+(add-hook 'prog-mode-hook 'highlight-numbers-mode) 
+)
+#+END_SRC
+* neotree
+#+BEGIN_SRC emacs-lisp
+(use-package neotree
+:ensure t
+:config
+(setq neo-theme 'arrow)
+(global-set-key [f9] 'neotree-toggle))
+
+#+END_SRC
+* treemacs 
+  Estrucuta de carpetal oficial de emacs.
+#+BEGIN_SRC emacs-lisp
+(use-package treemacs
+  :ensure t
+  :config
+  (global-set-key [f12] 'treemacs)
+  (global-set-key (kbd "C-c p") 'treemacs-add-project)
+)
+
+#+END_SRC
+* rainbow-delimiters
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters
+:ensure t
+)
+#+END_SRC
+* multiple-cursors
+#+BEGIN_SRC emacs-lisp
+(use-package multiple-cursors
+:ensure t
+:bind
+(("C-c C-m" . mc/edit-lines))
+(("C->" . mc/mark-next-like-this))
+(("C-<" . mc/mark-previous-like-this))
+(("C-c C-<" . 'mc/mark-all-like-this))
+(("C-c C-a" . mc/skip-to-previous-like-this))
+(("C-M-<mouse-1>" . mc/add-cursor-on-click))
+)
+
+#+END_SRC
+* quickrun
+  Ejecuta programas.
+#+BEGIN_SRC emacs-lisp
+(use-package quickrun 
+:ensure t
+:bind ("C-c r" . quickrun))
+
+#+END_SRC
+* C/C++
+#+BEGIN_SRC emacs-lisp
+;Modifica los espacion 4 for C/C++
+(defun my-c++-mode-hook ()
+  (setq c-basic-offset 4)
+  (c-set-offset 'substatement-open 0))
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(add-hook 'c-mode-hook 'my-c++-mode-hook)
+
+;Agrega color a la s secuencas de escape
+(defface my-backslash-escape-backslash-face
+  '((t :inherit font-lock-regexp-grouping-backslash))
+  "Face for the back-slash component of a back-slash escape."
+  :group 'font-lock-faces)
+
+(defface my-backslash-escape-char-face
+  '((t :inherit font-lock-regexp-grouping-construct))
+  "Face for the charcter component of a back-slash escape."
+  :group 'font-lock-faces)
+
+(defface my-format-code-format-face
+  '((t :inherit font-lock-regexp-grouping-backslash))
+  "Face for the % component of a printf format code."
+  :group 'font-lock-faces)
+
+(defface my-format-code-directive-face
+  '((t :inherit font-lock-regexp-grouping-construct))
+  "Face for the directive component of a printf format code."
+  :group 'font-lock-faces)
+
+
+(font-lock-add-keywords 'c-mode
+   '(("\\(\\\\\\)." 1 'my-backslash-escape-backslash-face prepend)
+     ("\\\\\\(.\\)" 1 'my-backslash-escape-char-face      prepend)
+     ("\\(%\\)."    1 'my-format-code-format-face         prepend)
+     ("%\\(.\\)"    1 'my-format-code-directive-face      prepend)))
+
+(font-lock-add-keywords 'java-mode
+   '(("\\(\\\\\\)." 1 'my-backslash-escape-backslash-face prepend)
+     ("\\\\\\(.\\)" 1 'my-backslash-escape-char-face      prepend)
+     ("\\(%\\)."    1 'my-format-code-format-face         prepend)
+     ("%\\(.\\)"    1 'my-format-code-directive-face      prepend)))
+
+(font-lock-add-keywords 'c++mode
+   '(("\\(\\\\\\)." 1 'my-backslash-escape-backslash-face prepend)
+     ("\\\\\\(.\\)" 1 'my-backslash-escape-char-face      prepend)
+     ("\\(%\\)."    1 'my-format-code-format-face         prepend)
+     ("%\\(.\\)"    1 'my-format-code-directive-face      prepend)))
+
+
+
+#+END_SRC
+* nyan-mode
+  Personaliza la powerline de emacs.
+#+BEGIN_SRC emacs-lisp
+
+(use-package nyan-mode
+  :ensure t
+  :config
+  (nyan-mode)
+)
+
+#+END_SRC
