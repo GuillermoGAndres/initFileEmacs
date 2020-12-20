@@ -188,3 +188,9 @@
   :config
   (nyan-mode)
 )
+
+(use-package company-c-headers
+:ensure t
+:config 
+(add-to-list 'company-backends 'company-c-headers)
+)

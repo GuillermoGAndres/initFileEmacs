@@ -176,9 +176,10 @@
        ;'(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon para las funcines
        ;'(font-lock-function-name-face ((t (:foreground "#C7AF3F")))) ; o Amarillo super chido tambien para las funciones
        '(font-lock-function-name-face ((t (:foreground "#FAFFDB")))) ;metodos for python color amarillo para las funcines
-       '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Docsting gris chido #9FB3C2 or verde chido #8AB8A2 o verde  #86B187 un poco nitido.
-       '(font-lock-keyword-face ((t (:foreground "#8AC6F2" :weight normal)))) ;Color azul muy chido.
-
+       '(font-lock-comment-face ((t (:foreground "#86B187")))) ; Comentarios de en linea
+       '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Docsting gris chido #9FB3C2 or verde chido #86B187 o verde con un tono poco nitido #8AB8A2.
+       '(font-lock-keyword-face ((t (:foreground "#8AC6F2" :weight normal)))) ;Color azul muy chido.       
+       
        ;Company
        '(company-preview ((t (:background "#373B41" :foreground "wheat"))))
        '(company-preview-common ((t (:inherit company-preview :foreground "wheat"))))
@@ -193,6 +194,7 @@
        '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
        
        '(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#F0DFAF"))))
+       '(company-tooltip-annotation ((t (:foreground "#F0DFAF"))))
        
        )
             
@@ -204,7 +206,7 @@
 
 ;(set-background-color "#0C1A29") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
 ; #0C1A29 azul marino oscuro
-
+; #13182D  azul marino mas azul.
 
 ; #FAFFDB Ese amrillo me gusta amariilo
 ; #9FB3C2 Es como un gris azul, me gusta el colot 
