@@ -152,7 +152,7 @@
 
 ;----------------Notas-------------------------------------------------------------------------
 ; No se te olvide que cada vez que haces una configuracion o instalas un paquete , se configurara
-; en el archivo pluginsuser/customFacesMe.el
-
+; en el archivo pluginsuser/customFacesMe.el tienes que limpiarlo si cambias de tema, ya que se quedaran
+; guardados las configuraciones del tema anterior, esto solo si tiene tiene informacion el archivo customFacesme.el
 
 

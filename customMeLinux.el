@@ -22,4 +22,4 @@
 ; primero de debe de ejecutar con C-c C-p abrira la term en un buffer y ejecura tu codigo, haceindo eso
 ; company ya sabe que funciones tiene tu modulo.
 
-
+; C-c C-c - Es un comando de ejecucion para varios modos, probar ese comando si se necesita.
