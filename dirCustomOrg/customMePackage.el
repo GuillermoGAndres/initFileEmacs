@@ -1,6 +1,6 @@
-;(use-package exec-path-from-shell
-;  :ensure t
-;  :config (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+ :ensure t
+ :config (exec-path-from-shell-initialize))
 
 ; Quita el echo de shell
 (defun my-shell-turn-echo-off ()
@@ -89,7 +89,8 @@
   (setq company-tooltip-flip-when-above t)
   (global-company-mode)
   :bind
-  (("<C-return>" . company-complete))
+  ;(("<C-return>" . company-complete))
+  (("<C-M-return>" . company-complete))
 )
 
 (use-package company-quickhelp

@@ -1,16 +1,6 @@
 ;------------------------------Themes----------------------------------
 ; Para conocer los colores de la sintaxis es: list-face-display
 
-;Ese theme tambien me gusto
-(add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/badger")
-;(load-theme 'badger t)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/dorsey-personalizado")
-;(load-theme 'dorsey t)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/fogus-personalizado")
-(load-theme 'fogus t)
-
 ;Se debe de descargar si los quieren utilizar esto se tienes que instalar de MELPA o solo cargar el paquete.
 ;(add-to-list 'custom-theme-load-path "/home/guillermo/.emacs.d/themes/darkburn-theme")
 ;(load-theme 'darkburn t)
@@ -157,7 +147,9 @@
        '(font-lock-string-face ((t (:foreground "#D1907F")))) ;Cadenas naranjas
        '(font-lock-variable-name-face ((t (:foreground "#F6F3E8")))) ;Parametros color normales a la letra.
        '(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon
-       '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Dosting verde 
+       ;'(font-lock-function-name-face ((t (:foreground "#FAFFDB")))) ;metodos for python color amarillo para las funcines
+       '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Dosting verde
+       '(font-lock-comment-face ((t (:foreground "#86B187")))) ; Comentarios de en linea
        
        )
       (set-face-background 'region "gray37") ;Adecuado para theme badger
@@ -239,21 +231,11 @@
 )
 
 
-
 ;Theme junio
 ;; (if  (eq (car custom-enabled-themes) 'junio) 
 ;;     ;(message "This message appears in the echo area!")
 ;;     (set-cursor-color "orange")
 ;; )
-
-
-;(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
-
-; )
 
 ;------------------------------------------------------
 

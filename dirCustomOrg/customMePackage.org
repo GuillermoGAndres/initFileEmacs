@@ -3,9 +3,9 @@
 * exec-path-from-shell
   Set the path variable
 #+BEGIN_SRC emacs-lisp
-;(use-package exec-path-from-shell
-;  :ensure t
-;  :config (exec-path-from-shell-initialize))
+  (use-package exec-path-from-shell
+   :ensure t
+   :config (exec-path-from-shell-initialize))
 #+END_SRC
 * shell
   Configuracion con la shell incorporada.
@@ -126,7 +126,8 @@
   (setq company-tooltip-flip-when-above t)
   (global-company-mode)
   :bind
-  (("<C-return>" . company-complete))
+  ;(("<C-return>" . company-complete))
+  (("<C-M-return>" . company-complete))
 )
 
 #+END_SRC
@@ -267,3 +268,5 @@
 (add-to-list 'company-backends 'company-c-headers)
 )
 #+END_SRC
+
+
