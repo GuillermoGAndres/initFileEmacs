@@ -167,7 +167,8 @@
        '(font-lock-variable-name-face ((t (:foreground "#9FB3C2")))) ;Color verde chido #8AB8A2 or gris #9FB3C2, para los nombre de los tipos.
        ;'(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon para las funcines
        ;'(font-lock-function-name-face ((t (:foreground "#C7AF3F")))) ; o Amarillo super chido tambien para las funciones
-       '(font-lock-function-name-face ((t (:foreground "#FAFFDB")))) ;metodos for python color amarillo para las funcines
+       '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ;metodos or function
+       ;'(font-lock-function-name-face ((t (:foreground "#FAFFDB")))) ;metodos for python color amarillo para las funcines
        '(font-lock-comment-face ((t (:foreground "#86B187")))) ; Comentarios de en linea
        '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Docsting gris chido #9FB3C2 or verde chido #86B187 o verde con un tono poco nitido #8AB8A2.
        '(font-lock-keyword-face ((t (:foreground "#8AC6F2" :weight normal)))) ;Color azul muy chido.       
@@ -184,15 +185,14 @@
        '(helm-source-header ((t (:extend t :foreground "#F0DFAF" :weight bold))))
        '(helm-match ((t (:extend t :foreground "#F0DFAF"))))
        '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
-       
-       '(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#F0DFAF"))))
+              
        '(company-tooltip-annotation ((t (:foreground "#F0DFAF"))))
        
        )
             
       (set-face-background 'region "gray37") 
-      (set-face-attribute 'fringe nil :background "#13182D")
-      ;(set-background-color "#13182D") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
+     ;(set-background-color "#13182D") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
+      
    )
 )
 
@@ -216,17 +216,19 @@
 (if  (eq (car custom-enabled-themes) 'fogus)
     (progn
       (custom-set-faces       
-       '(linum ((t (:inherit (shadow default) :background "#14191F" :foreground "#F0DFAF"))))       
+       '(linum ((t (:inherit (shadow default) :background "#0C1A29" :foreground "#F0DFAF"))))       
        )
-      (set-face-attribute 'fringe nil :background "#14191F")
+      (set-face-attribute 'fringe nil :background "#0C1A29")
     )
 )
 
 (if  (eq (car custom-enabled-themes) 'dorsey)
     (progn
-      (custom-set-faces       
-        '(treemacs-fringe-indicator-face ((t (:foreground "#86B187"))))
+      (custom-set-faces
+       '(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#F0DFAF"))))
+       '(treemacs-fringe-indicator-face ((t (:foreground "#86B187"))))
        )
+      (set-face-attribute 'fringe nil :background "#13182D")
     )
 )
 

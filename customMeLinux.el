@@ -7,8 +7,9 @@
 ;(set-face-attribute 'default nil :height 140)
 
 ;Modifica la letra y el tamanño.
-;(set-face-attribute 'default nil :family "Consolas" :height 110)
-(set-face-attribute 'default nil :family "Droid Sans Mono" :height 135 :weight 'normal)
+;(set-face-attribute 'default nil :family "Consolas" :height 155)
+;(set-face-attribute 'default nil :family "Droid Sans Mono" :height 135 :weight 'normal)
+(set-face-attribute 'default nil :family "Inconsolata" :height 155 :weight 'normal)
 
 ;Set default size windows
 (when window-system (set-frame-size (selected-frame) 117 31))

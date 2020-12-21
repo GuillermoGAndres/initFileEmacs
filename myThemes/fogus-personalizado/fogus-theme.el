@@ -15,6 +15,7 @@
 ;;
 ;; Fogus: An icy dark blue color theme
 ;; Color de le letra era #AEC2E0
+;; Background era: #14191F
 ;; ----------------------------
 
 (unless (>= emacs-major-version 24)
@@ -23,8 +24,8 @@
 (deftheme fogus
   "A bluecolor theme")
 
-(let ((fogus-background      "#14191F")
-      (fogus-foreground      "#FFFFFF")
+(let ((fogus-background      "#0C1A29")
+      (fogus-foreground      "#d6d6d6")
       (fogus-mid-gray        "#666666")
       (fogus-darker-gray     "#14191f")
       (fogus-white           "#FFFFFF")
