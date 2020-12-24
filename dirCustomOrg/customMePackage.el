@@ -115,7 +115,7 @@
   :ensure t
   :config
   (global-set-key [f12] 'treemacs)
-  (global-set-key (kbd "C-c p") 'treemacs-add-project)
+  ;(global-set-key (kbd "C-c p") 'treemacs-add-project)
 )
 
 (use-package rainbow-delimiters
@@ -194,4 +194,21 @@
 :ensure t
 :config 
 (add-to-list 'company-backends 'company-c-headers)
+)
+
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map)
+
+              )
+  :config
+  (setq projectile-completion-system 'ivy)
+)
+
+(use-package counsel-projectile
+:ensure t  
 )

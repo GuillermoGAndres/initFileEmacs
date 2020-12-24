@@ -181,12 +181,18 @@
        '(company-tooltip ((t (:background "#1D1F21" :foreground "#C5C8C6")))) ;Color fondo y letra
        '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
        '(company-scrollbar-fg ((t (:background "#373B41"))))
+       '(company-tooltip-annotation ((t (:foreground "#F0DFAF"))))
+       
        ;Helm
        '(helm-source-header ((t (:extend t :foreground "#F0DFAF" :weight bold))))
        '(helm-match ((t (:extend t :foreground "#F0DFAF"))))
        '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
-              
-       '(company-tooltip-annotation ((t (:foreground "#F0DFAF"))))
+
+       '(helm-ff-directory ((t (:extend t :foreground "#F0DFAF"))))
+       '(helm-ff-dotted-directory ((t (:extend t :foreground "#d6d6d6"))))
+
+       ;Mode Line
+       '(mode-line ((t (:background "#183c66" :foreground "#d6d6d6" :box nil))))
        
        )
             
@@ -196,8 +202,15 @@
    )
 )
 
+;Test propiedades
+;; (custom-set-faces
+;;  '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ; Metodos
+;;  '(font-lock-variable-name-face ((t (:foreground "#e9967a")))) ; Nombres de las variables.
+;; )
+
+; #e9967a orange and yellow #F0DFAF
 ;(set-background-color "#0C1A29") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
-; #0C1A29 azul marino oscuro
+; #0C1A29 azul marino oscuro theme and letter #d6d6d6
 ; #13182D  azul marino mas azul.
 
 ; #FAFFDB Ese amrillo me gusta amariilo

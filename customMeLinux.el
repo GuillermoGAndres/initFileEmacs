@@ -16,6 +16,26 @@
 (set-frame-position (selected-frame) 300 175) ;My ajustando posicion del frame.
 
 
+;Keybindins
+(global-set-key (kbd "s-SPC") 'counsel-switch-buffer)
+(global-set-key (kbd "C-c <C-down>") 'counsel-switch-buffer)
+(global-set-key (kbd "C-c <C-right>") 'tab-next)
+(global-set-key (kbd "C-c <C-left>") 'tab-previous)
+(global-set-key (kbd "C-c <C-up>") 'tab-switcher)
+
+;Custom faces 
+(custom-set-faces
+ '(tab-bar ((t (:inherit variable-pitch :background "#0C1A29" :foreground "#e9967a" :family "Inconsolata"))))
+ '(tab-bar-tab-inactive ((t (:inherit tab-bar-tab :background "#0C1A29" :foreground "#d6d6d6")))) 
+ )
+
+
+;Test propiedades
+;; (custom-set-faces
+;;  '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ; Metodos
+;;  '(font-lock-variable-name-face ((t (:foreground "#e9967a")))) ; Nombres de las variables.
+;; )
+
 
 ;----- Articulos que vi que me llamaron la atencion ------------
 ;https://codeandoando.com/emacs-como-entorno-de-desarrollo-para-python/

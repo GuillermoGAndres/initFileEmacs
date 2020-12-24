@@ -165,7 +165,7 @@
   :ensure t
   :config
   (global-set-key [f12] 'treemacs)
-  (global-set-key (kbd "C-c p") 'treemacs-add-project)
+  ;(global-set-key (kbd "C-c p") 'treemacs-add-project)
 )
 
 #+END_SRC
@@ -269,4 +269,26 @@
 )
 #+END_SRC
 
+* projectile
+  Ayuda a generar y administrar proyectos. (s es la tecla de Super que es equivalente a la tecla de windows).
+#+BEGIN_SRC emacs-lisp
+
+  (use-package projectile
+    :ensure t
+    :init
+    (projectile-mode +1)
+    :bind (:map projectile-mode-map
+                ("s-p" . projectile-command-map)
+                ("C-c p" . projectile-command-map)
+              
+                )
+    :config
+    (setq projectile-completion-system 'ivy)
+  )
+
+  (use-package counsel-projectile
+  :ensure t  
+  )
+
+#+END_SRC
 
