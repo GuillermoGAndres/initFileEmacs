@@ -2,6 +2,10 @@
 (setq custom-file "~/.emacs.d/initFileEmacs/customMeSettings.el")
 (load custom-file)
 
+;Cargar los package de un archivo org, compila los archivos org y lo convierte en .el, sera nuestro archivo principal.
+(org-babel-load-file (expand-file-name "~/.emacs.d/initFileEmacs/dirCustomOrg/customMePackage.org"))
+
+;Ajustamos nuestras configuraciones dependiendo de nuestro sistema operativo.
 (if (eq system-type 'windows-nt)
     (progn
       ;(message "Estas es un system Windows!")
@@ -19,10 +23,6 @@
     )    
 )
 
-;Cargar package de un archivos org, compila los archivos org y lo convierte en .el, sera nuestro archivo principal.
-(org-babel-load-file (expand-file-name "~/.emacs.d/initFileEmacs/dirCustomOrg/customMePackage.org"))
-
-
 ;Ahora es turno de cargar los temas, elegir el que mas te guste.
 (add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/badger")
 ;(load-theme 'badger t)
@@ -31,7 +31,10 @@
 ;(load-theme 'dorsey t)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/fogus-personalizado")
-(load-theme 'fogus t)
+;(load-theme 'fogus t)
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/initFileEmacs/myThemes/cool-theme")
+(load-theme 'cool t)
 
 
 ; Cargamos nuestra paleta de colores para nuestro tema en particular.

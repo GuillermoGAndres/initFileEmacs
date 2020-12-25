@@ -212,3 +212,20 @@
 (use-package counsel-projectile
 :ensure t  
 )
+
+(use-package ivy-posframe
+  :ensure t
+  :config
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+  (ivy-posframe-mode 1)
+
+  (setq ivy-posframe-display-functions-alist
+        '(
+          ;(swiper          . ivy-posframe-display-at-point)
+          ;(counsel-M-x     . ivy-posframe-display-at-window-bottom-left)
+          (counsel-find-file . ivy-posframe-display-at-window-center)
+          (ivy-switch-buffer . ivy-posframe-display) ; enlaza a counsel-switch-buffer
+          )
+  ) 
+  
+)

@@ -131,7 +131,7 @@
 ; #506272 ; Me gusta ese azul.
 
 
-;Theme badger
+                                        ;Theme badger
 (if  (eq (car custom-enabled-themes) 'badger) 
     (progn
       (custom-set-faces
@@ -158,56 +158,7 @@
 )
 
 
-(if (or (eq (car custom-enabled-themes) 'dorsey) (eq (car custom-enabled-themes) 'fogus))
-    (progn
-      (custom-set-faces
-       '(font-lock-type-face ((t (:foreground "#F0DFAF")))) ; Clases y types amarillas
-       '(font-lock-constant-face ((t (:foreground "#F0DFAF")))) ;Contastantes amarillas
-       '(font-lock-string-face ((t (:foreground "#D1907F")))) ;Cadenas naranjas
-       '(font-lock-variable-name-face ((t (:foreground "#9FB3C2")))) ;Color verde chido #8AB8A2 or gris #9FB3C2, para los nombre de los tipos.
-       ;'(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon para las funcines
-       ;'(font-lock-function-name-face ((t (:foreground "#C7AF3F")))) ; o Amarillo super chido tambien para las funciones
-       '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ;metodos or function
-       ;'(font-lock-function-name-face ((t (:foreground "#FAFFDB")))) ;metodos for python color amarillo para las funcines
-       '(font-lock-comment-face ((t (:foreground "#86B187")))) ; Comentarios de en linea
-       '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Docsting gris chido #9FB3C2 or verde chido #86B187 o verde con un tono poco nitido #8AB8A2.
-       '(font-lock-keyword-face ((t (:foreground "#8AC6F2" :weight normal)))) ;Color azul muy chido.       
-       
-       ;Company
-       '(company-preview ((t (:background "#373B41" :foreground "wheat"))))
-       '(company-preview-common ((t (:inherit company-preview :foreground "wheat"))))
-       '(company-tooltip-common ((t (:foreground "#F0DFAF")))) ;Color de las letras en coincidencia en pop
-       '(company-tooltip-selection ((t (:background "#7B7B7B")))) ;Color de seleccion resaltado.
-       '(company-tooltip ((t (:background "#1D1F21" :foreground "#C5C8C6")))) ;Color fondo y letra
-       '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
-       '(company-scrollbar-fg ((t (:background "#373B41"))))
-       '(company-tooltip-annotation ((t (:foreground "#F0DFAF"))))
-       
-       ;Helm
-       '(helm-source-header ((t (:extend t :foreground "#F0DFAF" :weight bold))))
-       '(helm-match ((t (:extend t :foreground "#F0DFAF"))))
-       '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
-
-       '(helm-ff-directory ((t (:extend t :foreground "#F0DFAF"))))
-       '(helm-ff-dotted-directory ((t (:extend t :foreground "#d6d6d6"))))
-
-       ;Mode Line
-       '(mode-line ((t (:background "#183c66" :foreground "#d6d6d6" :box nil))))
-       
-       )
-            
-      (set-face-background 'region "gray37") 
-     ;(set-background-color "#13182D") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
-      
-   )
-)
-
-;Test propiedades
-;; (custom-set-faces
-;;  '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ; Metodos
-;;  '(font-lock-variable-name-face ((t (:foreground "#e9967a")))) ; Nombres de las variables.
-;; )
-
+                                        ; Theme dorsey personalizado
 ; #e9967a orange and yellow #F0DFAF
 ;(set-background-color "#0C1A29") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
 ; #0C1A29 azul marino oscuro theme and letter #d6d6d6
@@ -220,11 +171,141 @@
 ; #ABABAC Griss de las lineas. #797B83
 ; #212121 black dorsey se ve bien negro.
 
+(if (or (eq (car custom-enabled-themes) 'dorsey) (eq (car custom-enabled-themes) 'fogus))
+    (progn
+      (custom-set-faces
+                                        ;Sintaxis
+       '(font-lock-type-face ((t (:foreground "#F0DFAF")))) ; Clases y types amarillas
+       '(font-lock-constant-face ((t (:foreground "#F0DFAF")))) ;Contastantes amarillas
+       '(font-lock-string-face ((t (:foreground "#D1907F")))) ;Cadenas naranjas
+       '(font-lock-variable-name-face ((t (:foreground "#9FB3C2")))) ;Color verde chido #8AB8A2 or gris #9FB3C2, para los nombre de los tipos.
+       ;'(font-lock-function-name-face ((t (:foreground "#F28B86")))) ;metodos color salmon para las funcines
+       ;'(font-lock-function-name-face ((t (:foreground "#C7AF3F")))) ; o Amarillo super chido tambien para las funciones
+       '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ;metodos or function
+       ;'(font-lock-function-name-face ((t (:foreground "#FAFFDB")))) ;metodos for python color amarillo para las funcines
+       '(font-lock-comment-face ((t (:foreground "#86B187")))) ; Comentarios de en linea
+       '(font-lock-doc-face ((t (:foreground "#86B187")))) ;Docsting gris chido #9FB3C2 or verde chido #86B187 o verde con un tono poco nitido #8AB8A2.
+       '(font-lock-keyword-face ((t (:foreground "#8AC6F2" :weight normal)))) ;Color azul muy chido.       
+       
+                                        ;Company
+       '(company-preview ((t (:background "#373B41" :foreground "wheat"))))
+       '(company-preview-common ((t (:inherit company-preview :foreground "wheat"))))
+       '(company-tooltip-common ((t (:foreground "#F0DFAF")))) ;Color de las letras en coincidencia en pop
+       '(company-tooltip-selection ((t (:background "#7B7B7B")))) ;Color de seleccion resaltado.
+       '(company-tooltip ((t (:background "#1D1F21" :foreground "#C5C8C6")))) ;Color fondo y letra
+       '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
+       '(company-scrollbar-fg ((t (:background "#373B41"))))
+       '(company-tooltip-annotation ((t (:foreground "#F0DFAF"))))
+       
+                                        ;Helm
+       '(helm-source-header ((t (:extend t :foreground "#F0DFAF" :weight bold))))
+       '(helm-match ((t (:extend t :foreground "#F0DFAF"))))
+       '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
+
+       '(helm-ff-directory ((t (:extend t :foreground "#F0DFAF"))))
+       '(helm-ff-dotted-directory ((t (:extend t :foreground "#d6d6d6"))))
+
+                                        ;Mode Line
+       '(mode-line ((t (:background "#183c66" :foreground "#d6d6d6" :box nil))))
+       
+       )
+            
+      (set-face-background 'region "gray37") 
+     ;(set-background-color "#13182D") ; Buen background color azul marino, me gusto, tambien el negro del tema esta muy padre.
+      
+   )
+)
+
+
+
+                                        ;Theme cool
+;; #EFFBFF Blanc resaltante
+;; #FFC893 
+;; orange claro : #FFE5CB
+;; orange semicladro: #FFD6AF o #FFDAB5
+;; #B6FDE7 verde claro
+;; color de las letras: #d6d6d6
+;; (set-background-color "#000000") 
+;; #FFFDC7 - backgraund amarillo
+;; #1b232c -mark transparente
+;; string morado:  #CAB4CC o #C9A0CD
+;; string morado-muy-nitido: #D8B8DB
+;; names varibales; #BCEDDE o #ABEFDA
+
+(if  (eq (car custom-enabled-themes) 'cool)
+    (progn
+      (custom-set-faces
+                                        ; Sintaxis
+       ;; Builtin
+       '(font-lock-builtin-face ((t (:foreground "#A4D1F2")))) ;azul claro
+       ;; Comments
+       '(font-lock-comment-face ((t (:foreground "#EFFBFF")))) ; Comentarios de en linea blanco
+       '(font-lock-doc-face ((t (:foreground "#EFFBFF")))) ;Docsting gris chido #9FB3C2 or verde chido #86B187 o verde con un tono poco nitido #8AB8A2.
+       ;; Function names
+       '(font-lock-function-name-face ((t (:foreground "#FFF8DC")))) ;Funcion names:  amarillo
+       ;; Keywords
+       '(font-lock-keyword-face ((t (:foreground "#FFF8DC" :weight normal)))) ; keyword;  amariilas
+       ;; Strings
+       '(font-lock-string-face ((t (:foreground "#CAB4CC")))) ;Cadenas; moradas
+       ;; Variables
+       '(font-lock-variable-name-face ((t (:foreground "#BCEDDE")))) ;Color: verde claro
+       '(font-lock-type-face ((t (:foreground "#FFDAB5")))) ; Clases y types:  naranjas
+       ;; Constant
+       '(font-lock-constant-face ((t (:foreground "#BCEDDE")))) ;Contastantes: verde claro
+
+                                        ; Highlight region color
+       `(region ((t (:foreground "#525252":background "#FFFDD5"))))
+       `(cursor  ((t (:background "#F8F8F0"))))             
+       '(linum ((t (:inherit (shadow default) :background "#000000" :foreground "#F3EFDE")))) ;        
+       `(fringe ((t (:background "#000000"))))
+       
+                                        ;Powerline
+       '(mode-line ((t (:background "#000000" :foreground "#EFFBFF" :box nil))))
+
+                                        ;Company
+       '(company-preview ((t (:background "#373B41" :foreground "wheat"))))
+       '(company-preview-common ((t (:inherit company-preview :foreground "wheat"))))
+       '(company-tooltip-common ((t (:foreground "#F0DFAF")))) ;Color de las letras en coincidencia en pop
+       '(company-tooltip-selection ((t (:background "#7B7B7B")))) ;Color de seleccion resaltado.
+       '(company-tooltip ((t (:background "#000000" :foreground "#C5C8C6")))) ;Color fondo y letra
+       '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
+       '(company-scrollbar-fg ((t (:background "#373B41"))))
+       '(company-tooltip-annotation ((t (:foreground "#F0DFAF"))))
+       
+                                        ;Helm
+       '(helm-source-header ((t (:extend t :foreground "#F0DFAF" :weight bold))))
+       '(helm-match ((t (:extend t :foreground "#F0DFAF"))))
+       '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
+
+       '(helm-ff-directory ((t (:extend t :foreground "#F0DFAF"))))
+       '(helm-ff-dotted-directory ((t (:extend t :foreground "#d6d6d6"))))
+       
+       )
+      
+      ;(set-face-attribute 'fringe nil :background "#000000")
+
+   )
+
+)
+
+
+                                        ;Test propiedades
+(custom-set-faces
+ ;; '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ; Metodos
+ ;; '(font-lock-variable-name-face ((t (:foreground "#e9967a")))) ; Nombres de las variables.
+ ;'(font-lock-string-face ((t (:foreground "#CAB4CC")))) ;Cadenas; moradas
+ ;;'(font-lock-variable-name-face ((t (:foreground "#BCEDDE")))) ;Color: verde claro
+ 
+)
+
+
 ;; (if  (eq (car custom-enabled-themes) 'dorsey)
 ;;     (progn
 ;;       (setq linum-format "%2d") ;Es que deja mucho padding a la izquierda
 ;;       )
 ;; )
+
+
 
 (if  (eq (car custom-enabled-themes) 'fogus)
     (progn
