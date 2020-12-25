@@ -229,3 +229,15 @@
   ) 
   
 )
+
+(use-package "window"
+  :ensure nil
+  :init
+  (setq display-buffer-alist
+        '(
+          ;; bottom buffer (NOT side window)          
+          ("\\*helm M-x*"
+           (display-buffer-at-bottom))                    
+         )        
+   )
+)

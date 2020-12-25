@@ -315,3 +315,19 @@
 
 #+END_SRC
 
+* window
+  Ajusta la disposion de lo buffers.
+#+BEGIN_SRC emacs-lisp
+
+(use-package "window"
+  :ensure nil
+  :init
+  (setq display-buffer-alist
+        '(
+          ;; bottom buffer (NOT side window)          
+          ("\\*helm M-x*"
+           (display-buffer-at-bottom))                    
+         )        
+   )
+)
+#+END_SRC

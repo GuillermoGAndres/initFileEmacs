@@ -207,6 +207,9 @@
 
                                         ;Mode Line
        '(mode-line ((t (:background "#183c66" :foreground "#d6d6d6" :box nil))))
+                                        ;Tabs       
+       '(tab-bar ((t (:inherit variable-pitch :background "#0C1A29" :foreground "#e9967a")))) 
+       '(tab-bar-tab-inactive ((t (:inherit tab-bar-tab :background "#0C1A29" :foreground "#d6d6d6")))) 
        
        )
             
@@ -265,7 +268,7 @@
                                         ;Company
        '(company-preview ((t (:background "#373B41" :foreground "wheat"))))
        '(company-preview-common ((t (:inherit company-preview :foreground "wheat"))))
-       '(company-tooltip-common ((t (:foreground "#F0DFAF")))) ;Color de las letras en coincidencia en pop
+       '(company-tooltip-common ((t (:foreground "#FFFDD5")))) ;Color de las letras en coincidencia en pop
        '(company-tooltip-selection ((t (:background "#7B7B7B")))) ;Color de seleccion resaltado.
        '(company-tooltip ((t (:background "#000000" :foreground "#C5C8C6")))) ;Color fondo y letra
        '(company-scrollbar-bg ((t (:background "#282A2E")))) ;Color de scrollbar
@@ -274,11 +277,15 @@
        
                                         ;Helm
        '(helm-source-header ((t (:extend t :foreground "#F0DFAF" :weight bold))))
-       '(helm-match ((t (:extend t :foreground "#F0DFAF"))))
+       '(helm-match ((t (:extend t :foreground "#FFFDD5"))))
        '(helm-selection ((t (:extend t :background "gray37" :distant-foreground "black"))))
 
        '(helm-ff-directory ((t (:extend t :foreground "#F0DFAF"))))
        '(helm-ff-dotted-directory ((t (:extend t :foreground "#d6d6d6"))))
+
+                                        ;Tabs
+       '(tab-bar ((t (:inherit variable-pitch :background "#000000" :foreground "#FFDAB5"))))
+       '(tab-bar-tab-inactive ((t (:inherit tab-bar-tab :background "#000000" :foreground "#d6d6d6")))) 
        
        )
       
@@ -290,13 +297,9 @@
 
 
                                         ;Test propiedades
-(custom-set-faces
- ;; '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ; Metodos
- ;; '(font-lock-variable-name-face ((t (:foreground "#e9967a")))) ; Nombres de las variables.
- ;'(font-lock-string-face ((t (:foreground "#CAB4CC")))) ;Cadenas; moradas
- ;;'(font-lock-variable-name-face ((t (:foreground "#BCEDDE")))) ;Color: verde claro
- 
-)
+;(custom-set-faces
+ ;;  '(tab-bar ((t (:inherit variable-pitch :background "#000000" :foreground "#FFDAB5" :family "Inconsolata"))))
+; )
 
 
 ;; (if  (eq (car custom-enabled-themes) 'dorsey)
