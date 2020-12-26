@@ -1,12 +1,5 @@
 * My packages
   Conjunto de paquetes que yo utilizo, para editar codigo es:  C-c '
-* exec-path-from-shell
-  Set the path variable
-#+BEGIN_SRC emacs-lisp
-  (use-package exec-path-from-shell
-   :ensure t
-   :config (exec-path-from-shell-initialize))
-#+END_SRC
 * shell
   Configuracion con la shell incorporada.
 #+BEGIN_SRC emacs-lisp
