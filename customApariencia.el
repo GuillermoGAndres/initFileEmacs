@@ -295,6 +295,33 @@
 
 )
 
+;;Theme newton en proceso...
+(if  (eq (car custom-enabled-themes) 'newton)
+    (progn
+      (custom-set-faces
+       ;; Backgraund and foreground
+       '(default ((t (:background "#000000" :foreground "#d6d6d6"))))
+       ;; Keywords
+       '(font-lock-keyword-face ((t (:foreground "#F0DFAF" :weight medium)))) ; keyword;  amariilas
+       ;; Function names
+       '(font-lock-function-name-face ((t (:foreground "#71CBC9")))) ;Funcion names:  amarillo
+       ;;Clases and types
+       '(font-lock-type-face ((t (:foreground "#EFFBFF")))) ; Clases y types:  blanco
+       ;; Constant
+       '(font-lock-constant-face ((t (:foreground "#e9967a")))) ;Contastantes: verde claro
+       ;; Strings
+       ;'(font-lock-string-face ((t (:foreground "#A4D1F2")))) ;Cadenas; moradas
+                                        ; Highlight region color
+       `(region ((t (:background "gray37"))))
+                                        ;`(cursor  ((t (:background "#F8F8F0"))))             
+       '(linum ((t (:inherit (shadow default) :background "#000000" :foreground "#F0DFAF")))) ;        
+       `(fringe ((t (:background "#000000"))))
+       )
+
+      )
+  
+)
+
 
                                         ;Test propiedades
 ;(custom-set-faces

@@ -27,6 +27,8 @@
 (global-set-key (kbd "C-c <C-left>") 'tab-previous)
 (global-set-key (kbd "C-c <C-up>") 'tab-switcher)
 
+(global-set-key (kbd "C-M-:") 'eval-region)
+
 ;Custom faces 
 (custom-set-faces
  '(tab-bar ((t (:inherit variable-pitch :background "#000000" :foreground "#FFDAB5" :family "Inconsolata")))) ;Si no tiene la fuente Inconsolata, usa la que tiene por defecto.
