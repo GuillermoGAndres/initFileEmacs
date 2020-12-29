@@ -226,14 +226,29 @@
   
 )
 
+;; Utiliza expresiones regulares para encontrar los buffers.
 (use-package "window"
   :ensure nil
   :init
   (setq display-buffer-alist
         '(
           ;; bottom buffer (NOT side window)          
-          ("\\*helm M-x*"
-           (display-buffer-at-bottom))                    
+          ;;("\\*helm M-x*"
+          ;;(display-buffer-at-bottom))                               
+          ;;("\\*helm occur*"
+          ;;(display-buffer-at-bottom))
+
+          ; Expresion ragular para cualquier buffer que tenga como nombre helm
+          ("\\*helm*"
+          (display-buffer-at-bottom))
+
+          ("\\magit: [A-Z]"
+          (display-buffer-at-bottom))          
+          
          )        
    )
+)
+
+(use-package magit
+  :ensure t  
 )

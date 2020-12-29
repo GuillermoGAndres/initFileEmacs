@@ -11,6 +11,7 @@ es modularizar nuestro codigo que sea mantenible y que sea usado en cualquier co
 ~~~
 
 # Guide Emacs
+---
 Emacs como vim son editores que utilizan memoria dactilar,por la tanto, se necesitar memorizar ciertos comandos para poder usarlos. Y como cualquier cosa en la vida si no se practica a diario o frecuentemente podemos olvidar ciertas cosas. Precisamente esta guia para eso, una guia de recordatorio por si en un lapso de corto o largo plazo dejamos de utilizar estos editores, volvamos a recordar los comandos, que en lo personal son los que frecuente utilizo.
 
 ~~~
@@ -71,7 +72,17 @@ C-tab - Switch tab
 C-x - left/right : Change next or back buffer.
 
 ~~~
+
 ### Font
+---
 DejaVu Sans Mono
 ![Linked in java](./myThemes/img/FogusPersonalizadoDroidSansMono2.png)
 
+---
+
+### Themes
+Temas que te gustaria echarles un ojo:
+- [Liskov-theme](https://github.com/GuillermoGAndres/Liskov-theme)
+- [Hoare-theme](https://github.com/GuillermoGAndres/Hoare-theme)
+- [Dijkstra-theme](https://github.com/GuillermoGAndres/Dijkstra-theme)
+- [Turing-theme](https://github.com/GuillermoGAndres/Turing-theme)

@@ -1,4 +1,4 @@
-
+; Referencias https://protesilaos.com/dotemacs/
 (use-package "window"
   :ensure nil
   :init

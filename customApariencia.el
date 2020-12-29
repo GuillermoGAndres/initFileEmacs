@@ -324,9 +324,12 @@
 
 
                                         ;Test propiedades
-;(custom-set-faces
+(custom-set-faces
  ;;  '(tab-bar ((t (:inherit variable-pitch :background "#000000" :foreground "#FFDAB5" :family "Inconsolata"))))
-; )
+ ;`(cursor  ((t (:background "#CAB4CC")))) 
+ ;`(cursor  ((t (:background "#A4D1F2"))))
+;'(linum ((t (:inherit (shadow default) :background "#000000" :foreground "#F3EFDE")))) ;
+ )
 
 
 ;; (if  (eq (car custom-enabled-themes) 'dorsey)

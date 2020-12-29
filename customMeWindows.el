@@ -18,9 +18,11 @@
 
 
 ;Custom faces 
-(custom-set-faces
- '(tab-bar ((t (:inherit variable-pitch :background "#000000" :foreground "#FFDAB5" :family "Consolas")))) ;Si no tiene la fuente Inconsolata, usa la que tiene por defecto.
- )
+(custom-set-faces 
+ '(tab-bar ((t (:inherit variable-pitch :family "Consolas")))) ;Si no tiene la fuente Inconsolata, usa la que tiene por defecto.
+ ;;'(tab-bar ((t (:inherit variable-pitch :background "#000000" :foreground "#FFDAB5" :family "Consolas")))) ;Si no tiene la fuente Inconsolata, usa la que tiene por defecto.
+
+)
 
 
 

@@ -138,7 +138,7 @@
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(global-set-key (kbd "C-x g") 'goto-line)
+(global-set-key (kbd "C-c C-g") 'goto-line)
 
 (global-set-key (kbd "C-c c") 'compile)
 
@@ -147,7 +147,9 @@
 (add-hook 'org-mode  'visual-line-mode)
 (add-hook 'web-mode-hook  'visual-line-mode)
 
-
+(global-set-key (kbd "C-x <C-right>") 'tab-next)
+(global-set-key (kbd "C-x <C-left>") 'tab-previous)
+(global-set-key (kbd "C-M-:") 'eval-region)
 
 
 ;----------------Notas-------------------------------------------------------------------------
