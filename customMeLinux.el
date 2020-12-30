@@ -1,6 +1,7 @@
 ;;Referencias
 ;;https://github.com/ianpan870102/.personal-emacs.d/blob/master/init.el
 ;;https://protesilaos.com/dotemacs/
+;;https://github.com/zamansky/dot-emacs
 
 ;------------------Configuracion Linux ------------------------
 ;Configura neotree para que sean iconos, porque tengo instalado icons.
@@ -19,15 +20,17 @@
 (set-frame-position (selected-frame) 300 175) ;My ajustando posicion del frame.
 
 
-;Keybindins
-(global-set-key (kbd "s-SPC") 'counsel-switch-buffer)
+;;Keybindins
 (global-set-key (kbd "C-x <down>") 'counsel-switch-buffer)
 ;; (global-set-key (kbd "C-c <C-down>") 'counsel-switch-buffer)
-;; (global-set-key (kbd "C-x <C-down>") 'counsel-switch-buffer)
-;; (global-set-key (kbd "C-c <C-right>") 'tab-next)
-;; (global-set-key (kbd "C-c <C-left>") 'tab-previous)
 ;; (global-set-key (kbd "C-c <C-up>") 'tab-switcher)
 
+;; Ajustando google translate para el backend en Linux
+;;(setq google-translate-backend-method 'curl) ; Para Linux
+;;(setq google-translate-backend-method 'wget)
+
+;; Activa las marcas de tiempo de undotree
+;(setq undo-tree-visualizer-timestamps t)
 
 ;Custom faces 
 

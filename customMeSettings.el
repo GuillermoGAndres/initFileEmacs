@@ -12,7 +12,7 @@
                          ("melpa"     . "http://melpa.org/packages/")
 			             ("elpa" . "https://elpa.typefo.com/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
-			             ;;("elpa"       . "http://elpa.gnu.org/packages/")
+			             ("elpa gnu"       . "http://elpa.gnu.org/packages/")
 			             ;;("org"       . "http://orgmode.org/elpa/")
                          ;;("marmalade" . "http://marmalade-repo.org/packages/")
  						 ))
@@ -32,6 +32,11 @@
 (require 'bind-key)
 
 ;----------------------------Mi configuracion--------------------------------------------------  
+;; Ocultan menu bar, tool bar y scroll
+;; La funcion fboundp nada dice si es nombre de la propiedad coincide con 'nombre que pusimos que entre.
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Longer whitespace, otherwise syntax highlighting is limited to default column
 (setq whitespace-line-column 1000) 
@@ -107,8 +112,8 @@
 (show-paren-mode 1)
 
 ;Ocultar tool bar 
-(tool-bar-mode -1)
-(menu-bar-mode -1) 
+;;(tool-bar-mode -1)
+;;(menu-bar-mode -1) 
 ;Destacar la línea actual
 ;(global-hl-line-mode +1)
 ;Pava ver menu bar solo cuando es ejecutado windos-system (GUI)
@@ -151,6 +156,215 @@
 (global-set-key (kbd "C-x <C-right>") 'tab-next)
 (global-set-key (kbd "C-x <C-left>") 'tab-previous)
 (global-set-key (kbd "C-M-:") 'eval-region)
+
+;; Hace que cualquier seleccion pueda ser sobreescrito inmediatemente.
+(delete-selection-mode 1)
+
+;; http://whattheemacsd.com/
+; Indenta y limpias las tabulaciones y espacios extras.
+(defun untabify-buffer ()
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer.
+Including indent-buffer, which should not be called automatically on save."
+  (interactive)
+  (untabify-buffer) ;; Convierte los tabs en espacios.
+  (delete-trailing-whitespace) ;; Elimina los espacios extras del final
+  (indent-buffer)) ;;Indenta el buffer
+
+(global-set-key (kbd "C-c n") 'cleanup-buffer)
+
+;; Empiza una nueva linea arriba o abajo
+(defun open-line-below ()
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun open-line-above ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+(global-set-key (kbd "<C-return>") 'open-line-below)
+(global-set-key (kbd "<C-s-return>") 'open-line-above)
+
+
+;; SGML and html mode elimina e indenta las etiquetas sobrantes
+;; after deleting a tag, indent properly
+(defadvice sgml-delete-tag (after reindent activate)
+  (indent-region (point-min) (point-max)))
+
+
+;; Uno las lineas con salto de linea en una sola.
+(global-set-key (kbd "M-j")
+            (lambda ()
+                  (interactive)
+                  (join-line -1)))
+
+
+;; Rota ventanas
+(defun rotate-windows ()
+  "Rotate your windows"
+  (interactive)
+  (cond ((not (> (count-windows)1))
+         (message "You can't rotate a single window!"))
+        (t
+         (setq i 1)
+         (setq numWindows (count-windows))
+         (while  (< i numWindows)
+           (let* (
+                  (w1 (elt (window-list) i))
+                  (w2 (elt (window-list) (+ (% i numWindows) 1)))
+
+                  (b1 (window-buffer w1))
+                  (b2 (window-buffer w2))
+
+                  (s1 (window-start w1))
+                  (s2 (window-start w2))
+                  )
+             (set-window-buffer w1  b2)
+             (set-window-buffer w2 b1)
+             (set-window-start w1 s2)
+             (set-window-start w2 s1)
+             (setq i (1+ i)))))))
+
+(global-set-key (kbd "<C-tab>") 'rotate-windows)
+
+
+;; Move more quickly arriba,abajo,derecha e izquierda.
+(global-set-key (kbd "C-s-n")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (next-line 5))))
+
+(global-set-key (kbd "C-s-p")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (previous-line 5))))
+
+(global-set-key (kbd "C-s-f")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (forward-char 5))))
+
+(global-set-key (kbd "C-s-b")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (backward-char 5))))
+
+
+
+;; Renombra el nombre de un archivo.
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+
+(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+
+
+;; Remueve el archivo de tu disco.
+(defun delete-current-buffer-file ()
+  "Removes file connected to current buffer and kills buffer."
+  (interactive)
+  (let ((filename (buffer-file-name))
+        (buffer (current-buffer))
+        (name (buffer-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (ido-kill-buffer)
+      (when (yes-or-no-p "Are you sure you want to remove this file? ")
+        (delete-file filename)
+        (kill-buffer buffer)
+        (message "File '%s' successfully removed" filename)))))
+
+(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
+
+
+;; Mueve una liena arriba o abajo.
+(defun move-line-down ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines 1))
+    (forward-line)
+    (move-to-column col)))
+
+(defun move-line-up ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines -1))
+    (move-to-column col)))
+
+(global-set-key (kbd "<C-s-down>") 'move-line-down)
+(global-set-key (kbd "<C-s-up>") 'move-line-up)
+
+
+;; Mata la primera vez shell y la segunda eliminate buffer
+;; Para que funcion C-d para kill terminal
+(defun comint-delchar-or-eof-or-kill-buffer (arg)
+  (interactive "p")
+  (if (null (get-buffer-process (current-buffer)))
+      (kill-buffer)
+    (comint-delchar-or-maybe-eof arg)))
+
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (define-key shell-mode-map
+              (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
+
+
+;; Refresa y actualiza, ya no tendras que presiona g cada vez que crees un archivo o lo modifiques.
+;; Auto refresh buffers
+(global-auto-revert-mode 1)
+
+;; Also auto refresh dired, but be quiet about it
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+
+
+
+;; Snippeta para aparecer los numeros de lineas solo cuando vayas con la funcion goto-line
+;; Funciona bien si te gusta la configuracion sin numeros de lineas y solo las quieres ver cuando
+;; tienes que ir a una de ellas.
+;; (linum-mode -1) Funcion que desactivas los numeros de lineas.
+;; --------------------------------------------------
+
+;; (defun goto-line-with-feedback ()
+;;   "Show line numbers temporarily, while prompting for the line number input"
+;;   (interactive)
+;;   (unwind-protect
+;;       (progn
+;;         (linum-mode 1)
+;;         (goto-line (read-number "Goto line: ")))
+;;     (linum-mode -1)))
+
+;; (global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+;; --------------------------------------------------
 
 
 ;----------------Notas-------------------------------------------------------------------------

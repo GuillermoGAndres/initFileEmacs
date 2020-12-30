@@ -3,17 +3,6 @@
   (setq comint-process-echoes t))
 (add-hook 'shell-mode-hook 'my-shell-turn-echo-off)
 
-; Para que funcion C-d para kill terminal
-(defun my-eshell-quit-or-delete-char (arg)
-  (interactive "p")
-  (if (and (eolp) (looking-back eshell-prompt-regexp))
-      (eshell-life-is-too-much) ;; http://emacshorrors.com/post/life-is-too-much
-    (delete-forward-char arg)))
-(defun my-eshell-setup ()
-  (define-key eshell-mode-map (kbd "C-d") 'my-eshell-quit-or-delete-char))
-
-(add-hook 'eshell-mode-hook 'my-eshell-setup)
-
 (use-package yasnippet
   :ensure t
   :init
@@ -33,7 +22,9 @@
 :bind
 (("C-c h" . helm-command-prefix))
 (("M-x" . helm-M-x))
-(("C-c f" . helm-recentf))   ;; Add new key to recentf
+(("C-c f" . helm-find-files))   
+(([s-f10] . helm-recentf))   ;; Add new key to recentf
+(([M-f9] . helm-buffers-list))   
 (("M-y" . helm-show-kill-ring))
 (("C-s" . helm-occur))
 (([f10] . 'helm-semantic-or-imenu))
@@ -102,10 +93,13 @@
 )
 
 (use-package neotree
-:ensure t
-:config
-(setq neo-theme 'arrow)
-(global-set-key [f9] 'neotree-toggle))
+  :ensure t
+  :bind (([M-f12] . neotree-toggle))    
+  :config
+  (setq neo-theme 'arrow)
+  ;(global-set-key [f9] 'neotree-toggle)
+
+  )
 
 (use-package treemacs
   :ensure t
@@ -119,19 +113,20 @@
 )
 
 (use-package multiple-cursors
-:ensure t
-:bind
-(("C-c C-m" . mc/edit-lines))
-(("C->" . mc/mark-next-like-this))
-(("C-<" . mc/mark-previous-like-this))
-(("C-c C-<" . 'mc/mark-all-like-this))
-(("C-c C-a" . mc/skip-to-previous-like-this))
-(("C-M-<mouse-1>" . mc/add-cursor-on-click))
-)
+   :ensure t
+   :bind
+   (("C-c C-m" . mc/edit-lines))
+   (("C->" . mc/mark-next-like-this))
+   (("C-<" . mc/mark-previous-like-this))
+   (("C-c C-<" . 'mc/mark-all-like-this))
+   (("C-c C-a" . mc/skip-to-previous-like-this))
+   (("C-M-<mouse-1>" . mc/add-cursor-on-click))    
+   (("C-c C-r" . mc/mark-sgml-tag-pair))
+   )
 
 (use-package quickrun 
 :ensure t
-:bind ("C-c r" . quickrun))
+:bind ([f8] . quickrun))
 
 ;Modifica los espacion 4 for C/C++
 (defun my-c++-mode-hook ()
@@ -194,13 +189,17 @@
 
 (use-package projectile
   :ensure t
-  :init
-  (projectile-mode +1)
-  :bind (:map projectile-mode-map
-              ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map)
-
-              )
+  ;;:init
+  ;;(projectile-mode +1)
+  ;; :bind (:map projectile-mode-map
+  ;;             ("s-p" . projectile-command-map)
+  ;;             ("C-c p" . projectile-command-map)              
+  ;;             )
+  :bind-keymap
+  ("C-c p" . projectile-command-map)              
+  ("s-p" . projectile-command-map)
+  :bind
+  (([f7] . projectile-mode))    
   :config
   (setq projectile-completion-system 'ivy)
 )
@@ -255,8 +254,11 @@
 
 (use-package python
   :ensure nil
-  :config
+  :init
   (setq python-indent-offset 4)
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
+  ;:config
   ;(setq python-shell-interpreter "python3")
 )
 
@@ -281,7 +283,8 @@
     (setq web-mode-code-indent-offset 2)
     ;;(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
 
-    (define-key web-mode-map (kbd "C-c n") 'web-mode-buffer-indent)          
+    ;; Example: (define-key web-mode-map (kbd "C-c n") 'web-mode-buffer-indent)           
+    ;; (define-key web-mode-map (kbd "C-c C-r") 'mc/mark-sgml-tag-pair) como es web mode no sabe indentificar etiquetas como sgml-mode (aqui no funciona).
 
     ;; Custom theme para web-mode Liskov-theme
     ;;For HTML
@@ -344,3 +347,43 @@
   (add-hook 'web-mode-hook 'my-web-mode-hook)  
 
 )
+
+(use-package google-translate
+  :ensure t
+  :bind 
+  (("C-c t" . google-translate-at-point))
+  (("C-c T" . google-translate-query-translate))
+  (("C-c r" . google-translate-at-point-reverse))
+  (("C-c R" . google-translate-query-translate-reverse))
+  :init
+  ;;(setq google-translate-default-source-language "auto")  ; Auto detect language.
+  (setq google-translate-default-source-language "en")  ; Auto detect language.
+  (setq google-translate-default-target-language "es")    ; Set your target language.
+
+  )
+
+(use-package expand-region
+  :ensure t
+  :config
+  ;(global-set-key (kbd "C-=") 'er/expand-region)
+  (global-set-key (kbd "C-@") 'er/expand-region)
+  (global-set-key (kbd "s-SPC") 'er/expand-region)
+  )
+
+(use-package undo-tree
+  :ensure t
+  :bind  (([f6] . global-undo-tree-mode))    
+  ;; :init
+  ;; (global-undo-tree-mode)
+  )
+
+(use-package diminish
+  :ensure t  
+  )
+
+(diminish 'ivy-posframe-mode)
+(diminish 'which-key-mode)
+(diminish 'yas-minor-mode)
+;;(diminish 'projectile-mode)
+(diminish 'eldoc-mode)                              
+;;(diminish 'helm-mode)

@@ -36,29 +36,29 @@ g - Refresh.
 C-x -/+ - Zoom font(local).
 
 Code 
-C-x o - Move frame.
-C-space - Selection or mark.
-C-x-space - Rectangle selection.
-C-w - Cut selection.
-M-w - Copy selection.
-C-y - Paste selecion
+C-x o : Move frame.
+C-space : Selection or mark.
+C-x-space : Rectangle selection.
+C-w : Cut selection.
+M-w : Copy selection.
+C-y : Paste selecion
 M-g-g: Goto line.
-C-y M-y - Rotate kill ring.
-C-x-u - Undo
-C-_ - Undo 
+C-y M-y : Rotate kill ring.
+C-x-u : Undo
+C-_ : Undo and Redo 
 C-k : kill line current
 C-d : Kill one caracter.
 M-d : Kill word.
 C-v : Next page
 M-v : Back page.
 C-l : Adjust page view current
-C-x ; - Commets
-C-c C-c - Commet in code or compile Latex.
+C-x ; : Commets
+C-c C-c : Commet in code or compile Latex.
 C-x C-s : Save.
 C-x C-w : Saves as.
 
 Cua-mode (For web-mode recommendations)
-C-enter - Rectangle section for edit.
+C-enter : Rectangle section for edit.
 
 C-c C-v : Open file browser (html recommend)
 
@@ -68,7 +68,7 @@ C-x 2 : Split horizontal.
 C-x 3 : Split vertical
 
 C-x t 2 : Open tab
-C-tab - Switch tab
+C-tab : Switch tab
 C-x - left/right : Change next or back buffer.
 
 ~~~
