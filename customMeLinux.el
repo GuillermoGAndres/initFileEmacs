@@ -36,6 +36,25 @@
  )
 
 
+;; Custom theme para web-mode Liskov-theme
+;; (if  (eq (car custom-enabled-themes) 'liskov)
+;;     (progn
+;;       ;;(message "This message appears in the echo area Liskov-theme!")
+;;       ;;For HTML
+;;       (set-face-attribute 'web-mode-doctype-face nil :foreground "lightblue") ;turquoise , lightblue, PaleTurquoise
+;;       (set-face-attribute 'web-mode-html-tag-face nil :foreground "#FFF8DC") ; amarillo
+;;       ;;(set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#EFFBFF") ;Color de los brackets
+;;       (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#BCEDDE"); verde claro
+;;       (set-face-attribute 'web-mode-html-attr-value-face nil :foreground "#CAB4CC"); morado
+;;       ;;(set-face-attribute 'web-mode-html-attr-equal-face nil :foreground "green"); Color para el signo de igualdad
+;;       ;;(set-face-attribute 'web-mode-html-tag-namespaced-face nil :foreground "green")
+;;       ;;(set-face-attribute 'web-mode-html-tag-custom-face nil :foreground "green")
+;;       )
+;; )
+
+
+
+
 ;Test propiedades
 ;; (custom-set-faces
 ;;  '(font-lock-function-name-face ((t (:foreground "#F0DFAF")))) ; Metodos

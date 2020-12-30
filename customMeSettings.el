@@ -9,11 +9,12 @@
 ; install the melpa repository
 (require 'package)
 (setq package-archives '(                          
-                          ("melpa"     . "http://melpa.org/packages/")
-			  ("elpa" . "https://elpa.typefo.com/packages/")
-			  ;("elpa"       . "http://elpa.gnu.org/packages/")
-			  ;("org"       . "http://orgmode.org/elpa/")
-                          ;("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa"     . "http://melpa.org/packages/")
+			             ("elpa" . "https://elpa.typefo.com/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+			             ;;("elpa"       . "http://elpa.gnu.org/packages/")
+			             ;;("org"       . "http://orgmode.org/elpa/")
+                         ;;("marmalade" . "http://marmalade-repo.org/packages/")
  						 ))
 (package-initialize)
 ;(package-refresh-contents) ; Actualiza los paquetes cada vez que entres.
@@ -59,7 +60,7 @@
 ;(electric-pair-mode 1)
 
 ; Tiempo de echo.
-(setq echo-keystrokes 0.5)
+(setq echo-keystrokes 0.3)
 
 (set-language-environment "UTF-8")
 
@@ -89,8 +90,8 @@
 ;(server-start) ;Ya no sera necesario con el plugin zsh emacs.
 
 ;Control-Alt-n Encuentra su otro parentesis
-;C-M-n forward-sexp
-;C-M-b backward-sexp
+;C-M-n forward-sexp or C-M right
+;C-M-b backward-sexp or C-M left
 ;(global-set-key (kbd "C-c n") 'forward-sexp)
 ;(global-set-key (kbd "C-c b") 'backward-sexp)
 
@@ -131,10 +132,10 @@
 ;Evoid confirmation
 ;(global-set-key [f5] (lambda () (interactive) (revert-buffer nil t)))
 
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
+(global-set-key (kbd "C-c <C-left>")  'windmove-left)
+(global-set-key (kbd "C-c <C-right>") 'windmove-right)
+(global-set-key (kbd "C-c <C-up>")    'windmove-up)
+(global-set-key (kbd "C-c <C-down>")  'windmove-down)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 

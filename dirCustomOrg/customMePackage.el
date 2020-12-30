@@ -243,12 +243,104 @@
           (display-buffer-at-bottom))
 
           ("\\magit: [A-Z]"
-          (display-buffer-at-bottom))          
-          
+          (display-buffer-at-bottom))           
+
          )        
    )
 )
 
 (use-package magit
   :ensure t  
+)
+
+(use-package python
+  :ensure nil
+  :config
+  (setq python-indent-offset 4)
+  ;(setq python-shell-interpreter "python3")
+)
+
+(use-package web-mode
+  :ensure t
+  :mode (
+         ("\\.html?\\'" . web-mode)
+         ("\\.css\\'"   . web-mode)           
+         ;;("\\.js\\'"    . web-mode)
+         ;;("\\.tsx?\\'"  . web-mode)
+         ;;("\\.json\\'"  . web-mode)
+         )
+  :config
+
+  (defun my-web-mode-hook ()
+    "Hooks for Web mode."
+    (setq web-mode-markup-indent-offset 2)
+    ;;HTML y CSS
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    ;;Script/code offset indentation (for JavaScript, Java, PHP, Ruby, Go, VBScript, Python, etc.) 
+    (setq web-mode-code-indent-offset 2)
+    ;;(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+
+    (define-key web-mode-map (kbd "C-c n") 'web-mode-buffer-indent)          
+
+    ;; Custom theme para web-mode Liskov-theme
+    ;;For HTML
+    ;;(set-face-attribute 'web-mode-doctype-face nil :foreground "lightblue") ;turquoise , lightblue, PaleTurquoise
+    ;;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#FFF8DC") ; amarillo
+    ;;(set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#EFFBFF") ;Color de los brackets
+    ;;(set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#BCEDDE"); verde claro
+    ;;(set-face-attribute 'web-mode-html-attr-value-face nil :foreground "#CAB4CC"); morado
+    ;;(set-face-attribute 'web-mode-html-attr-equal-face nil :foreground "green"); Color para el signo de igualdad
+    ;;(set-face-attribute 'web-mode-html-tag-namespaced-face nil :foreground "green")
+    ;;(set-face-attribute 'web-mode-html-tag-custom-face nil :foreground "green")
+
+
+
+    )
+
+  (add-hook 'web-mode-hook  'my-web-mode-hook)
+
+)
+
+(use-package emmet-mode
+  :ensure t
+  :hook ((html-mode       . emmet-mode)
+         (css-mode        . emmet-mode)
+         (web-mode        . emmet-mode)
+         ;; (sgml-mode       . emmet-mode) ;Auto-start on any markup modes
+         ;; (js-mode         . emmet-mode)
+         ;; (js-jsx-mode     . emmet-mode) ; Tiene que ver con react
+         ;; (typescript-mode . emmet-mode)
+         )
+  ;;:config
+  ;;(setq emmet-insert-flash-time 0.001) ; effectively disabling it
+  )
+
+(use-package company-web
+  :ensure t
+  :config
+
+  (defun my-web-mode-hook ()
+    "Hook for `web-mode'."
+    (set (make-local-variable 'company-backends)
+         '(company-css company-web-html company-yasnippet company-files))
+
+    ;; manual autocomplete
+    (define-key web-mode-map (kbd "M-RET") 'company-complete)
+
+    ;; Enable JavaScript completion between <script>...</script> etc.
+    (advice-add 'company-tern :before
+                #'(lambda (&rest _)
+                    (if (equal major-mode 'web-mode)
+                        (let ((web-mode-cur-language
+                               (web-mode-language-at-pos)))
+                          (if (or (string= web-mode-cur-language "javascript")
+                                  (string= web-mode-cur-language "jsx"))
+                              (unless tern-mode (tern-mode))
+                            (if tern-mode (tern-mode -1)))))))
+
+    )
+
+  (add-hook 'web-mode-hook 'my-web-mode-hook)  
+
 )

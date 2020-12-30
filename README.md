@@ -80,9 +80,10 @@ DejaVu Sans Mono
 
 ---
 
-### Themes
-Temas que te gustaria echarles un ojo:
+### Themes:
+---
 - [Liskov-theme](https://github.com/GuillermoGAndres/Liskov-theme)
 - [Hoare-theme](https://github.com/GuillermoGAndres/Hoare-theme)
 - [Dijkstra-theme](https://github.com/GuillermoGAndres/Dijkstra-theme)
 - [Turing-theme](https://github.com/GuillermoGAndres/Turing-theme)
+- [Niklaus-theme](https://github.com/GuillermoGAndres/Niklaus-theme)

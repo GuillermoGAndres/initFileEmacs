@@ -25,8 +25,8 @@
 
 ;;----------------------------------------------------------------------
 ;; RECOMENDABLE mejor descargar los temas indivuales en github <https://github.com/GuillermoGAndres/Dijkstra-theme>  y despues solo cargarlos, ejemplos: 
-(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
-(load-theme 'liskov t)
+;(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
+;(load-theme 'liskov t)
 
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Hoare-theme")
 ;;(load-theme 'hoare t)
@@ -37,7 +37,20 @@
 
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Turing-theme")
 ;;(load-theme 'turing t)
+
+;(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
+;(load-theme 'niklaus t)
+
 ;; ----------------------------------------------------------------------
+
+;; Por si tengo que hacer una modificacion despues.
+;(custom-set-faces
+ ;;'(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#B3B3B3")))) ;Lineas grises
+ ;;'(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#F0DFAF")))) ;Lineas amarillas
+ ;;'(font-lock-comment-face ((t (:foreground "#EFFBFF")))) ; Comentarios de en linea blanco
+ ;;'(font-lock-comment-face ((t (:foreground "#EB9490")))) ; Comentarios de en linea rojo claro
+
+;) 
 
 
 ;Ajustamos nuestras configuraciones dependiendo de nuestro sistema operativo.
@@ -67,5 +80,4 @@
 ; Archivo donde se guardaran todas las personalizaciones, es un archivo auxiliar para observar los atributos.
 (setq custom-file "~/.emacs.d/initFileEmacs/pluginsUser/customFacesMe.el")
 (load custom-file)
-
 
