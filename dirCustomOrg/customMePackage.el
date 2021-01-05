@@ -5,14 +5,27 @@
 
 (use-package yasnippet
   :ensure t
-  :init
-  (yas-global-mode 1)
+  :config
+  (setq yas-snippet-dirs
+        '(
+          "~/.emacs.d/initFileEmacs/snippets"
+          ))
+  ;; Modo en general (Modo mayor)
+  ;;(yas-global-mode 1)
+  ;; Para un modo en expecifico (modo menor)
+  (yas-reload-all)
+  (add-hook 'c-mode-hook #'yas-minor-mode)
+  (add-hook 'c++-mode-hook #'yas-minor-mode)
+  (add-hook 'java-mode-hook #'yas-minor-mode)
+  (add-hook 'org-mode-hook #'yas-minor-mode)
+  (add-hook 'python-mode-hook #'yas-minor-mode)
+  ;; (add-hook 'prog-mode-hook #'yas-minor-mode)  
 )
 
-; Repositorio de snippets ya hechos.
-(use-package yasnippet-snippets
-  :ensure t
-  )
+; Repositorio de snippets ya hechos, bueno si estas iniciando.
+;;(use-package yasnippet-snippets
+;;  :ensure t
+;;  )
 
 (use-package helm
 :ensure t
@@ -103,9 +116,15 @@
 
 (use-package treemacs
   :ensure t
-  :config
-  (global-set-key [f12] 'treemacs)
-  ;(global-set-key (kbd "C-c p") 'treemacs-add-project)
+  ;:config
+  ;;(global-set-key [f12] 'treemacs)
+  ;;(global-set-key (kbd "C-x t a") 'treemacs-add-project-to-workspace)
+  ;; (global-set-key (kbd "C-c p") 'treemacs-add-project)
+  :bind
+  (:map global-map
+        ([f12]   . treemacs)
+        ("C-x t a"   . treemacs-add-project-to-workspace)
+        )
 )
 
 (use-package rainbow-delimiters
@@ -383,7 +402,15 @@
 
 (diminish 'ivy-posframe-mode)
 (diminish 'which-key-mode)
-(diminish 'yas-minor-mode)
+;;(diminish 'yas-minor-mode)
 ;;(diminish 'projectile-mode)
 (diminish 'eldoc-mode)                              
 ;;(diminish 'helm-mode)
+
+(use-package visual-regexp
+  :ensure t
+  :config
+  (define-key global-map (kbd "C-%") 'vr/replace)
+  (define-key global-map (kbd "M-%") 'vr/query-replace)
+  (define-key global-map (kbd "C-c m") 'vr/mc-mark)
+  )

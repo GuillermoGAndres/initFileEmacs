@@ -25,12 +25,26 @@
 ;; (global-set-key (kbd "C-c <C-down>") 'counsel-switch-buffer)
 ;; (global-set-key (kbd "C-c <C-up>") 'tab-switcher)
 
-;; Ajustando google translate para el backend en Linux
-;;(setq google-translate-backend-method 'curl) ; Para Linux
-;;(setq google-translate-backend-method 'wget)
+;; Ajustando google translate para la busqueda (backend) en Emacs Linux version 27.0
+;; Solucion version actual google-translate 0.12-0:  https://github.com/atykhonov/google-translate/issues/52#issuecomment-727920888
+(use-package google-translate
+  :ensure t
+  :custom
+  (google-translate-backend-method 'curl)
+  :config
+  (defun google-translate--search-tkk () "Search TKK." (list 430675 2721866130)))
+
+
 
 ;; Activa las marcas de tiempo de undotree
 ;(setq undo-tree-visualizer-timestamps t)
+
+(global-set-key [f9] 'linum-mode)
+(global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
+(global-set-key (kbd "s-v") 'clipboard-yank)
+(global-set-key (kbd "s-x") 'clipboard-kill-region)
+
+
 
 ;Custom faces 
 
@@ -55,6 +69,17 @@
 ;;       )
 ;; )
 
+;; Ejemplo para crear funciones
+;;(defun set-frame-alpha (arg &optional active)
+;;  (interactive "nEnter alpha value (1-100): \np")
+;;  (let* ((elt (assoc 'alpha default-frame-alist))
+;;         (old (frame-parameter nil 'alpha))
+;;         (new (cond ((atom old)     `(,arg ,arg))
+;;                    ((eql 1 active) `(,arg ,(cadr old)))
+;;                    (t              `(,(car old) ,arg)))))
+;;    (if elt (setcdr elt new) (push `(alpha ,@new) default-frame-alist))
+;;    (set-frame-parameter nil 'alpha new)))
+;;(global-set-key (kbd "s-t") 'set-frame-alpha)
 
 
 

@@ -137,10 +137,12 @@
 ;Evoid confirmation
 ;(global-set-key [f5] (lambda () (interactive) (revert-buffer nil t)))
 
-(global-set-key (kbd "C-c <C-left>")  'windmove-left)
-(global-set-key (kbd "C-c <C-right>") 'windmove-right)
-(global-set-key (kbd "C-c <C-up>")    'windmove-up)
-(global-set-key (kbd "C-c <C-down>")  'windmove-down)
+(global-set-key (kbd "C-x <C-left>")  'windmove-left)
+(global-set-key (kbd "C-x <C-right>") 'windmove-right)
+(global-set-key (kbd "C-x <C-up>")    'windmove-up)
+(global-set-key (kbd "C-x <C-down>")  'windmove-down)
+(global-set-key (kbd "C-c <C-right>") 'tab-next)
+(global-set-key (kbd "C-c <C-left>") 'tab-previous)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -153,8 +155,7 @@
 (add-hook 'org-mode  'visual-line-mode)
 (add-hook 'web-mode-hook  'visual-line-mode)
 
-(global-set-key (kbd "C-x <C-right>") 'tab-next)
-(global-set-key (kbd "C-x <C-left>") 'tab-previous)
+
 (global-set-key (kbd "C-M-:") 'eval-region)
 
 ;; Hace que cualquier seleccion pueda ser sobreescrito inmediatemente.
@@ -298,8 +299,9 @@ Including indent-buffer, which should not be called automatically on save."
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
 
-(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
-
+;; Choca con el comando de las macros
+;(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
+(global-set-key (kbd "M-s-k") 'delete-current-buffer-file)
 
 ;; Mueve una liena arriba o abajo.
 (defun move-line-down ()

@@ -15,14 +15,27 @@
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure t
-    :init
-    (yas-global-mode 1)
+    :config
+    (setq yas-snippet-dirs
+          '(
+            "~/.emacs.d/initFileEmacs/snippets"
+            ))
+    ;; Modo en general (Modo mayor)
+    ;;(yas-global-mode 1)
+    ;; Para un modo en expecifico (modo menor)
+    (yas-reload-all)
+    (add-hook 'c-mode-hook #'yas-minor-mode)
+    (add-hook 'c++-mode-hook #'yas-minor-mode)
+    (add-hook 'java-mode-hook #'yas-minor-mode)
+    (add-hook 'org-mode-hook #'yas-minor-mode)
+    (add-hook 'python-mode-hook #'yas-minor-mode)
+    ;; (add-hook 'prog-mode-hook #'yas-minor-mode)  
   )
 
-  ; Repositorio de snippets ya hechos.
-  (use-package yasnippet-snippets
-    :ensure t
-    )
+  ; Repositorio de snippets ya hechos, bueno si estas iniciando.
+  ;;(use-package yasnippet-snippets
+  ;;  :ensure t
+  ;;  )
 #+END_SRC
 
 * helm
@@ -148,12 +161,18 @@
 * treemacs 
   Estrucuta de carpetal oficial de emacs.
 #+BEGIN_SRC emacs-lisp
-(use-package treemacs
-  :ensure t
-  :config
-  (global-set-key [f12] 'treemacs)
-  ;(global-set-key (kbd "C-c p") 'treemacs-add-project)
-)
+  (use-package treemacs
+    :ensure t
+    ;:config
+    ;;(global-set-key [f12] 'treemacs)
+    ;;(global-set-key (kbd "C-x t a") 'treemacs-add-project-to-workspace)
+    ;; (global-set-key (kbd "C-c p") 'treemacs-add-project)
+    :bind
+    (:map global-map
+          ([f12]   . treemacs)
+          ("C-x t a"   . treemacs-add-project-to-workspace)
+          )
+  )
 
 #+END_SRC
 * rainbow-delimiters
@@ -516,9 +535,20 @@ para utilizar emmet-previem-mode en una sentencia en particulas pueder usar C-u 
 
   (diminish 'ivy-posframe-mode)
   (diminish 'which-key-mode)
-  (diminish 'yas-minor-mode)
+  ;;(diminish 'yas-minor-mode)
   ;;(diminish 'projectile-mode)
   (diminish 'eldoc-mode)                              
   ;;(diminish 'helm-mode)
 
+#+END_SRC
+* visual-regexp
+  Ayuda a visualizar cada vez que remplaces.
+#+BEGIN_SRC emacs-lisp
+(use-package visual-regexp
+  :ensure t
+  :config
+  (define-key global-map (kbd "C-%") 'vr/replace)
+  (define-key global-map (kbd "M-%") 'vr/query-replace)
+  (define-key global-map (kbd "C-c m") 'vr/mc-mark)
+  )
 #+END_SRC
