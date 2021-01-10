@@ -195,8 +195,10 @@ Including indent-buffer, which should not be called automatically on save."
   (forward-line -1)
   (indent-for-tab-command))
 
+;; S - Es la tecla shift (Uppercase)
+;; s - Tecla windows (Lowercase)
 (global-set-key (kbd "<C-return>") 'open-line-below)
-(global-set-key (kbd "<C-s-return>") 'open-line-above)
+(global-set-key (kbd "<C-S-return>") 'open-line-above)
 
 
 ;; SGML and html mode elimina e indenta las etiquetas sobrantes
@@ -368,6 +370,27 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;; --------------------------------------------------
 
+;; Eliminar pares de parentersis, con la funcion integrada de emacs delete-pair
+;; Debe colocarse al inicio del parentesis
+(global-set-key (kbd "M-p") 'delete-pair)
+
+;; S - Es la tecla shift (Uppercase)
+;; s - Tecla windows (Lowercase)
+;; Copiar linea completa
+(defun copy-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (move-beginning-of-line 1)
+  ;(open-line 1)
+  ;(next-line 1)
+  ;(yank)
+  )
+
+(global-set-key (kbd "C-S-k") 'copy-line)
+
+(global-set-key (kbd "C-S-p") 'clipboard-yank)
 
 ;----------------Notas-------------------------------------------------------------------------
 ; No se te olvide que cada vez que haces una configuracion o instalas un paquete , se configurara

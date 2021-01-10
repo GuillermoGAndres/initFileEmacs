@@ -1,7 +1,8 @@
 ;;Referencias
-;;https://github.com/ianpan870102/.personal-emacs.d/blob/master/init.el
-;;https://protesilaos.com/dotemacs/
-;;https://github.com/zamansky/dot-emacs
+;; https://github.com/munen/emacs.d/#convenience-functions-when-working-with-pdf-exports
+;; https://github.com/ianpan870102/.personal-emacs.d/blob/master/init.el
+;; https://protesilaos.com/dotemacs/
+;; https://github.com/zamansky/dot-emacs
 
 ;------------------Configuracion Linux ------------------------
 ;Configura neotree para que sean iconos, porque tengo instalado icons.
@@ -81,6 +82,31 @@
 ;;    (set-frame-parameter nil 'alpha new)))
 ;;(global-set-key (kbd "s-t") 'set-frame-alpha)
 
+
+;; (defun chmod-plus-w ()
+;;   (interactive)
+;;   (shell-command-to-string (concat "chmod +w " (buffer-file-name (current-buffer))))
+;;   (revert-buffer))
+
+
+;; (defun delete-surrounded-parens ()
+;;   (interactive)
+;;   (let ((beginning (region-beginning))
+;;         (end (region-end)))
+;;     (cond ((not (eq (char-after beginning) ?\())
+;;            (error "Character at region-begin is not an open-parenthesis"))
+;;           ((not (eq (char-before end) ?\)))
+;;            (error "Character at region-end is not a close-parenthesis"))
+;;           ((save-excursion
+;;              (goto-char beginning)
+;;              (forward-sexp)
+;;              (not (eq (point) end)))
+;;            (error "Those parentheses are not matched"))
+;;           (t (save-excursion
+;;                (goto-char end)
+;;                (delete-backward-char 1)
+;;                (goto-char beginning)
+;;                (delete-char 1))))))
 
 
 ;Test propiedades
