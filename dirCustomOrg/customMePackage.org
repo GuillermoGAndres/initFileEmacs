@@ -349,6 +349,9 @@
 
             ("\\magit: [A-Z]"
             (display-buffer-at-bottom))           
+            
+            ("\\Narrowed [A-Z]"
+            (display-buffer-at-bottom))
 
            )        
      )
