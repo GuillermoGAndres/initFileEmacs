@@ -61,6 +61,7 @@
   :ensure t  
   :bind
   (("C-x b" . counsel-switch-buffer))
+  (("C-x <down>" . counsel-switch-buffer))
   (("C-x C-f" . counsel-find-file))
   )
 
@@ -286,6 +287,7 @@
   :mode (
          ("\\.html?\\'" . web-mode)
          ("\\.css\\'"   . web-mode)           
+         ("\\.php\\'"   . web-mode)
          ;;("\\.js\\'"    . web-mode)
          ;;("\\.tsx?\\'"  . web-mode)
          ;;("\\.json\\'"  . web-mode)

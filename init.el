@@ -76,8 +76,17 @@
 (add-to-list 'load-path "~/.emacs.d/initFileEmacs/pluginsUser")
 (load "resize-frame")
 
-
 ; Archivo donde se guardaran todas las personalizaciones, es un archivo auxiliar para observar los atributos.
-(setq custom-file "~/.emacs.d/initFileEmacs/pluginsUser/customFacesMe.el")
-(load custom-file)
+(if (eq system-type 'windows-nt)
+    (progn
+      (setq custom-file "~/.emacs.d/initFileEmacs/pluginsUser/customFacesMeWindows.el")
+      (load custom-file)
+    )    
+)
 
+(if (eq system-type 'gnu/linux)
+    (progn
+      (setq custom-file "~/.emacs.d/initFileEmacs/pluginsUser/customFacesMeLinux.el")
+      (load custom-file)
+    )    
+)

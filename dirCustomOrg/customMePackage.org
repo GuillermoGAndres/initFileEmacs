@@ -85,6 +85,7 @@
     :ensure t  
     :bind
     (("C-x b" . counsel-switch-buffer))
+    (("C-x <down>" . counsel-switch-buffer))
     (("C-x C-f" . counsel-find-file))
     )
 #+END_SRC
