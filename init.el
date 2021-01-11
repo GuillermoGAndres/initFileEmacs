@@ -25,21 +25,21 @@
 
 ;;----------------------------------------------------------------------
 ;; RECOMENDABLE mejor descargar los temas indivuales en github <https://github.com/GuillermoGAndres/Dijkstra-theme>  y despues solo cargarlos, ejemplos: 
-;(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
+;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
 ;(load-theme 'liskov t)
 
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Hoare-theme")
 ;;(load-theme 'hoare t)
 
-;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
+;(add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
 ;;(load-theme 'dijkstra t)
 ;;(load-theme 'dijkstra-dark t)
 
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Turing-theme")
 ;;(load-theme 'turing t)
 
-;(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
-;(load-theme 'niklaus t)
+;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
+;;(load-theme 'niklaus t)
 
 ;; ----------------------------------------------------------------------
 
@@ -51,9 +51,34 @@
  ;;'(font-lock-comment-face ((t (:foreground "#EB9490")))) ; Comentarios de en linea rojo claro
 
 ;) 
+;; ------------------------------
 
+;Plugins externos
+;Cargando plugins externo esta es una manera mas elegante de hacerlo para cargarlo.
+(add-to-list 'load-path "~/.emacs.d/initFileEmacs/pluginsUser")
 
-;Ajustamos nuestras configuraciones dependiendo de nuestro sistema operativo.
+;; Resize-frame
+;; Ayuda a redimersionar las windows.
+(load "resize-frame")
+
+;; Narrow-indirect (Tiempo real)
+;;Crea un buffer para editar una seccion de codigo en particular.
+;(add-to-list 'load-path "~/.emacs.d/initFileEmacs/pluginsUser")
+;(require 'narrow-indirect)
+;;(load "narrow-indirect")
+
+;;(define-key ctl-x-4-map "nd" #'ni-narrow-to-defun-indirect-other-window)
+;;(define-key ctl-x-4-map "nn" #'ni-narrow-to-region-indirect-other-window)
+;;(define-key ctl-x-4-map "np" #'ni-narrow-to-page-indirect-other-window)
+
+;; Una mejora de narrow-indirect
+(add-to-list 'load-path "~/.emacs.d/initFileEmacs/pluginsUser/fence-edit.el")
+(require 'fence-edit)
+(global-set-key (kbd "C-c '") 'fence-edit-code-region-with-mode)
+
+;; --------------------------------------------------
+
+;;Ajustamos nuestras configuraciones dependiendo de nuestro sistema operativo.
 (if (eq system-type 'windows-nt)
     (progn
       ;(message "Estas es un system Windows!")
@@ -70,11 +95,7 @@
     )    
 )
 
-
-;Plugins 
-;Cargando un plugin externo esta es una manera mas elegante de hacerlo para cargarlo.
-(add-to-list 'load-path "~/.emacs.d/initFileEmacs/pluginsUser")
-(load "resize-frame")
+;; --------------------------------------------------
 
 ; Archivo donde se guardaran todas las personalizaciones, es un archivo auxiliar para observar los atributos.
 (if (eq system-type 'windows-nt)
@@ -90,3 +111,6 @@
       (load custom-file)
     )    
 )
+
+;; Enable command
+(put 'narrow-to-region 'disabled nil)

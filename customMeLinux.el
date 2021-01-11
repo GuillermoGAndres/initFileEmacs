@@ -5,9 +5,6 @@
 ;; https://github.com/zamansky/dot-emacs
 
 ;------------------Configuracion Linux ------------------------
-;Configura neotree para que sean iconos, porque tengo instalado icons.
-(setq neo-theme 'icons)
-
 ;Aumentar tamaño de letra, before config: 130
 ;(set-face-attribute 'default nil :height 140)
 
@@ -22,7 +19,7 @@
 
 
 ;;Keybindins
-(global-set-key (kbd "C-x <down>") 'counsel-switch-buffer)
+;;(global-set-key (kbd "C-x <down>") 'counsel-switch-buffer)
 ;; (global-set-key (kbd "C-c <C-down>") 'counsel-switch-buffer)
 ;; (global-set-key (kbd "C-c <C-up>") 'tab-switcher)
 
@@ -40,7 +37,6 @@
 ;; Activa las marcas de tiempo de undotree
 ;(setq undo-tree-visualizer-timestamps t)
 
-(global-set-key [f9] 'linum-mode)
 (global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
 (global-set-key (kbd "s-v") 'clipboard-yank)
 (global-set-key (kbd "s-x") 'clipboard-kill-region)
@@ -53,6 +49,12 @@
  '(tab-bar ((t (:inherit variable-pitch :family "Inconsolata")))) ;Si no tiene la fuente Inconsolata, usa la que tiene por defecto.
  )
 
+;Configura neotree para que sean iconos, porque tengo instalado icons.
+
+(use-package neotree
+  :config
+  (setq neo-theme 'icons)
+  )
 
 ;; Custom theme para web-mode Liskov-theme
 ;; (if  (eq (car custom-enabled-themes) 'liskov)

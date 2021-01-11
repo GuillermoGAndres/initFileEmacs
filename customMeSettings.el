@@ -392,6 +392,12 @@ Including indent-buffer, which should not be called automatically on save."
 
 (global-set-key (kbd "C-S-p") 'clipboard-yank)
 
+;; Narrowing - escribir en una seccion en particular
+;;C-x n n  (narrow-to-region)
+
+;Enable or disable lines number
+(global-set-key [f9] 'linum-mode)
+
 ;----------------Notas-------------------------------------------------------------------------
 ; No se te olvide que cada vez que haces una configuracion o instalas un paquete , se configurara
 ; en el archivo pluginsuser/customFacesMe.el tienes que limpiarlo si cambias de tema, ya que se quedaran
