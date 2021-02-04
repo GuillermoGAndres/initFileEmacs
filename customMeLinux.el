@@ -1,5 +1,6 @@
 ;;Referencias
 ;; https://github.com/munen/emacs.d/#convenience-functions-when-working-with-pdf-exports
+;; https://github.com/SirPscl/emacs.d#pdf-tools
 ;; https://github.com/ianpan870102/.personal-emacs.d/blob/master/init.el
 ;; https://protesilaos.com/dotemacs/
 ;; https://github.com/zamansky/dot-emacs

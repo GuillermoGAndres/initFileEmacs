@@ -398,6 +398,52 @@ Including indent-buffer, which should not be called automatically on save."
 ;Enable or disable lines number
 (global-set-key [f9] 'linum-mode)
 
+
+
+;; Save un buffer preguntando con permisos sudo (Muy usado con archivos en php que ser guardan en /opt/lampp/htdocs)
+;; If the current buffer is not writable, ask if it should be saved with sudo.
+;; https://github.com/munen/emacs.d/#sudo-save
+(defun ph/sudo-file-name (filename)
+  "Prepend '/sudo:root@`system-name`:' to FILENAME if appropriate.
+This is, when it doesn't already have a sudo-prefix."
+  (if (not (or (string-prefix-p "/sudo:root@localhost:"
+                                filename)
+               (string-prefix-p (format "/sudo:root@%s:" system-name)
+                                filename)))
+      (format "/sudo:root@%s:%s" system-name filename)
+    filename))
+
+(defun ph/sudo-save-buffer ()
+  "Save FILENAME with sudo if the user approves."
+  (interactive)
+  (when buffer-file-name
+    (let ((file (ph/sudo-file-name buffer-file-name)))
+      (if (yes-or-no-p (format "Save file as %s ? " file))
+          (write-file file)))))
+
+(advice-add 'save-buffer :around
+            '(lambda (fn &rest args)
+               (when (or (not (buffer-file-name))
+                         (not (buffer-modified-p))
+                         (file-writable-p (buffer-file-name))
+                         (not (ph/sudo-save-buffer)))
+                 (call-interactively fn args))))
+
+
+;; Toma screenshot de todo el frame
+;; https://www.reddit.com/r/emacs/comments/idz35e/emacs_27_can_take_svg_screenshots_of_itself/
+(defun screenshot-svg ()
+  "Save a screenshot of the current frame as an SVG image.
+Saves to a temp file and puts the filename in the kill ring."
+  (interactive)
+  (let* ((filename (make-temp-file "Emacs" nil ".svg"))
+         (data (x-export-frames nil 'svg)))
+    (with-temp-file filename
+      (insert data))
+    (kill-new filename)
+    (message filename)))
+
+
 ;----------------Notas-------------------------------------------------------------------------
 ; No se te olvide que cada vez que haces una configuracion o instalas un paquete , se configurara
 ; en el archivo pluginsuser/customFacesMe.el tienes que limpiarlo si cambias de tema, ya que se quedaran

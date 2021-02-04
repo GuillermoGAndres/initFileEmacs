@@ -264,7 +264,13 @@
           ("\\magit: [A-Z]"
           (display-buffer-at-bottom))           
 
-         )        
+          ("\\Narrowed [A-Z]"
+          (display-buffer-at-bottom))
+
+          ("\\quickrun"
+          (display-buffer-at-bottom))
+
+          )        
    )
 )
 
@@ -416,3 +422,17 @@
   (define-key global-map (kbd "M-%") 'vr/query-replace)
   (define-key global-map (kbd "C-c m") 'vr/mc-mark)
   )
+
+(use-package js2-mode
+  :ensure t
+  ;;:mode
+  ;; (("\\.js\\'" . js2-mode))
+  )
+
+;; (use-package skewer-mode
+;;   :ensure t
+;;   )
+
+;; (use-package js-comint
+;;   :ensure t
+;; )
