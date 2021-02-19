@@ -36,7 +36,7 @@
 (("C-c h" . helm-command-prefix))
 (("M-x" . helm-M-x))
 (("C-c f" . helm-find-files))   
-(([s-f10] . helm-recentf))   ;; Add new key to recentf
+;;(([s-f10] . helm-recentf))   ;; Add new key to recentf
 (([M-f9] . helm-buffers-list))   
 (("M-y" . helm-show-kill-ring))
 (("C-s" . helm-occur))
@@ -68,8 +68,8 @@
 (use-package avy
   :ensure t
   :bind  
-  (("C-c j" . avy-goto-word-or-subword-1))
-  (("C-:" . avy-goto-line)))
+  ;;(("M-g f" . avy-goto-line))
+  (("C-:" . avy-goto-char)))
 
 (use-package popwin
   :ensure t
@@ -134,12 +134,18 @@
 
 (use-package multiple-cursors
    :ensure t
-   :bind
+   :bind 
    (("C-c C-m" . mc/edit-lines))
    (("C->" . mc/mark-next-like-this))
    (("C-<" . mc/mark-previous-like-this))
    (("C-c C-<" . 'mc/mark-all-like-this))
-   (("C-c C-a" . mc/skip-to-previous-like-this))
+   ;;(("C-c C-a" . mc/skip-to-previous-like-this))
+   (("C-M-}" . mc/skip-to-next-like-this))
+   (("C-M-{" . mc/skip-to-previous-like-this))
+   (("s-}" . mc/unmark-previous-like-this))
+   (("s-{" . mc/unmark-next-like-this))
+   (("C-c C-M-{" . mc/mark-all-dwim))
+   (("C-c C-M-}" . mc/mark-all-in-region))
    (("C-M-<mouse-1>" . mc/add-cursor-on-click))    
    (("C-c C-r" . mc/mark-sgml-tag-pair))
    )
@@ -197,8 +203,8 @@
 
 (use-package nyan-mode
   :ensure t
-  :config
-  (nyan-mode)
+  ;;:config
+  ;;(nyan-mode)
 )
 
 (use-package company-c-headers
@@ -292,45 +298,45 @@
   :ensure t
   :mode (
          ("\\.html?\\'" . web-mode)
-         ("\\.css\\'"   . web-mode)           
+         ("\\.css\\'"   . web-mode)
          ("\\.php\\'"   . web-mode)
          ;;("\\.js\\'"    . web-mode)
          ;;("\\.tsx?\\'"  . web-mode)
          ;;("\\.json\\'"  . web-mode)
          )
   :config
+  (defun html-close-element ()
+    (interactive)
+    (web-mode-element-close)
+    (indent-region (point-min) (point-max))
+    (open-line-below)
+    )
 
   (defun my-web-mode-hook ()
     "Hooks for Web mode."
     (setq web-mode-markup-indent-offset 2)
-    ;;HTML y CSS
+    ;; HTML
     (setq web-mode-markup-indent-offset 2)
+    ;; CSS
     (setq web-mode-css-indent-offset 2)
-    ;;Script/code offset indentation (for JavaScript, Java, PHP, Ruby, Go, VBScript, Python, etc.) 
+    ;; Script/code offset indentation (for JavaScript, Java, PHP, Ruby, Go, VBScript, Python, etc.)
     (setq web-mode-code-indent-offset 2)
     ;;(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
 
-    ;; Example: (define-key web-mode-map (kbd "C-c n") 'web-mode-buffer-indent)           
+    ;; Example: (define-key web-mode-map (kbd "C-c n") 'web-mode-buffer-indent)
     ;; (define-key web-mode-map (kbd "C-c C-r") 'mc/mark-sgml-tag-pair) como es web mode no sabe indentificar etiquetas como sgml-mode (aqui no funciona).
 
-    ;; Custom theme para web-mode Liskov-theme
-    ;;For HTML
-    ;;(set-face-attribute 'web-mode-doctype-face nil :foreground "lightblue") ;turquoise , lightblue, PaleTurquoise
-    ;;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#FFF8DC") ; amarillo
-    ;;(set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#EFFBFF") ;Color de los brackets
-    ;;(set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#BCEDDE"); verde claro
-    ;;(set-face-attribute 'web-mode-html-attr-value-face nil :foreground "#CAB4CC"); morado
-    ;;(set-face-attribute 'web-mode-html-attr-equal-face nil :foreground "green"); Color para el signo de igualdad
-    ;;(set-face-attribute 'web-mode-html-tag-namespaced-face nil :foreground "green")
-    ;;(set-face-attribute 'web-mode-html-tag-custom-face nil :foreground "green")
+    (define-key web-mode-map (kbd "C-,") 'html-close-element)
+    (define-key web-mode-map (kbd "C-c C-o") 'browse-url-of-file)
 
-
-
+    ;;Company backends
+    (set (make-local-variable 'company-backends)
+         '(company-css company-web-html company-yasnippet company-files))
     )
 
   (add-hook 'web-mode-hook  'my-web-mode-hook)
 
-)
+  )
 
 (use-package emmet-mode
   :ensure t
@@ -342,8 +348,11 @@
          ;; (js-jsx-mode     . emmet-mode) ; Tiene que ver con react
          ;; (typescript-mode . emmet-mode)
          )
-  ;;:config
+  :config
   ;;(setq emmet-insert-flash-time 0.001) ; effectively disabling it
+  (define-key emmet-mode-keymap (kbd "<C-return>") 'open-line-below)
+  (define-key emmet-mode-keymap (kbd "C-.") 'emmet-expand-line)
+
   )
 
 (use-package company-web
@@ -425,8 +434,8 @@
 
 (use-package js2-mode
   :ensure t
-  ;;:mode
-  ;; (("\\.js\\'" . js2-mode))
+  :mode
+   (("\\.js\\'" . js2-mode))
   )
 
 ;; (use-package skewer-mode

@@ -25,8 +25,8 @@
 
 ;;----------------------------------------------------------------------
 ;; RECOMENDABLE mejor descargar los temas indivuales en github <https://github.com/GuillermoGAndres/Dijkstra-theme>  y despues solo cargarlos, ejemplos: 
-;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
-;(load-theme 'liskov t)
+(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
+(load-theme 'liskov t)
 
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Hoare-theme")
 ;;(load-theme 'hoare t)
@@ -38,8 +38,8 @@
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Turing-theme")
 ;;(load-theme 'turing t)
 
-;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
-;;(load-theme 'niklaus t)
+(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
+;(load-theme 'niklaus t)
 
 ;; ----------------------------------------------------------------------
 

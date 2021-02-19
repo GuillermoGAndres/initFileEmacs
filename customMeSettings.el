@@ -97,7 +97,7 @@
 ;Control-Alt-n Encuentra su otro parentesis
 ;C-M-n forward-sexp or C-M right
 ;C-M-b backward-sexp or C-M left
-;(global-set-key (kbd "C-c n") 'forward-sexp)
+;(global-set-key (kbd "<C-M-left>") 'forward-sexp)
 ;(global-set-key (kbd "C-c b") 'backward-sexp)
 
 ;Aumentar tamaño de letra, before config: 130
@@ -105,7 +105,7 @@
 
 ;Agregar numeros de lineas
 ;@reference: https://emacs.stackexchange.com/questions/278/how-do-i-display-line-numbers-in-emacs-not-in-the-mode-line
-(add-hook 'prog-mode-hook 'linum-mode)
+;;(add-hook 'prog-mode-hook 'linum-mode)
 
 ;@see: https://www.emacswiki.org/emacs/ShowParenMode
 ;Matches parentesis
@@ -146,14 +146,15 @@
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(global-set-key (kbd "C-c C-g") 'goto-line)
+;; Ya existe un shorcut M-g g
+;;(global-set-key (kbd "C-c C-g") 'goto-line)
 
 (global-set-key (kbd "C-c c") 'compile)
 
 (add-hook 'markdown-mode-hook  'visual-line-mode)
 (add-hook 'text-mode-hook  'visual-line-mode)
 (add-hook 'org-mode  'visual-line-mode)
-(add-hook 'web-mode-hook  'visual-line-mode)
+;;(add-hook 'web-mode-hook  'visual-line-mode)
 
 
 (global-set-key (kbd "C-M-:") 'eval-region)
@@ -240,8 +241,8 @@ Including indent-buffer, which should not be called automatically on save."
              (set-window-start w2 s1)
              (setq i (1+ i)))))))
 
-(global-set-key (kbd "<C-tab>") 'rotate-windows)
-
+;;(global-set-key (kbd "<C-tab>") 'rotate-windows)
+(global-set-key (kbd "<C-S-SPC>") 'rotate-windows)
 
 ;; Move more quickly arriba,abajo,derecha e izquierda.
 (global-set-key (kbd "C-s-n")
@@ -389,7 +390,6 @@ Including indent-buffer, which should not be called automatically on save."
   )
 
 (global-set-key (kbd "C-S-k") 'copy-line)
-
 (global-set-key (kbd "C-S-p") 'clipboard-yank)
 
 ;; Narrowing - escribir en una seccion en particular
@@ -442,6 +442,11 @@ Saves to a temp file and puts the filename in the kill ring."
       (insert data))
     (kill-new filename)
     (message filename)))
+
+;; Search the init file emacs
+(defun initFileEmacs()
+  (interactive)
+  (find-file "~/.emacs.d/initFileEmacs"))
 
 
 ;----------------Notas-------------------------------------------------------------------------
