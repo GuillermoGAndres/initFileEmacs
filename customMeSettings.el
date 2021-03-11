@@ -47,8 +47,8 @@
 ;; (global-visual-line-mode 1)
 
 ;; Maintain a list of recent files opened
-(recentf-mode 1)            
-(setq recentf-max-saved-items 50)
+;;(recentf-mode 1)            
+;;(setq recentf-max-saved-items 50)
 
 ;; Move all the backup files to specific cache directory
 ;; This way you won't have annoying temporary files starting with ~(tilde) in each directory

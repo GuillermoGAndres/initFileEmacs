@@ -234,22 +234,22 @@
 :ensure t  
 )
 
-(use-package ivy-posframe
-  :ensure t
-  :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
-  (ivy-posframe-mode 1)
-
-  (setq ivy-posframe-display-functions-alist
-        '(
-          ;;(swiper          . ivy-posframe-display-at-point)
-          ;;(counsel-M-x     . ivy-posframe-display-at-window-bottom-left)
-          ;;(counsel-find-file . ivy-posframe-display-at-window-center)
-          (ivy-switch-buffer . ivy-posframe-display) ; enlaza a counsel-switch-buffer
-          )
-  ) 
-  
-)
+;;(use-package ivy-posframe
+;;  :ensure t
+;;  :config
+;;  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+;;  (ivy-posframe-mode 1)
+;;
+;;  (setq ivy-posframe-display-functions-alist
+;;        '(
+;;          ;;(swiper          . ivy-posframe-display-at-point)
+;;          ;;(counsel-M-x     . ivy-posframe-display-at-window-bottom-left)
+;;          ;;(counsel-find-file . ivy-posframe-display-at-window-center)
+;;          (ivy-switch-buffer . ivy-posframe-display) ; enlaza a counsel-switch-buffer
+;;          )
+;;  ) 
+;;  
+;;)
 
 ;; Utiliza expresiones regulares para encontrar los buffers.
 (use-package "window"
@@ -275,6 +275,11 @@
 
           ("\\quickrun"
           (display-buffer-at-bottom))
+
+          ;;("\\*tex-shell"
+          ;;(display-buffer-in-side-window)          
+          ;;(window-width . 0.30)
+          ;;(side . right))            
 
           )        
    )
@@ -312,6 +317,16 @@
     (open-line-below)
     )
 
+  ;; Selecciona el contenido de la etiqueta
+  (defun select-tag-content-element ()
+    (interactive)
+    (web-mode-tag-previous)
+    (web-mode-tag-end)
+    (set-mark-command (push-mark))
+    (web-mode-tag-next)
+    )
+
+
   (defun my-web-mode-hook ()
     "Hooks for Web mode."
     (setq web-mode-markup-indent-offset 2)
@@ -328,6 +343,13 @@
 
     (define-key web-mode-map (kbd "C-,") 'html-close-element)
     (define-key web-mode-map (kbd "C-c C-o") 'browse-url-of-file)
+
+    ;; Select content element
+    (define-key web-mode-map (kbd "C-c o") 'select-tag-content-element)
+    ;; Definiendo tambien con Prefijos C-c C-e
+    (define-key web-mode-map (kbd "C-c C-e C-c") 'select-tag-content-element)
+    ;;(define-key web-mode-map (kbd "C-c C-e o") 'select-tag-content-element)
+
 
     ;;Company backends
     (set (make-local-variable 'company-backends)

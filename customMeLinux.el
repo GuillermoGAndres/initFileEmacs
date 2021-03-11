@@ -23,6 +23,8 @@
 ;;(set-face-attribute 'default nil :family "Noto Mono") ;No hay cursivas
 
 (global-set-key (kbd "C-'") 'isearch-forward)
+(global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
+(global-set-key (kbd "C-x <up>") 'counsel-imenu)
 
 ;; --------------------------------------------------
 ;Agregar numeros de lineas (Uno decide si usar linum-mode)
@@ -43,7 +45,6 @@
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
 ;; --------------------------------------------------
 
 ;;Set default size windows
@@ -279,7 +280,7 @@
 ;;(set-face-attribute 'web-mode-html-tag-namespaced-face nil :foreground "green")
 ;;(set-face-attribute 'web-mode-html-tag-custom-face nil :foreground "green")
 
-
+;;M-x list-faces-display
 ;(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -321,6 +322,19 @@
        ;;'(web-mode-html-tag-face ((t (:foreground "#FFF8DC")))); amarillo
        )
       ;;(message "hola mundo")
+      (global-set-key [remap goto-line] 'goto-line-with-feedback)
+    )
+  ;;(message "else")
+)
+
+(if  (eq (car custom-enabled-themes) 'dijkstra)
+    (progn
+      (custom-set-faces
+       ;;`(default ((t (:foreground "#F6F3E8" :weight semibold)))) ;; Mas blanco
+       )
+      ;;(message "hola mundo")
+      ;;(add-hook 'prog-mode-hook 'linum-mode)
+      (add-hook 'prog-mode-hook 'display-line-numbers-mode)
     )
 )
 
@@ -367,3 +381,36 @@
   )
 
 ;:(global-set-key (kbd "C-c C-o") 'browse-url-of-file)
+
+;; Seleccion una sola line C-S-n
+;;https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-move-cursor-to-next-line
+
+;; highlight-current-line (display-line-numbers) ;;Emacs 26 and later.
+;; https://stackoverflow.com/questions/59103537/highlight-the-current-line-number-for-the-active-buffer-in-nlinum-mode
+;; https://github.com/tom-tan/hlinum-mode
+
+;; Latex AUTEX mode
+;;(use-package auctex)
+(defun my-auctex-mode-hook ()
+  (define-key LaTeX-mode-map (kbd "C-.") 'latex-close-block)
+  )
+(add-hook 'LaTeX-mode-hook 'my-auctex-mode-hook)
+
+;; Colourful columns.
+(use-package diredfl
+  :ensure t
+  :config
+  (diredfl-global-mode 1))
+
+;; Descripcion de los commit en dired-mode
+(use-package dired-git-info
+    :ensure t
+    :bind (:map dired-mode-map
+                (")" . dired-git-info-mode)))
+
+;; Trata de adivinar el default target directory, si hay alguna otra windows
+;; elige esa localizacion, muy util para operacion de rename(que es lo mismo que
+;; move) o copy.
+(setq dired-dwim-target t)
+
+
