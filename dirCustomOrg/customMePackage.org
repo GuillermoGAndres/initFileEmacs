@@ -607,3 +607,29 @@ para utilizar emmet-previem-mode en una sentencia en particulas pueder usar C-u 
   ;; )
 
 #+END_SRC
+* impatient-mode
+  Visualiza cambios de html y css en el navegador
+#+BEGIN_SRC emacs-lisp
+(use-package impatient-mode
+  :ensure t
+  )
+#+END_SRC
+* diredfl
+  Colourful columns.
+#+BEGIN_SRC emacs-lisp
+;; Colourful columns.
+(use-package diredfl
+  :ensure t
+  :config
+  (diredfl-global-mode 1))
+#+END_SRC
+* dired-git-info
+  Descripcion de los commit en dired-mode
+#+BEGIN_SRC emacs-lisp
+
+;; Descripcion de los commit en dired-mode
+(use-package dired-git-info
+    :ensure t
+    :bind (:map dired-mode-map
+                (")" . dired-git-info-mode)))
+#+END_SRC

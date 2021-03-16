@@ -358,14 +358,14 @@ Including indent-buffer, which should not be called automatically on save."
 ;; (linum-mode -1) Funcion que desactivas los numeros de lineas.
 ;; --------------------------------------------------
 
-;; (defun goto-line-with-feedback ()
-;;   "Show line numbers temporarily, while prompting for the line number input"
-;;   (interactive)
-;;   (unwind-protect
-;;       (progn
-;;         (linum-mode 1)
-;;         (goto-line (read-number "Goto line: ")))
-;;     (linum-mode -1)))
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
 
 ;; (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
@@ -448,6 +448,43 @@ Saves to a temp file and puts the filename in the kill ring."
   (interactive)
   (find-file "~/.emacs.d/initFileEmacs"))
 
+
+(defun my-kill-all-buffers ()
+  "Kill all buffers"
+  (interactive)
+  (mapcar 'kill-buffer (buffer-list))
+  (delete-other-windows))
+
+;;(global-set-key (kbd "C-x K") 'my-kill-all-buffers)
+
+;; Adjusment paragrapg with C-q
+(setq-default fill-column 80)
+
+(defun my-split-window-below ()
+  (interactive)
+  (split-window-below)
+  (other-window 1)
+  ;;(counsel-find-file)
+  (ibuffer)
+  )
+
+(defun my-split-window-right ()
+  (interactive)
+  (split-window-right)
+  (other-window 1)
+  ;;(find-file ".")
+  ;;(counsel-find-file)
+  (ibuffer)
+  )
+
+(global-set-key (kbd "C-x 2") 'my-split-window-below)
+(global-set-key (kbd "C-x 3") 'my-split-window-right)
+
+
+;; Trata de adivinar el default target directory, si hay alguna otra windows
+;; elige esa localizacion, muy util para operacion de rename(que es lo mismo que
+;; move) o copy.
+(setq dired-dwim-target t)
 
 ;----------------Notas-------------------------------------------------------------------------
 ; No se te olvide que cada vez que haces una configuracion o instalas un paquete , se configurara
