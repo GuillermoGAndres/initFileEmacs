@@ -38,8 +38,8 @@
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Turing-theme")
 ;;(load-theme 'turing t)
 
-;(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
-;(load-theme 'niklaus t)
+;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
+;;(load-theme 'niklaus t)
 
 ;; ----------------------------------------------------------------------
 
@@ -90,7 +90,7 @@
 (if (eq system-type 'gnu/linux)
     (progn
       ;(message "Estas es un system Linux!")
-      (setq custom-file "/home/guillermo/.emacs.d/initFileEmacs/customMeLinux.el")
+      (setq custom-file "~/.emacs.d/initFileEmacs/customMeLinux.el")
       (load custom-file)    
     )    
 )

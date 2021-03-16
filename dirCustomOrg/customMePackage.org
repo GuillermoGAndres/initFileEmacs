@@ -633,3 +633,22 @@ para utilizar emmet-previem-mode en una sentencia en particulas pueder usar C-u 
     :bind (:map dired-mode-map
                 (")" . dired-git-info-mode)))
 #+END_SRC
+* evil
+  Evil mode for keystrokes the vim in emacs.
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1)
+  )
+#+END_SRC
+
+* undu-fu
+  Para tener la misma funcionalidad undo y redo de vim.
+#+BEGIN_SRC emacs-lisp
+(use-package undo-fu
+  :config
+  (global-undo-tree-mode -1)
+  (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+  (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo))
+#+END_SRC

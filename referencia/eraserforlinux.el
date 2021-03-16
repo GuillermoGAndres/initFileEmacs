@@ -1,5 +1,3 @@
-
-
 ;; Font de pruebas
 ;;(set-face-attribute 'default nil :family "Hack") ; Si cursivas
 ;;(set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 110 :weight 'normal) ; Si cursivas
