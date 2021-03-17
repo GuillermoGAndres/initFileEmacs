@@ -38,9 +38,26 @@
 ;; Activa las marcas de tiempo de undotree
 ;(setq undo-tree-visualizer-timestamps t)
 
-(global-set-key (kbd "C-S-v") 'clipboard-yank)
-(global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save)
-(global-set-key (kbd "C-S-x") 'clipboard-kill-region)
+;;Solo funciona en linux
+(defun my-split-window-below ()
+  (interactive)
+  (split-window-below)
+  (other-window 1)
+  ;;(counsel-find-file)
+  (ibuffer)
+  )
+
+(defun my-split-window-right ()
+  (interactive)
+  (split-window-right)
+  (other-window 1)
+  ;;(find-file ".")
+  ;;(counsel-find-file)
+  (ibuffer)
+  )
+
+(global-set-key (kbd "C-x 2") 'my-split-window-below)
+(global-set-key (kbd "C-x 3") 'my-split-window-right)
 
 ;Configura neotree para que sean iconos, porque tengo instalado icons.
 ;(use-package neotree
@@ -101,6 +118,7 @@
 ;;(custom-set-faces
  ;'(tab-bar ((t (:inherit variable-pitch :family "Inconsolata")))) ;Si no tiene la fuente Inconsolata, usa la que tiene por defecto.
 ;; )
+
 
 
 ;----- Articulos que vi que me llamaron la atencion ------------

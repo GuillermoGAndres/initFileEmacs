@@ -460,31 +460,15 @@ Saves to a temp file and puts the filename in the kill ring."
 ;; Adjusment paragrapg with C-q
 (setq-default fill-column 80)
 
-(defun my-split-window-below ()
-  (interactive)
-  (split-window-below)
-  (other-window 1)
-  ;;(counsel-find-file)
-  (ibuffer)
-  )
-
-(defun my-split-window-right ()
-  (interactive)
-  (split-window-right)
-  (other-window 1)
-  ;;(find-file ".")
-  ;;(counsel-find-file)
-  (ibuffer)
-  )
-
-(global-set-key (kbd "C-x 2") 'my-split-window-below)
-(global-set-key (kbd "C-x 3") 'my-split-window-right)
-
-
 ;; Trata de adivinar el default target directory, si hay alguna otra windows
 ;; elige esa localizacion, muy util para operacion de rename(que es lo mismo que
 ;; move) o copy.
 (setq dired-dwim-target t)
+
+;; Control+Shift {x, c, v}
+(global-set-key (kbd "C-S-v") 'clipboard-yank)
+(global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save)
+(global-set-key (kbd "C-S-x") 'clipboard-kill-region)
 
 ;----------------Notas-------------------------------------------------------------------------
 ; No se te olvide que cada vez que haces una configuracion o instalas un paquete , se configurara

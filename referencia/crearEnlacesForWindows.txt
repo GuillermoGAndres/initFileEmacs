@@ -1,0 +1,16 @@
+Para referencias un disco duro externo hacia la carpeta home de windows:
+
+C:\Users\Guillermo>mklink /d Documents D:Documents
+symbolic link created for Documents <<===>> D:Documents
+
+C:\Users\Guillermo>mklink /d Downloads D:Downloads
+symbolic link created for Downloads <<===>> D:Downloads
+
+C:\Users\Guillermo>mklink /d Pictures D:Pictures
+symbolic link created for Pictures <<===>> D:Pictures
+
+
+Otras cosas interesantes
+Yo tengo referencia asi para seleccionar mi tema
+(add-to-list 'custom-theme-load-path "c:/Users/Guillermo/Documents/projects/Dijkstra-theme")
+(load-theme 'dijkstra t)
