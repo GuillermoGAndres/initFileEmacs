@@ -11,9 +11,19 @@
 ;;'(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight semi-bold :height 110 :width normal :foundry "ADBO" :family "Source Code Pro"))))
 (set-face-attribute 'default nil :height 110) ;; Default
 
+;; Ajuste para mi monitor
+;; Ajuste 1
+;(when window-system (set-frame-size (selected-frame) 84 34)) ;; Tamanio de la ventana
+;(set-frame-position (selected-frame) 240 40)  ;;Posicion de la ventana
+
+;; Ajuste 2
+(when window-system (set-frame-size (selected-frame) 98 26)) ;; Tamanio de la ventana
+(set-frame-position (selected-frame) 180 97)  ;;Posicion de la ventana
+
 ;; Modifica la letra y el tamanño.
-;; Font definiva en mi distribucion
+;; Font definiva en mi distribucion (Detault Default Linux: Source Code Pro)
 ;;(set-face-attribute 'default nil :family "DejaVu Sans Mono") ; Si cursivas
+;;(set-face-attribute 'default nil :family "JetBrains Mono") 
 
 (global-set-key (kbd "C-'") 'isearch-forward)
 (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
