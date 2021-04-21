@@ -9,7 +9,8 @@
 ; Aumentar tamaño de letra, before config: 130
 ; (set-face-attribute 'default nil :height 140)
 ;;'(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight semi-bold :height 110 :width normal :foundry "ADBO" :family "Source Code Pro"))))
-(set-face-attribute 'default nil :height 110) ;; Default
+;; (set-face-attribute 'default nil :height 110) ;; Default Source Code Pro
+(set-face-attribute 'default nil :height 130) ;; Default Source Code Pro
 
 ;; Ajuste para mi monitor
 ;; Ajuste 1
@@ -17,8 +18,9 @@
 ;(set-frame-position (selected-frame) 240 40)  ;;Posicion de la ventana
 
 ;; Ajuste 2
-(when window-system (set-frame-size (selected-frame) 98 26)) ;; Tamanio de la ventana
-(set-frame-position (selected-frame) 180 97)  ;;Posicion de la ventana
+;(when window-system (set-frame-size (selected-frame) 98 26)) ;; Tamanio de la ventana cuando height:90
+(when window-system (set-frame-size (selected-frame) 85 21)) ;; Tamanio de la ventana height:130
+(set-frame-position (selected-frame) 220 97)  ;;Posicion de la ventana
 
 ;; Modifica la letra y el tamanño.
 ;; Font definiva en mi distribucion (Detault Default Linux: Source Code Pro)
@@ -138,3 +140,55 @@
 ; company ya sabe que funciones tiene tu modulo.
 
 ; C-c C-c - Es un comando de ejecucion para varios modos, probar ese comando si se necesita.
+
+
+;;-------------------------- Auto complete---------------------------------
+;;(ac-config-default)
+
+;; Auto complete for web-mode
+;; (defun setup-ac-for-html ()
+;;   ;; Require ac-haml since we are setup haml auto completion
+;;   (require 'ac-html)
+;;   ;; Require default data provider if you want to use
+;;   (require 'ac-html-default-data-provider)
+;;   ;; Enable data providers,
+;;   ;; currently only default data provider available
+;;   (ac-html-enable-data-provider 'ac-html-default-data-provider)
+;;   ;; Let ac-haml do some setup
+;;   (ac-html-setup)
+;;   ;; Set your ac-source
+;;   (setq ac-sources '(ac-source-html-tag
+;;                      ac-source-html-attr
+;;                      ac-source-html-attrv))
+;;   ;; Enable auto complete mode
+;;   (auto-complete-mode)
+;;   (add-to-list 'web-mode-ac-sources-alist
+;;              '("html" . (ac-source-html-tag
+;;                          ac-source-html-attr
+;;                          ac-source-html-attrv)))
+;;   )
+;;(add-hook 'web-mode-hook 'setup-ac-for-html)
+
+;; La configuracion anterior solo agrega como backend etiquelas html y no el completado de
+;; palabras repetidas, para se necesitara agregar ac-source-xxx 
+
+;; Recursos para entender ac-sources que seria el equivalente company-backend el autocompletado
+;; de company para modificar el comportamiento de ciertos buffers.
+
+;; https://www.reddit.com/r/emacs/comments/2vxojf/acsources_changes_across_different_modes/
+;; https://github.com/auto-complete/auto-complete/issues/486
+;; https://stackoverflow.com/questions/15520447/emacs24-auto-complete-error-void-variable-ac-source-c
+;;https://gist.github.com/bmnn/8149899
+;; https://www.google.com/search?client=firefox-b-d&q=ac-source-words-in-same-mode-buffers
+;; https://emacs.stackexchange.com/questions/35754/exactly-what-are-those-auto-complete-sources
+;; https://emacs.stackexchange.com/questions/26122/how-do-i-make-emacs-find-ac-source-pycomplete
+;; https://emacs.stackexchange.com/questions/18982/how-do-i-make-auto-complete-enabled-by-default
+
+;; Company
+;; https://emacs.stackexchange.com/questions/55230/help-setting-up-company-mode-autocompletion-of-html-css-files
+;; company-capf is the backend which should interface to mode's completion support in emacs versions >= 26
+
+;;----------------------------------------------------
+;; For php company and autocomplete, funciona para web mode, checar cuando se necesite agregar mas
+;; funcionalidades al autocompletado como palabras claves de php
+;; https://github.com/xcwen/ac-php#company-mode

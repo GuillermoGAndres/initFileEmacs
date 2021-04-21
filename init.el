@@ -27,11 +27,11 @@
 ;; RECOMENDABLE mejor descargar los temas indivuales en github <https://github.com/GuillermoGAndres/Dijkstra-theme>  y despues solo cargarlos, ejemplos: 
 
 (add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
-;;(load-theme 'liskov t)
+(load-theme 'liskov t)
 (if (eq (car custom-enabled-themes) 'liskov)
     (progn     
       (custom-set-faces
-       `(mode-line ((t (:box nil :foreground "#000000" :background "#B4B4B4"))))
+       ;;`(mode-line ((t (:box nil :foreground "#000000" :background "#B4B4B4"))))
        )
       (global-set-key [remap goto-line] 'goto-line-with-feedback)
       )
@@ -40,8 +40,8 @@
 ;;(load-theme 'hoare t)
 
 (add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
-(load-theme 'dijkstra t)
-;;(load-theme 'dijkstra-dark t)
+;(load-theme 'dijkstra t)
+;(load-theme 'dijkstra-dark t)
 
 (if  (eq (car custom-enabled-themes) 'dijkstra)
     (progn
@@ -51,11 +51,18 @@
       ;;(message "hola mundo")
       ;;(add-hook 'prog-mode-hook 'linum-mode)
       (global-set-key [remap goto-line] 'goto-line-with-feedback)
-
       ;;(add-hook 'prog-mode-hook 'display-line-numbers-mode)
     )
   )
 
+(if  (eq (car custom-enabled-themes) 'dijkstra-dark)
+    (progn
+      (custom-set-faces
+       ;;'(font-lock-keyword-face ((t (:weight bold)))) ; keyword;
+       )
+       (global-set-key [remap goto-line] 'goto-line-with-feedback)
+    )
+  )
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Turing-theme")
 ;;(load-theme 'turing t)
 

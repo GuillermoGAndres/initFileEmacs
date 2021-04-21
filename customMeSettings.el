@@ -373,7 +373,8 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;; Eliminar pares de parentersis, con la funcion integrada de emacs delete-pair
 ;; Debe colocarse al inicio del parentesis
-(global-set-key (kbd "M-p") 'delete-pair)
+;(global-set-key (kbd "M-p") 'delete-pair)
+(global-set-key (kbd "M-s-p") 'delete-pair)
 
 ;; S - Es la tecla shift (Uppercase)
 ;; s - Tecla windows (Lowercase)
@@ -397,7 +398,8 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;Enable or disable lines number
 (global-set-key [f9] 'linum-mode)
-
+;; Enable or disable display-line-numbers-mode
+(global-set-key [C-f9] 'display-line-numbers-mode)
 
 
 ;; Save un buffer preguntando con permisos sudo (Muy usado con archivos en php que ser guardan en /opt/lampp/htdocs)

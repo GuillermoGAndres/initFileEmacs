@@ -452,7 +452,7 @@
 
       ;;Company backends
       (set (make-local-variable 'company-backends)
-           '(company-css company-web-html company-yasnippet company-files))
+           '(company-css company-web-html company-yasnippet company-files company-capf company-dabbrev-code))
       )
 
     (add-hook 'web-mode-hook  'my-web-mode-hook)
