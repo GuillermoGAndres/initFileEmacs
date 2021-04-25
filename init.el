@@ -41,7 +41,8 @@
 
 (add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
 ;(load-theme 'dijkstra t)
-;(load-theme 'dijkstra-dark t)
+(load-theme 'dijkstra-dark t)
+;(load-theme 'dijkstra-dark-blue t)
 
 (if  (eq (car custom-enabled-themes) 'dijkstra)
     (progn

@@ -90,6 +90,15 @@
 ;Commet y descommet
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 
+(defun mark-all-line ()
+  (interactive)
+  (c-beginning-of-statement 1)
+  ;;(move-beginning-of-line 1)
+  (set-mark-command (push-mark))  
+  (c-end-of-statement)
+  ;;(move-end-of-line 1)
+  )
+(global-set-key (kbd "<S-SPC>") 'mark-all-line)
 ;Inicializ Emacs server para sea mas rapido abrir archivos desde la terminal
 ;emacsclient file.java // By example
 ;(server-start) ;Ya no sera necesario con el plugin zsh emacs.
@@ -322,10 +331,15 @@ Including indent-buffer, which should not be called automatically on save."
     (save-excursion
       (forward-line)
       (transpose-lines -1))
-    (move-to-column col)))
+    (move-to-column col)
+    (previous-line)
+    (previous-line)))
 
-(global-set-key (kbd "<C-s-down>") 'move-line-down)
-(global-set-key (kbd "<C-s-up>") 'move-line-up)
+
+;; (global-set-key (kbd "<C-s-down>") 'move-line-down)
+;; (global-set-key (kbd "<C-s-up>") 'move-line-up)
+(global-set-key (kbd "<M-down>") 'move-line-down)
+(global-set-key (kbd "<M-up>") 'move-line-up)
 
 
 ;; Mata la primera vez shell y la segunda eliminate buffer
@@ -389,9 +403,22 @@ Including indent-buffer, which should not be called automatically on save."
   ;(next-line 1)
   ;(yank)
   )
+(defun kill-all-line()
+  "Kill all the line at beginning until end."
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (kill-line) 
+  ;; (move-beginning-of-line 1)
+  (c-end-of-statement)
+  (c-beginning-of-statement 1)
+  ;(next-line 1)
+  )
 
 (global-set-key (kbd "C-S-k") 'copy-line)
 (global-set-key (kbd "C-S-p") 'clipboard-yank)
+(global-set-key (kbd "C-k") 'kill-all-line)
+(global-set-key (kbd "s-k") 'kill-line)
 
 ;; Narrowing - escribir en una seccion en particular
 ;;C-x n n  (narrow-to-region)
