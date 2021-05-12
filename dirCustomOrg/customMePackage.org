@@ -448,9 +448,10 @@
       ;; Definiendo tambien con Prefijos C-c C-e
       (define-key web-mode-map (kbd "C-c C-e C-c") 'select-tag-content-element)
       ;;(define-key web-mode-map (kbd "C-c C-e o") 'select-tag-content-element)
-    
+
 
       ;;Company backends
+      ;; https://github.com/company-mode/company-mode/issues/839
       (set (make-local-variable 'company-backends)
            '(company-css company-web-html company-yasnippet company-files company-capf company-dabbrev-code))
       )

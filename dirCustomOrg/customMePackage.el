@@ -352,6 +352,7 @@
 
 
     ;;Company backends
+    ;; https://github.com/company-mode/company-mode/issues/839
     (set (make-local-variable 'company-backends)
          '(company-css company-web-html company-yasnippet company-files company-capf company-dabbrev-code))
     )
