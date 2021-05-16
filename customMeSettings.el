@@ -98,7 +98,7 @@
   (c-end-of-statement)
   ;;(move-end-of-line 1)
   )
-(global-set-key (kbd "<S-SPC>") 'mark-all-line)
+(global-set-key (kbd "C->") 'mark-all-line)
 ;Inicializ Emacs server para sea mas rapido abrir archivos desde la terminal
 ;emacsclient file.java // By example
 ;(server-start) ;Ya no sera necesario con el plugin zsh emacs.
@@ -415,10 +415,21 @@ Including indent-buffer, which should not be called automatically on save."
   ;(next-line 1)
   )
 
+;; Pega linea completa
+(defun paste-line ()
+  (interactive)
+  (move-beginning-of-line 1)
+  (open-line-below)
+  (move-beginning-of-line 1)
+  (clipboard-yank)
+  (move-beginning-of-line 1)
+  )
+
 (global-set-key (kbd "C-S-k") 'copy-line)
-(global-set-key (kbd "C-S-p") 'clipboard-yank)
+(global-set-key (kbd "C-S-p") 'paste-line)
 (global-set-key (kbd "C-k") 'kill-all-line)
 (global-set-key (kbd "s-k") 'kill-line)
+;; C-M-k kill-sexp
 
 ;; Narrowing - escribir en una seccion en particular
 ;;C-x n n  (narrow-to-region)

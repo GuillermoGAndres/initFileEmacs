@@ -112,7 +112,10 @@
        ;;'(font-lock-warning-face ((t (:foreground ""))))
 
        ;;fringe
-       ;;'(fringe ((t (:background "grey95"))))
+       '(fringe ((t (:background "#ffffff"))))
+
+       ;; show-parent-match
+       '(show-paren-match ((t (:foreground "#1ead05"))))
 
 
        ;;----------------- Diredfl -----------------------------
