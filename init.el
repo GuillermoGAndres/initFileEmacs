@@ -26,8 +26,8 @@
 ;;----------------------------------------------------------------------
 ;; RECOMENDABLE mejor descargar los temas indivuales en github <https://github.com/GuillermoGAndres/Dijkstra-theme>  y despues solo cargarlos, ejemplos:
 
-(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
-                                        ;(load-theme 'liskov t)
+;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
+;;(load-theme 'liskov t)
 
 (if (eq (car custom-enabled-themes) 'liskov)
     (progn
@@ -40,10 +40,10 @@
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Hoare-theme")
 ;;(load-theme 'hoare t)
 
-(add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
-                                        ;(load-theme 'dijkstra t)
-                                        ;(load-theme 'dijkstra-dark t)
-                                        ;(load-theme 'dijkstra-dark-blue t)
+;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
+;;(load-theme 'dijkstra t)
+;;(load-theme 'dijkstra-dark t)
+;;(load-theme 'dijkstra-dark-blue t)
 
 (if  (eq (car custom-enabled-themes) 'dijkstra)
     (progn
@@ -68,10 +68,14 @@
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Turing-theme")
 ;;(load-theme 'turing t)
 
-(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
-                                        ;(load-theme 'niklaus t)
+;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
+;;(load-theme 'niklaus t)
+
+(add-to-list 'custom-theme-load-path "~/Documents/projects/Church-theme")
+(load-theme 'church t)
 
 ;; Significa que es el tema por defecto de emacs ;ver colores M-x list-faces-display
+;;(add-to-list 'load-path "~/.emacs.d/initFileEmacs/myThemes/themebydefault/themebydefault.el")
 (if  (eq (car custom-enabled-themes) 'nil)
     (progn
       (custom-set-faces
@@ -100,7 +104,7 @@
 
        ;; Preprocessor
        ;;'(font-lock-preprocessor-face ((t (:foreground "dark slate blue"))))
-       
+
        ;; Strings
        ;;'(font-lock-string-face ((t (:foreground "VioletRed4")))) ;Cadenas; moradas
 
@@ -134,7 +138,7 @@
 
        ;;--------------------Web mode --------------------
        '(web-mode-doctype-face ((t (:foreground "#3c4fb2")))) ;turquoise , lightblue, PaleTurquoise
-       '(web-mode-html-tag-face ((t (:foreground "ForestGreen")))); 
+       '(web-mode-html-tag-face ((t (:foreground "ForestGreen"))));
        ;;'(web-mode-html-tag-face ((t (:foreground "#EFFBFF"))));Color de los brackets
        '(web-mode-html-attr-name-face ((t (:foreground "dark slate blue")))) ;verde claro
        '(web-mode-html-attr-value-face ((t (:foreground "VioletRed4")))) ;morado
@@ -162,7 +166,7 @@
 ;; ----------------------------------------------------------------------
 
 ;; Por si tengo que hacer una modificacion despues.
-                                        ;(custom-set-faces
+;;(custom-set-faces
 ;;'(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#B3B3B3")))) ;Lineas grises
 ;;'(linum ((t (:inherit (shadow default) :background "#13182D" :foreground "#F0DFAF")))) ;Lineas amarillas
 ;;'(font-lock-comment-face ((t (:foreground "#EFFBFF")))) ; Comentarios de en linea blanco
@@ -179,6 +183,7 @@
 ;; Ayuda a redimersionar las windows.
 (load "resize-frame")
 
+(load "cpp-auto-include")
 ;; Narrow-indirect (Tiempo real)
 ;;Crea un buffer para editar una seccion de codigo en particular.
 ;; (add-to-list 'load-path "~/.emacs.d/initFileEmacs/pluginsUser")
@@ -235,3 +240,7 @@
 
 ;; Para no modificar el package.org , para ver los colores en un cierto modo
 ;;(add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
+
+(provide 'init)
+
+;;; init.el ends here

@@ -192,3 +192,66 @@
 ;; For php company and autocomplete, funciona para web mode, checar cuando se necesite agregar mas
 ;; funcionalidades al autocompletado como palabras claves de php
 ;; https://github.com/xcwen/ac-php#company-mode
+
+;;---------Test for new plugins for my org config (read inits of others)-----
+;;https://www.reddit.com/r/emacs/comments/nbzz8x/emacs_as_java_ide/
+;; https://github.com/ianpan870102/.wsl-emacs.d/blob/master/init.el
+
+;;https://github.com/ianpan870102/.macOS-emacs.d/blob/master/init.el
+;; https://github.com/kipcd/dotfiles/blob/main/emacs/.emacs.default/init.el
+;; https://github.com/iocanel/emacs.d
+
+
+;;https://github.com/emacsorphanage/cpp-auto-include
+;https://github.com/quark-zju/vim-cpp-auto-include
+;; (use-package cpp-auto-include ; Copyright (C) 2015 by Syohei Yoshida / Ben Deane
+;;   :ensure t
+;;   :bind (:map c++-mode-map ("C-c i" . 'cpp-auto-include)))
+;; Un fork mejorado
+;; https://github.com/elbeno/dotemacs/blob/master/.emacs.d/site-lisp/cpp-auto-include.el
+(define-key c++-mode-map (kbd "C-c i") 'cpp-auto-include/ensure-includes-for-current-line)
+(define-key c++-mode-map (kbd "C-c o") 'cpp-auto-include/ensure-includes-for-file)
+
+;; https://www.stroustrup.com/bs_faq2.html
+;; Para CC-mode utilizar C-c C-a para activar auto semicolon and auto newline (c,c++, java)
+(use-package cc-vars
+  :ensure nil
+  :config
+  (setq c-default-style '((java-mode . "java")
+                          ;;(awk-mode  . "awk")
+                          (c++-mode  . "stroustrup")
+                          (c-mode    . "cc-mode")
+                          ;;(other     . "k&r")
+                          ))
+  ;;(setq-default c-basic-offset 4)
+  )
+
+
+;; line-number-mode : muestra L1 en la barrita modeline
+;;   (setq line-number-mode t) ;; para activar
+;; column-number-mode  : muestra (1, 3) en la barrita modeline
+;; (setq column-number-mode t
+
+;; https://kb.iu.edu/d/abuf
+;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Displaying-the-current-line-or-column.html
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Mode-Line-Format.html
+
+;;(menu-bar-mode -1)
+
+;; Flycheck utiliza dependiendo el lenguaje una herramienta para checar los errores
+;; https://emacs.stackexchange.com/questions/tagged/flycheck
+(use-package flycheck
+  :ensure t
+  :hook ((prog-mode . flycheck-mode))
+  :config
+  (define-key flycheck-mode-map (kbd "C-S-M") 'counsel-flycheck)
+  (define-key flycheck-mode-map (kbd "<f8>") #'flycheck-next-error)
+  (define-key flycheck-mode-map (kbd "C-<f8>") #'flycheck-previous-error)
+  ;(define-key flycheck-mode-map (kbd "C-<f8>") #'flycheck-list-errors)
+  )
+;;(global-set-key (kbd "C-S-M") 'counsel-flycheck)
+
+(setq frame-title-format '("Emacs " emacs-version))
+(provide 'customMeLinux)
+
+;;; customMelinux.el ends here
