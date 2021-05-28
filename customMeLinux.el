@@ -1,42 +1,51 @@
-;;Referencias
-;; https://github.com/munen/emacs.d/#convenience-functions-when-working-with-pdf-exports
-;; https://github.com/SirPscl/emacs.d#pdf-tools
-;; https://github.com/ianpan870102/.personal-emacs.d/blob/master/init.el
-;; https://protesilaos.com/dotemacs/
-;; https://github.com/zamansky/dot-emacs
+;;; ------------------Configuracion Linux ------------------------
+;;; Comentary: Configuracion de Linux
 
-;;------------------Configuracion Linux ------------------------
-; Aumentar tamaño de letra, before config: 130
-; (set-face-attribute 'default nil :height 140)
-;;'(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight semi-bold :height 110 :width normal :foundry "ADBO" :family "Source Code Pro"))))
-;; (set-face-attribute 'default nil :height 110) ;; Default Source Code Pro
-(set-face-attribute 'default nil :height 130) ;; Default Source Code Pro
+;; Reajustamos font
+(set-frame-font "Cascadia Code" nil t) ;; Existe un reset en weight por defecto de la font.
+;; List of font favorite:
+;; (set-frame-font "JetBrains Mono" nil t)
 
-;; Ajuste para mi monitor
-;; Ajuste 1
-;(when window-system (set-frame-size (selected-frame) 84 34)) ;; Tamanio de la ventana
-;(set-frame-position (selected-frame) 240 40)  ;;Posicion de la ventana
-
-;; Ajuste 2
-;(when window-system (set-frame-size (selected-frame) 98 26)) ;; Tamanio de la ventana cuando height:90
-(when window-system (set-frame-size (selected-frame) 85 21)) ;; Tamanio de la ventana height:130
-(set-frame-position (selected-frame) 220 97)  ;;Posicion de la ventana
-
-;; Modifica la letra y el tamanño.
 ;; Font definiva en mi distribucion (Detault Default Linux: Source Code Pro)
-;;(set-face-attribute 'default nil :family "DejaVu Sans Mono") ; Si cursivas
-;;(set-face-attribute 'default nil :family "JetBrains Mono") 
+;; (set-face-attribute 'default nil :height 110) ;; Default Source Code Pro
+
+;; Aumentamos font-size:16 == :height 151 y oscuremos la letra debido a que cuando es
+;; semi-bold el color blanco suele remarcarse más, colores elegidos #eaeaea or #d0d0d0
+(custom-set-faces
+ '(default ((t (:foundry "SAJA" :weight semi-bold :foreground "#eaeaea" :height 151 )))))
+
+;;'(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight semi-bold :height 151 :width normal))))
+;;'(default ((t (:family "Source Code Pro" :foundry "ADBO"  :slant normal :weight semi-bold :height 110 :width normal ))))
+;;(set-face-attribute 'default nil :family "JetBrains Mono")  ;; No funciona deber ser set-frame-font
+
+;; Lista de todos los atributor que pueder  modificar
+;; (:inherit nil
+;;              :extend nil
+;;              :stipple nil
+;;              :background "white"
+;;              :foreground "black"
+;;              :inverse-video nil
+;;              :box nil
+;;              :strike-through nil
+;;              :overline nil
+;;              :underline nil
+;;              :slant normal
+;;              :weight semi-bold
+;;              :height 110
+;;              :width normal
+;;              :foundry "ADBO"
+;;              :family "Source Code Pro"))
+
+;; Ajuste  monitor 24"
+(when window-system (set-frame-size (selected-frame) 101 29)) ;; Tamanio de la ventana
+(set-frame-position (selected-frame) 325 150)  ;; Posicion de la ventana
 
 (global-set-key (kbd "C-'") 'isearch-forward)
 (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
 (global-set-key (kbd "C-x <up>") 'counsel-imenu)
 ;; Seleccion una sola line C-S-n
 
-;; --------------------------------------------------
-;;Set default size windows
-;(when window-system (set-frame-size (selected-frame) 117 31))
-;(set-frame-position (selected-frame) 300 175) ;My ajustando posicion del frame.
-
+;; (global-hl-line-mode +1)
 
 ;; Ajustando google translate para la busqueda (backend) en Emacs Linux version 27.0
 ;; Solucion version actual google-translate 0.12-0:  https://github.com/atykhonov/google-translate/issues/52#issuecomment-727920888
@@ -251,7 +260,17 @@
   )
 ;;(global-set-key (kbd "C-S-M") 'counsel-flycheck)
 
-(setq frame-title-format '("Emacs " emacs-version))
-(provide 'customMeLinux)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+
+
+;; (provide 'customMeLinux)
 
 ;;; customMelinux.el ends here
+
+;;Referencias
+;; https://github.com/munen/emacs.d/#convenience-functions-when-working-with-pdf-exports
+;; https://github.com/SirPscl/emacs.d#pdf-tools
+;; https://github.com/ianpan870102/.personal-emacs.d/blob/master/init.el
+;; https://protesilaos.com/dotemacs/
+;; https://github.com/zamansky/dot-emacs

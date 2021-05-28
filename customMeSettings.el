@@ -4,6 +4,7 @@
 (setq user-mail-address "memocampeon35@gmail.com")
 ;; Create a variable to indicate where emacs's configuration is installed
 (setq EMACS_DIR "~/.emacs.d/")
+(setq frame-title-format '("Emacs " emacs-version))
 
 ;---------------------------Paquetes de Melpa--------------------------------
 ; install the melpa repository
@@ -142,7 +143,7 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;Refresf buffer
-(global-set-key [f5] 'revert-buffer)
+(global-set-key (kbd "<C-f5>") 'revert-buffer)
 ;Evoid confirmation
 ;(global-set-key [f5] (lambda () (interactive) (revert-buffer nil t)))
 

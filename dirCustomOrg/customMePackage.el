@@ -155,7 +155,7 @@
 
 (use-package quickrun 
 :ensure t
-:bind ([f8] . quickrun))
+:bind (:map prog-mode-map ("<f5>" . 'quickrun)))
 
 ;Modifica los espacion 4 for C/C++
 (defun my-c++-mode-hook ()

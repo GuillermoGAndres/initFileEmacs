@@ -212,7 +212,7 @@
 #+BEGIN_SRC emacs-lisp
 (use-package quickrun 
 :ensure t
-:bind ([f8] . quickrun))
+:bind (:map prog-mode-map ("<f5>" . 'quickrun)))
 
 #+END_SRC
 * C/C++

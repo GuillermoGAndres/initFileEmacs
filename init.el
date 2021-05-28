@@ -21,13 +21,13 @@
 ;;       (load custom-file)
 ;;     )
 ;; )
-                                        ;----------------------------------------------------------------------
+;;----------------------------------------------------------------------
 
 ;;----------------------------------------------------------------------
 ;; RECOMENDABLE mejor descargar los temas indivuales en github <https://github.com/GuillermoGAndres/Dijkstra-theme>  y despues solo cargarlos, ejemplos:
 
-;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
-;;(load-theme 'liskov t)
+;; (add-to-list 'custom-theme-load-path "~/Documents/projects/Liskov-theme")
+;; (load-theme 'liskov t)
 
 (if (eq (car custom-enabled-themes) 'liskov)
     (progn
@@ -72,7 +72,11 @@
 ;;(load-theme 'niklaus t)
 
 (add-to-list 'custom-theme-load-path "~/Documents/projects/Church-theme")
-(load-theme 'church t)
+;; (load-theme 'church t)
+
+;; Dracula-theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/dracula-theme")
+(load-theme 'dracula t)
 
 ;; Significa que es el tema por defecto de emacs ;ver colores M-x list-faces-display
 ;;(add-to-list 'load-path "~/.emacs.d/initFileEmacs/myThemes/themebydefault/themebydefault.el")
@@ -183,7 +187,9 @@
 ;; Ayuda a redimersionar las windows.
 (load "resize-frame")
 
+;; https://github.com/elbeno/dotemacs/blob/master/.emacs.d/site-lisp/cpp-auto-include.el
 (load "cpp-auto-include")
+
 ;; Narrow-indirect (Tiempo real)
 ;;Crea un buffer para editar una seccion de codigo en particular.
 ;; (add-to-list 'load-path "~/.emacs.d/initFileEmacs/pluginsUser")
