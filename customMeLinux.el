@@ -335,7 +335,7 @@
 (use-package pyvenv
   :ensure t)
 
-(add-to-list 'load-path "~/.emacs.d/plugins/elpy")
+(add-to-list 'load-path "~/.emacs.d/initFileEmacs/plugins/elpy")
 (load "elpy")
 (load "elpy-rpc")
 (load "elpy-shell")
@@ -344,7 +344,7 @@
 (load "elpy-django")
 (elpy-enable) ;; Enable Elpy in all future Python buffers.
 
-(add-to-list 'load-path "~/.emacs.d/plugins/key-chord")
+(add-to-list 'load-path "~/.emacs.d/initFileEmacs/plugins/key-chord")
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "dd"  'kill-whole-line)
