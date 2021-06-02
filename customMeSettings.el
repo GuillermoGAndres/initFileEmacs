@@ -4,7 +4,12 @@
 (setq user-mail-address "memocampeon35@gmail.com")
 ;; Create a variable to indicate where emacs's configuration is installed
 (setq EMACS_DIR "~/.emacs.d/")
-(setq frame-title-format '("Emacs " emacs-version))
+;; Window frame title
+(setq frame-title-format '("Emacs" emacs-version "     %b   %*"))
+;; (setq frame-title-format '("Emacs " emacs-version))
+
+;; Scroll one line at a time
+(setq scroll-step 1)
 
 ;---------------------------Paquetes de Melpa--------------------------------
 ; install the melpa repository
@@ -91,18 +96,27 @@
 ;Commet y descommet
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 
-(defun mark-all-line ()
+;; Esta implementacion falla
+;; (defun mark-all-line ()
+;;   (interactive)
+;;   (c-beginning-of-statement 1)
+;;   ;;(move-beginning-of-line 1)
+;;   (set-mark-command (push-mark))  
+;;   (c-end-of-statement)
+;;   ;;(move-end-of-line 1)
+;;   )
+;; Encontre una mejor implementacion
+(defun select-current-line ()
+  "Select the current line"
   (interactive)
-  (c-beginning-of-statement 1)
-  ;;(move-beginning-of-line 1)
-  (set-mark-command (push-mark))  
-  (c-end-of-statement)
-  ;;(move-end-of-line 1)
-  )
-(global-set-key (kbd "C->") 'mark-all-line)
-;Inicializ Emacs server para sea mas rapido abrir archivos desde la terminal
-;emacsclient file.java // By example
-;(server-start) ;Ya no sera necesario con el plugin zsh emacs.
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position)))
+
+(global-set-key (kbd "C->") 'select-current-line)
+
+;;Inicializ Emacs server para sea mas rapido abrir archivos desde la terminal
+;;emacsclient file.java // By example
+;;(server-start) ;Ya no sera necesario con el plugin zsh emacs.
 
 ;Control-Alt-n Encuentra su otro parentesis
 ;C-M-n forward-sexp or C-M right
@@ -218,7 +232,7 @@ Including indent-buffer, which should not be called automatically on save."
   (indent-region (point-min) (point-max)))
 
 
-;; Uno las lineas con salto de linea en una sola.
+;; Unir lineas , uno las lineas con salto de linea en una sola.
 (global-set-key (kbd "M-j")
             (lambda ()
                   (interactive)
@@ -393,7 +407,7 @@ Including indent-buffer, which should not be called automatically on save."
 
 ;; S - Es la tecla shift (Uppercase)
 ;; s - Tecla windows (Lowercase)
-;; Copiar linea completa
+;; Copiar linea completa alias como yank-whole-line
 (defun copy-line()
   (interactive)
   (move-beginning-of-line 1)
@@ -510,6 +524,43 @@ Saves to a temp file and puts the filename in the kill ring."
 (global-set-key (kbd "C-S-v") 'clipboard-yank)
 (global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save)
 (global-set-key (kbd "C-S-x") 'clipboard-kill-region)
+
+
+(defun duplicate-line (arg)
+  "Duplicate current line, leaving point in lower line."
+  (interactive "*p")
+
+  ;; save the point for undo
+  (setq buffer-undo-list (cons (point) buffer-undo-list))
+
+  ;; local variables for start and end of line
+  (let ((bol (save-excursion (beginning-of-line) (point)))
+        eol)
+    (save-excursion
+
+      ;; don't use forward-line for this, because you would have
+      ;; to check whether you are at the end of the buffer
+      (end-of-line)
+      (setq eol (point))
+
+      ;; store the line and disable the recording of undo information
+      (let ((line (buffer-substring bol eol))
+            (buffer-undo-list t)
+            (count arg))
+        ;; insert the line arg times
+        (while (> count 0)
+          (newline)         ;; because there is no newline in 'line'
+          (insert line)
+          (setq count (1- count)))
+        )
+
+      ;; create the undo information
+      (setq buffer-undo-list (cons (cons eol (point)) buffer-undo-list)))
+    ) ; end-of-let
+
+  ;; put the point in the lowest line and return
+  (next-line arg))
+(global-set-key (kbd "<C-s-down>") 'duplicate-line)
 
 ;----------------Notas-------------------------------------------------------------------------
 ; No se te olvide que cada vez que haces una configuracion o instalas un paquete , se configurara

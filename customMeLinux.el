@@ -10,9 +10,9 @@
 ;; (set-face-attribute 'default nil :height 110) ;; Default Source Code Pro
 
 ;; Aumentamos font-size:16 == :height 151 y oscuremos la letra debido a que cuando es
-;; semi-bold el color blanco suele remarcarse más, colores elegidos #eaeaea or #d0d0d0
+;; semi-bold el color blanco suele remarcarse más, colores elegidos #eaeaea or #d0d0d0 or #e0e0e0 (gris)
 (custom-set-faces
- '(default ((t (:foundry "SAJA" :weight semi-bold :foreground "#eaeaea" :height 151 )))))
+ '(default ((t (:foundry "SAJA" :height 151 )))))
 
 ;;'(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight semi-bold :height 151 :width normal))))
 ;;'(default ((t (:family "Source Code Pro" :foundry "ADBO"  :slant normal :weight semi-bold :height 110 :width normal ))))
@@ -37,15 +37,13 @@
 ;;              :family "Source Code Pro"))
 
 ;; Ajuste  monitor 24"
-(when window-system (set-frame-size (selected-frame) 101 29)) ;; Tamanio de la ventana
-(set-frame-position (selected-frame) 325 150)  ;; Posicion de la ventana
+(when window-system (set-frame-size (selected-frame) 101 35)) ;; Tamanio de la ventana
+(set-frame-position (selected-frame) 325 140)  ;; Posicion de la ventana
 
 (global-set-key (kbd "C-'") 'isearch-forward)
 (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
 (global-set-key (kbd "C-x <up>") 'counsel-imenu)
 ;; Seleccion una sola line C-S-n
-
-;; (global-hl-line-mode +1)
 
 ;; Ajustando google translate para la busqueda (backend) en Emacs Linux version 27.0
 ;; Solucion version actual google-translate 0.12-0:  https://github.com/atykhonov/google-translate/issues/52#issuecomment-727920888
@@ -79,12 +77,6 @@
 
 (global-set-key (kbd "C-x 2") 'my-split-window-below)
 (global-set-key (kbd "C-x 3") 'my-split-window-right)
-
-;Configura neotree para que sean iconos, porque tengo instalado icons.
-;(use-package neotree
-;  :config
-;  (setq neo-theme 'icons)
-;  )
 
 ;; For lisp, is mode for Common Lisp with more feactures
 (use-package slime
@@ -258,12 +250,112 @@
   (define-key flycheck-mode-map (kbd "C-<f8>") #'flycheck-previous-error)
   ;(define-key flycheck-mode-map (kbd "C-<f8>") #'flycheck-list-errors)
   )
+
+
+
+;; Posiblemente no lo encuentre en Melpa, sino en Melpa stable, ver list packages y volver
+;; a evaluar use-package nuevamente y cargara.
+(use-package dashboard
+  :ensure t
+  :if (display-graphic-p)
+  :config
+  (dashboard-setup-startup-hook))
+
+;;(setq dashboard-footer-messages '("😈 Happy hacking!"))
+
+
+;; Ejemplo de como escribir global keys:
 ;;(global-set-key (kbd "C-S-M") 'counsel-flycheck)
 
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+;; Cosas que me gustaria probar para desarrollo:
+;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(global-hl-line-mode +1)
+
+;; f string literal python , python mode y tambien funciona con Elpy
+
+(defconst brace-regexp
+  "[^{]{[^{}]*}")
+(defconst python-f-string-regexp
+  "f\\('.*?[^\\]'\\|\".*?[^\\]\"\\)")
+(defun python-f-string-font-lock-find (limit)
+  (while (re-search-forward python-f-string-regexp limit t)
+    (put-text-property (match-beginning 0) (match-end 0)
+                       'face 'font-lock-string-face)
+    (let ((start (match-beginning 0)))
+      (while (re-search-backward brace-regexp start t)
+        (put-text-property (1+ (match-beginning 0)) (match-end 0)
+                           'face 'font-lock-regexp-grouping-backslash))))
+  nil)
+;; font-lock-type-face or font-lock-regexp-grouping-backslash
+
+(with-eval-after-load 'python
+  (font-lock-add-keywords
+   'python-mode
+   `((python-f-string-font-lock-find))
+   'append))
+
+;; https://emacs.stackexchange.com/questions/39283/how-to-syntax-highlight-python-f-strings-so-uses-regular-code-colors
+
+;; https://www.wm.ax/an-emacs-macro-to-simplify-debugging-with-python-f-strings.html
+
+;; Search google:
+;; Formatted string literals python emacs
+;; How to syntax highlight Python f-strings so {…} uses regular code colors?
+;; Formatted string literals python emacs
+;; Formatted string literals emacs
+
+;; ------------------------------------------------------------
+
+(use-package all-the-icons
+  :ensure t)
+
+;; Configura neotree para que sean iconos, porque tengo instalado icons.
+(use-package neotree
+ :config
+ (setq neo-theme 'icons)
+ )
+
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :init (doom-modeline-mode 1))
 
 
+;; Vamos tratar de instalar elpy manualmente, primero descargamos dependencias
+;; Company
+;; highlight-indentation
+;; pyvenv
+;; yasnippet
+;; s
+(use-package highlight-indentation
+  :ensure t)
 
+(use-package s
+  :ensure t)
+
+(use-package pyvenv
+  :ensure t)
+
+(add-to-list 'load-path "~/.emacs.d/plugins/elpy")
+(load "elpy")
+(load "elpy-rpc")
+(load "elpy-shell")
+(load "elpy-profile")
+(load "elpy-refactor")
+(load "elpy-django")
+(elpy-enable) ;; Enable Elpy in all future Python buffers.
+
+(add-to-list 'load-path "~/.emacs.d/plugins/key-chord")
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define-global "dd"  'kill-whole-line)
+(key-chord-define-global "cc"  'copy-line)
+(key-chord-define-global "cv"  'clipboard-yank)
+
+;; https://emacs.stackexchange.com/questions/2347/kill-or-copy-current-line-with-minimal-keystrokes
+;; https://stackoverflow.com/questions/88399/how-do-i-duplicate-a-whole-line-in-emacs
+;; https://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
+
+;;
 ;; (provide 'customMeLinux)
 
 ;;; customMelinux.el ends here
@@ -274,3 +366,7 @@
 ;; https://github.com/ianpan870102/.personal-emacs.d/blob/master/init.el
 ;; https://protesilaos.com/dotemacs/
 ;; https://github.com/zamansky/dot-emacs
+
+
+;; @reading list see interesting (https://github.com/birkenfeld/.emacs.d)
+;; https://github.com/birkenfeld/.emacs.d/blob/master/setup/general.el

@@ -40,10 +40,10 @@
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Hoare-theme")
 ;;(load-theme 'hoare t)
 
-;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
+(add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
 ;;(load-theme 'dijkstra t)
 ;;(load-theme 'dijkstra-dark t)
-;;(load-theme 'dijkstra-dark-blue t)
+(load-theme 'dijkstra-dark-blue t) ;; I like this theme
 
 (if  (eq (car custom-enabled-themes) 'dijkstra)
     (progn
@@ -71,12 +71,30 @@
 ;;(add-to-list 'custom-theme-load-path "~/Documents/projects/Niklaus-theme")
 ;;(load-theme 'niklaus t)
 
-(add-to-list 'custom-theme-load-path "~/Documents/projects/Church-theme")
+;; Church-theme
+;; (add-to-list 'custom-theme-load-path "~/Documents/projects/Church-theme")
 ;; (load-theme 'church t)
 
 ;; Dracula-theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/dracula-theme")
-(load-theme 'dracula t)
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/dracula-theme")
+;; (load-theme 'dracula t)
+
+;; Flatland-theme
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/flatland-theme")
+;; (load-theme 'flatland t)
+
+;; Monokai-theme
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/monokai-theme")
+;; (load-theme 'monokai t)
+
+;; Molokai-theme
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/molokai-theme")
+;; (load-theme 'molokai t)
+
+;; Noctilux-theme
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/noctilux-theme")
+;; (load-theme 'noctilux t)
+
 
 ;; Significa que es el tema por defecto de emacs ;ver colores M-x list-faces-display
 ;;(add-to-list 'load-path "~/.emacs.d/initFileEmacs/myThemes/themebydefault/themebydefault.el")
