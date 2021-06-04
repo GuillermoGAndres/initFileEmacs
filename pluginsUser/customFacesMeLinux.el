@@ -5,7 +5,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(pyvenv highlight-indentation all-the-icons dashboard flycheck yasnippet xcscope which-key web-mode visual-regexp use-package undo-tree undo-fu treemacs slime skewer-mode rainbow-delimiters quickrun popwin nyan-mode neotree multiple-cursors magit impatient-mode highlight-numbers helm-descbinds google-translate expand-region evil emmet-mode diredfl dired-git-info diminish counsel-projectile company-web company-quickhelp company-c-headers company-bootstrap ac-html-bootstrap ac-html))
+   '(visual-fill-column org-bullets pyvenv highlight-indentation all-the-icons dashboard flycheck yasnippet xcscope which-key web-mode visual-regexp use-package undo-tree undo-fu treemacs slime skewer-mode rainbow-delimiters quickrun popwin nyan-mode neotree multiple-cursors magit impatient-mode highlight-numbers helm-descbinds google-translate expand-region evil emmet-mode diredfl dired-git-info diminish counsel-projectile company-web company-quickhelp company-c-headers company-bootstrap ac-html-bootstrap ac-html))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces

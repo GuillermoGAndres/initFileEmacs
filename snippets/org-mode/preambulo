@@ -5,4 +5,3 @@
 #+title: ${1:`(file-name-base (or (buffer-file-name) (buffer-name)))`}
 #+author: ${1:`(user-full-name)`}
 #+date: ${1:`(format-time-string "%d/%m/%Y")`}
-#+email: ${1:`(smtpmail-user-mail-address)`}

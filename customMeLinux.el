@@ -1,19 +1,32 @@
 ;;; ------------------Configuracion Linux ------------------------
 ;;; Comentary: Configuracion de Linux
 
-;; Reajustamos font
-(set-frame-font "Cascadia Code" nil t) ;; Existe un reset en weight por defecto de la font.
 ;; List of font favorite:
 ;; (set-frame-font "JetBrains Mono" nil t)
-
 ;; Font definiva en mi distribucion (Detault Default Linux: Source Code Pro)
 ;; (set-face-attribute 'default nil :height 110) ;; Default Source Code Pro
 
 ;; Aumentamos font-size:16 == :height 151 y oscuremos la letra debido a que cuando es
 ;; semi-bold el color blanco suele remarcarse más, colores elegidos #eaeaea or #d0d0d0 or #e0e0e0 (gris)
-(custom-set-faces
- '(default ((t (:foundry "SAJA" :height 151 )))))
 
+;; Reajustamos font 1 primera forma
+;; (set-frame-font "Cascadia Code" nil t) ;; Existe un reset en weight por defecto de la font.
+;; (custom-set-faces
+;;  '(default ((t (:foundry "SAJA" :height 151 )))))
+
+;; Font Configuration 2 forma ----------------------------------------------------------
+(set-face-attribute 'default nil :font "Cascadia Code" :height 151)
+
+
+;; Set the fixed pitch face (Sirve para las parte de code en org mode)
+;; (set-face-attribute 'fixed-pitch nil :font "Fira Code Retina" :height 140)
+(set-face-attribute 'fixed-pitch nil :font "Cascadia Code" :height 145)
+
+;; Set the variable pitch face (for writting prose insted of code)
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :height 151 :weight 'regular)
+;; (variable-pitch-mode) ;; Con esto cambias la fuente con Cantarell
+
+;; ------------------------------------------------------------------
 ;;'(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight semi-bold :height 151 :width normal))))
 ;;'(default ((t (:family "Source Code Pro" :foundry "ADBO"  :slant normal :weight semi-bold :height 110 :width normal ))))
 ;;(set-face-attribute 'default nil :family "JetBrains Mono")  ;; No funciona deber ser set-frame-font
@@ -93,6 +106,7 @@
  'org-babel-load-languages
  '(
    (lisp . t)
+   (python . t)
    )
  )
 
@@ -262,8 +276,10 @@
   (dashboard-setup-startup-hook))
 
 ;;(setq dashboard-footer-messages '("😈 Happy hacking!"))
-
-
+(setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)))
+;;----------------------------------------------------
 ;; Ejemplo de como escribir global keys:
 ;;(global-set-key (kbd "C-S-M") 'counsel-flycheck)
 
@@ -355,6 +371,90 @@
 ;; https://stackoverflow.com/questions/88399/how-do-i-duplicate-a-whole-line-in-emacs
 ;; https://lists.gnu.org/archive/html/help-gnu-emacs/2010-12/msg01183.html
 
+
+(add-hook 'prog-mode-hook 'auto-fill-mode) ;; Rompe las lineas cuando son muy grandes.
+
+;; -------------------- Configuracion para org-mode --------------------
+(setq use-package-always-ensure t) ;; Con esto ya no sera necesarop poner :ensure t
+
+(defun efs/org-mode-setup ()
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (visual-line-mode 1))
+
+(defun efs/org-font-setup ()
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
+
+(use-package org
+  :hook (org-mode . efs/org-mode-setup)
+  :config
+  (setq org-ellipsis " ▾"
+        org-hide-emphasis-markers t) ;; con esto ocula lo * para word bold
+  (efs/org-font-setup))
+
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("●" "○" "◉" "○" "●" "○" "●")))
+
+;; Set faces for heading levels
+(dolist (face '((org-level-1 . 1.1)
+                (org-level-2 . 1.05)
+                (org-level-3 . 1.0)
+                (org-level-4 . 1.0)
+                (org-level-5 . 1.1)
+                (org-level-6 . 1.1)
+                (org-level-7 . 1.1)
+                (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Cantarell" :weight 'medium :height (cdr face)))
+
+(custom-set-faces
+ ;; '(org-level-1 ((t (:foreground "")))) ;; amarillo
+ '(org-level-2 ((t (:foreground "#a6c673")))) ;; verde
+ ;; '(org-level-3 ((t (:foreground "")))) ;; azul 
+ )
+;; Ensure that anything that should be fixed-pitch in Org files appears that way
+;; M-x describe face : para ver los nombre de los colores
+(set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+
+(defun efs/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+;; Muy bien modo reading or writen con orgmode or markdown, se parece a
+;; jetbrains zen mode o se puede adaptar para que lo sean
+(use-package visual-fill-column
+  :hook (org-mode . efs/org-mode-visual-fill))
+
+
+;;----------projectile ---------
+;; Como ya lo tengo descargado solo es cuestion de activarlo y probarlo
+(projectile-mode +1)
+
+;;------------------------------------
+;; Cundo quiera poner lines number
+;; (column-number-mode)
+;; (global-display-line-numbers-mode t)
+;; ;; Disable line numbers for some modes
+;; (dolist (mode '(org-mode-hook
+;;                 term-mode-hook
+;;                 shell-mode-hook
+;;                 eshell-mode-hook))
+;;   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+;; ----------------------------------------
+
+
 ;;
 ;; (provide 'customMeLinux)
 
@@ -370,3 +470,12 @@
 
 ;; @reading list see interesting (https://github.com/birkenfeld/.emacs.d)
 ;; https://github.com/birkenfeld/.emacs.d/blob/master/setup/general.el
+
+;; C-s-i  (org-shifttab &optional ARG) collapse or S-tab
+;; Variables utiles
+;; (insert (current-time-string))
+;; (insert (format-time-string "%d/%m/%Y"))
+;; (file-name-base (or (buffer-file-name) (buffer-name)))
+;; (format-time-string "%d/%m/%Y")
+;; (user-full-name)
+;; (smtpmail-user-mail-address)

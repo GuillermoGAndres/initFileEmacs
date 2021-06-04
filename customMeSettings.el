@@ -112,7 +112,7 @@
   (end-of-line) ; move to end of line
   (set-mark (line-beginning-position)))
 
-(global-set-key (kbd "C->") 'select-current-line)
+(global-set-key (kbd "C-c C-o") 'select-current-line)
 
 ;;Inicializ Emacs server para sea mas rapido abrir archivos desde la terminal
 ;;emacsclient file.java // By example

@@ -189,10 +189,10 @@
      :ensure t
      :bind 
      (("C-c C-m" . mc/edit-lines))
-     ;; (("C->" . mc/mark-next-like-this))
-     ;; (("C-<" . mc/mark-previous-like-this))
-     (("<M-S-down>" . mc/mark-next-like-this))
-     (("<M-S-up>" . mc/mark-previous-like-this))
+     (("C->" . mc/mark-next-like-this))
+     (("C-<" . mc/mark-previous-like-this))
+     (("<M-S-down>" . mc/mark-next-like-this)) ;; no funciona bien con org mode
+     (("<M-S-up>" . mc/mark-previous-like-this)) ;; por tambien active las de arriba
      (("C-S-l" . 'mc/mark-all-dwim))
      ;;(("C-c C-<" . 'mc/mark-all-like-this))
      ;;(("C-c C-a" . mc/skip-to-previous-like-this))
