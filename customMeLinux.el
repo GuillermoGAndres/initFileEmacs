@@ -285,7 +285,8 @@
 
 ;; Cosas que me gustaria probar para desarrollo:
 ;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(global-hl-line-mode +1)
+;;(global-hl-line-mode +1)
+(add-hook 'prog-mode-hook 'hl-line-mode)
 
 ;; f string literal python , python mode y tambien funciona con Elpy
 
@@ -427,6 +428,9 @@
 (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
 (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
 
+;; set the image to a third of the width of the screen.
+(setq org-image-actual-width (/ (display-pixel-width) 3))
+
 (defun efs/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
         visual-fill-column-center-text t)
@@ -444,15 +448,84 @@
 
 ;;------------------------------------
 ;; Cundo quiera poner lines number
-;; (column-number-mode)
-;; (global-display-line-numbers-mode t)
-;; ;; Disable line numbers for some modes
-;; (dolist (mode '(org-mode-hook
-;;                 term-mode-hook
-;;                 shell-mode-hook
-;;                 eshell-mode-hook))
-;;   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+;; (column-number-mode) ;; se veria (3,4) en mode line
+; (global-display-line-numbers-mode t)
+
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda ()
+                   (display-line-numbers-mode 0)
+                   (hl-line-mode 0)
+                   )))
 ;; ----------------------------------------
+
+;; ivy no instala counsel, se debe instalar a parte
+(use-package ivy
+  :diminish  
+  :bind (:map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)	
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+	 :map ivy-switch-buffer-map
+	 ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill))
+  )
+;; Use the :init keyword to execute code before a package is loaded.
+;; Similarly, :config can be used to execute code after a package is loaded
+
+;; Una vez instalado counsel, se puede instalar ivy-rich, ademas tambien instala swiper
+;; Con M-o te da un menu de opciones en counse-M-x
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+         ;;("C-x b" . counsel-ibuffer)
+         ;;("C-x C-f" . counsel-find-file)
+         ;;:map minibuffer-local-map
+         ;;("C-r" . 'counsel-minibuffer-history)
+	 ))
+
+;; Funciona cuando es activado counsel-M-x fuction
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
+;; evil-mode
+(define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+;;(define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+(global-set-key (kbd "C-x M-t") 'counsel-load-theme)
+(global-set-key (kbd "C-M-k") 'counsel-switch-buffer)
+(global-set-key (kbd "C-M-j") 'counsel-ibuffer)
+
+(global-set-key (kbd "C-M-l") 'next-buffer)
+(global-set-key (kbd "C-M-h") 'previous-buffer)
+
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(nyan-mode)
+
+;; eshell mode prompt
+(load "~/.emacs.d/initFileEmacs/modes/mo-eshell.el")
+
+;;(global-set-key [remap goto-line] 'goto-line-with-feedback)
+(global-set-key [remap describe-function] 'counsel-describe-function)
+(global-set-key [remap describe-variable] 'counsel-describe-variable)
+
+;; (use-package helpful
+;;   :custom
+;;   (counsel-describe-function-function #'helpful-callable)
+;;   (counsel-describe-variable-function #'helpful-variable)
+;;   :bind
+;;   ([remap describe-function] . counsel-describe-function)
+;;   ([remap describe-command] . helpful-command)
+;;   ([remap describe-variable] . counsel-describe-variable)
+;;   ([remap describe-key] . helpful-key))
 
 
 ;;
@@ -469,7 +542,24 @@
 
 
 ;; @reading list see interesting (https://github.com/birkenfeld/.emacs.d)
-;; https://github.com/birkenfeld/.emacs.d/blob/master/setup/general.el
+
+;; https://github.com/birkenfeld/.emacs.d/blob/master/setup/general.el (creador cpython)
+;; https://github.com/xenodium/dotsies/tree/main/emacs
+;; https://xenodium.com/emacs-dwim-do-what-i-mean/
+;; https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org
+;; https://github.com/daviwil/dotfiles/blob/master/Emacs.org#eshell (craf)
+;; https://config.daviwil.com/emacs
+
+
+;; https://www.reddit.com/r/emacs/comments/6ftm3x/share_your_modeline_customization/
+;; https://www.reddit.com/r/emacs/comments/c5mel4/what_mode_line_do_you_use_and_why/
+;; https://www.masteringemacs.org/article/hiding-replacing-modeline-strings
+;; https://lists.gnu.org/archive/html/emacs-devel/2010-03/msg00523.html
+
+;; https://github.com/xenodium/dotsies/blob/main/README.org.res/emacs.png
+;; https://github.com/xenodium/dotsies/blob/main/emacs/features/fe-eshell.el
+;; https://github.com/xenodium/dotsies/blob/main/emacs/ar/ar-eshell-config.el
+
 
 ;; C-s-i  (org-shifttab &optional ARG) collapse or S-tab
 ;; Variables utiles

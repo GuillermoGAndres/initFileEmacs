@@ -42,8 +42,8 @@
 
 (add-to-list 'custom-theme-load-path "~/Documents/projects/Dijkstra-theme")
 ;;(load-theme 'dijkstra t)
-;;(load-theme 'dijkstra-dark t)
-(load-theme 'dijkstra-dark-blue t) ;; I like this theme
+;; (load-theme 'dijkstra-dark t)
+;; (load-theme 'dijkstra-dark-blue t) ;; I like this theme
 
 (if  (eq (car custom-enabled-themes) 'dijkstra)
     (progn
@@ -72,8 +72,8 @@
 ;;(load-theme 'niklaus t)
 
 ;; Church-theme
-;; (add-to-list 'custom-theme-load-path "~/Documents/projects/Church-theme")
-;; (load-theme 'church t)
+(add-to-list 'custom-theme-load-path "~/Documents/projects/Church-theme")
+(load-theme 'church t)
 
 ;; Dracula-theme
 ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/dracula-theme")
@@ -95,6 +95,8 @@
 ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/noctilux-theme")
 ;; (load-theme 'noctilux t)
 
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/doom-gruvbox")
+;; (load-theme 'doom-gruvbox t)
 
 ;; Significa que es el tema por defecto de emacs ;ver colores M-x list-faces-display
 ;;(add-to-list 'load-path "~/.emacs.d/initFileEmacs/myThemes/themebydefault/themebydefault.el")
