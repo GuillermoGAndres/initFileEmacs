@@ -73,6 +73,39 @@ C-x - left/right : Change next or back buffer.
 
 ~~~
 
+### Demons
+Para que emacs se ejecute en segundo plano y sea más rapido acceder los archivos, se inicia
+server-star:
+~~~
+(server-star)
+~~~
+Para llamar a lor archivos seria:
+~~~
+> emacsliente file.py
+~~~
+Para crear un frame
+~~~
+> emacsliente -c 
+~~~
+Para correr server desde la terminar:
+~~~
+> emacs --deamon
+# Para ver log en la terminar seria
+> emacs --fg-deamon
+~~~
+Para craer otro demonio sera
+~~~
+> emacs --deamon-nombre-de-tu-segundo-demonio
+~~~
+Para matar los demonios, muy util si quiere probar otros init files.
+~~~
+emacliente -e "(kill-emacs)"
+~~~
+Carpeta donde se ven los demonios
+~~~
+> /tmp/emacs10000/
+~~~
+
 ### Font
 ---
 DejaVu Sans Mono

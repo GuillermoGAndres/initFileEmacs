@@ -42,7 +42,7 @@
      "\n"
      ;; (propertize (system-name) 'face `(:foreground "#62aeed"))
      ;; (propertize " ॐ " 'face `(:foreground "white"))
-     (propertize (dw/get-prompt-path) 'face `(:foreground "#82cfd3"))
+     (propertize (dw/get-prompt-path) 'face `(:foreground "#82cfd3")) ;; or #82cfd3
      (when current-branch
        (concat
         (propertize " (" 'face `(:foreground "#F4B3A0"))

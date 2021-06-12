@@ -285,8 +285,8 @@
 
 ;; Cosas que me gustaria probar para desarrollo:
 ;; (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-;;(global-hl-line-mode +1)
-(add-hook 'prog-mode-hook 'hl-line-mode)
+;; (global-hl-line-mode +1)
+;; (add-hook 'prog-mode-hook 'hl-line-mode)
 
 ;; f string literal python , python mode y tambien funciona con Elpy
 
@@ -527,6 +527,17 @@
 ;;   ([remap describe-variable] . counsel-describe-variable)
 ;;   ([remap describe-key] . helpful-key))
 
+
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "C-j") 'company-select-next)
+  (define-key company-active-map (kbd "C-k") 'company-select-previous)
+  
+  (define-key company-search-map (kbd "C-j") 'company-select-next)
+  (define-key company-search-map (kbd "C-k") 'company-select-previous)
+  )
+
+;; https://emacs.stackexchange.com/questions/2988/how-to-remap-companys-select-next-and-select-previous-keys
+;; http://ergoemacs.org/emacs/reclaim_keybindings.html
 
 ;;
 ;; (provide 'customMeLinux)
